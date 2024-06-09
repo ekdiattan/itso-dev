@@ -55,8 +55,9 @@ Route::group(['middleware' =>['auth','hakAkses:Admin']], function(){
     Route::get('/register/delete/{id}',[UserController::class, 'delete']);
 });
 
+Route::get('/dashboard',[DashboardController::class, 'index']);
+
 Route::group(['middleware' =>['auth']], function(){
-    Route::get('/dashboard',[DashboardController::class, 'index']);
 });
 
 // Route::get('/dashboard', function () {
@@ -68,7 +69,8 @@ Route::group(['middleware' =>['auth']], function(){
 Route::get('/logout', [UserController::class, 'logout']);
 
 //laporan
-Route::group(['middleware' =>['auth','hakAkses:Admin,IT']], function(){
+// Route::group(['middleware' =>['auth','hakAkses:Admin,IT']], function()
+// {
     Route::get('/laporan', [LaporanController::class,'index']);
     Route::get('/laporan/create',[LaporanController::class, 'create']);
     Route::post('/laporan/create',[LaporanController::class, 'store']);
@@ -78,7 +80,7 @@ Route::group(['middleware' =>['auth','hakAkses:Admin,IT']], function(){
     Route::put('/laporan-execute/{id}', [LaporanController::class,'executed']);
     Route::get('/laporan/{id}', [LaporanController::class,'show']);
     Route::get('/laporan-delete/{id}', [LaporanController::class,'delete']);
-});
+// });
 
 
 //inventaris
@@ -186,7 +188,7 @@ Route::group(['middleware' =>['auth','hakAkses:Admin,Keamanan']], function(){
 });
 
 //--KEPEGAWAIAN--
-Route::group(['middleware' =>['auth','hakAkses:Admin,Kepegawaian']], function(){
+// Route::group(['middleware' =>['auth','hakAkses:Admin,Kepegawaian']], function(){
     //kehadiran
     Route::get('/kepegawaian/kehadiran', [KehadiranController::class, 'index']); 
     Route::get('/kepegawaian/kehadiran', [KehadiranController::class, 'show']);
@@ -246,7 +248,7 @@ Route::group(['middleware' =>['auth','hakAkses:Admin,Kepegawaian']], function(){
     Route::post('/libur/{id}', [LiburController::class, 'update']);
     Route::get('/libur/delete/{id}',[LiburController::class, 'delete']);
 
-});
+// });
 
 
 // Settings
@@ -261,6 +263,7 @@ Route::get('/settings', function () {
 Route::get('/light', function () {
     return view('home/settings/light');
 })->middleware('auth');
+
 
 // Account Setting 
 Route::get('/account/{id}', [UserController::class, 'editByUser'])->middleware('auth');
@@ -292,11 +295,3 @@ Route::get('/permohonan-result/{id}',[BookingController::class, 'result']);
 Route::post('/permohonan-check',[BookingController::class, 'permohonanCheck']);
 Route::post('/permohonan-store',[BookingController::class, 'store']);
 Route::get('/booked/{id}',[BookingController::class, 'booked']);
-
-// Route upload image
-
-
-// Route Google Calendar
-Route::get('/google-calendar/connect', [GoogleCalendarController::class, 'connect']);
-Route::post('/google-calendar/connect', [GoogleCalendarController::class, 'store']);
-Route::get('get-resource', [GoogleCalendarController::class, 'getResources']);

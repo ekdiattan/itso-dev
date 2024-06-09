@@ -5,12 +5,12 @@
       <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
         <div class="row">
-        @if(auth()->user()->hak_akses=="Admin" || auth()->user()->hak_akses=="IT")
+        {{-- @if(auth()->user()->hak_akses=="Admin" || auth()->user()->hak_akses=="IT") --}}
               <div class="col-lg-4 col-6">
                 <!-- small box -->
                 <div class="small-box bg-info">
                   <div class="inner">
-                    <h3 id="count1">{{$laporan}}</h3>
+                    <h3 id="count1"></h3>
                     <p>Data Catatan IT</p>
                   </div>
                   <div class="icon">
@@ -20,14 +20,14 @@
                 </div>
               </div>
         
-          @endif
-        @if(auth()->user()->hak_akses=="Admin" || auth()->user()->hak_akses=="Aset")
+          {{-- @endif --}}
+        {{-- @if(auth()->user()->hak_akses=="Admin" || auth()->user()->hak_akses=="Aset") --}}
           <!-- ./col -->
           <div class="col-lg-4 col-6">
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3 id="count2">{{$booking}}</h3>
+                <h3 id="count2"></h3>
                 <p>Data Peminjaman</p>
               </div>
               <div class="icon">
@@ -36,14 +36,14 @@
               <a href="/booking" class="small-box-footer">Selengkapnya <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
-        @endif
+        {{-- @endif --}}
           <!-- ./col -->
-        @if(auth()->user()->hak_akses=="Admin" || auth()->user()->hak_akses=="Kepegawaian")
+        {{-- @if(auth()->user()->hak_akses=="Admin" || auth()->user()->hak_akses=="Kepegawaian") --}}
           <div class="col-lg-4 col-6">
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3 id="count3">{{$pegawai}}</h3>
+                <h3 id="count3"></h3>
                 <p>Data Pegawai Diskominfo</p>
               </div>
               <div class="icon">
@@ -52,7 +52,7 @@
               <a href="/master-pegawai" class="small-box-footer">Selengkapnya <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
-        @endif
+        {{-- @endif --}}
           <!-- ./col -->
         </div>
       </div><!-- /.container-fluid -->
@@ -98,7 +98,7 @@
 <br>
 
 
-<script>
+{{-- <script>
   // Mendapatkan elemen target
   var countElement1 = document.getElementById('count1');
   var countElement2 = document.getElementById('count2');
@@ -137,7 +137,7 @@
   if({{ $pegawai }} != '0'){
   countingEffect(countElement3, endCount3);
   }
-</script>
+</script> --}}
 
 
 <!-- <script>

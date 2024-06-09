@@ -23,7 +23,7 @@ class CutiController extends Controller
         try {
             $todayYear = Carbon::now()->format('Y');
             $todayMonth = Carbon::now()->format('m');
-        
+            
             $now = Carbon::now();
         
             $startMonth = Carbon::now();

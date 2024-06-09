@@ -8,7 +8,7 @@
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
           <div class="m-auto">
             <a href="/dashboard" class="navbar-brand">
-              <img src="{{ asset('assets/images/logo_diskom.svg') }}" alt="Diskominfo" class="brand-image" style="height: 35  px; width: 143px;">
+              {{-- <img src="{{ asset('assets/images/logo_diskom.svg') }}" alt="Diskominfo" class="brand-image" style="height: 35  px; width: 143px;"> --}}
             </a>
           </div>
         </div>  
@@ -23,7 +23,7 @@
                 </p>
               </a>
             </li>
-          @if(auth()->user()->hak_akses=="Admin" || auth()->user()->hak_akses=="IT")
+          {{-- @if(auth()->user()->hak_akses=="Admin" || auth()->user()->hak_akses=="IT") --}}
             <li class="nav-item {{ ($title === 'Catatan IT') ? 'menu-open menu-is-opening' : '' }} ">
               <a class="nav-link">
                 <i class="nav-icon fas fa-users"></i>
@@ -32,17 +32,17 @@
               </a>
               <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="/laporan/" class="nav-link {{ ($title === 'Catatan IT') ? 'active disabled' : '' }}">
+                    {{-- <a href="/laporan/" class="nav-link {{ ($title === 'Catatan IT') ? 'active disabled' : '' }}"> --}}
                       <i class="nav-icon fas fa-desktop ml-3"></i>
                       <p>Catatan IT</p>
                     </a>
                   </li>
               </ul>
             </li>
-            @endif
+            {{-- @endif --}}
 
-            @if(auth()->user()->hak_akses=="Admin" || auth()->user()->hak_akses=="Aset")
-              <li class="nav-item {{ ($title === 'Inventaris' || $title === 'Booking') ? 'menu-open menu-is-open' : '' }}">
+            {{-- @if(auth()->user()->hak_akses=="Admin" || auth()->user()->hak_akses=="Aset") --}}
+              {{-- <li class="nav-item {{ ($title === 'Inventaris' || $title === 'Booking') ? 'menu-open menu-is-open' : '' }}"> --}}
                 <a class="nav-link">
                   <i class="nav-icon fas fa-users"></i>
                   <p>Tim Aset</p>
@@ -50,23 +50,23 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="/fiturmaintenance/" class="nav-link {{ ($title === 'Inventaris') ? 'active disabled' : '' }}">
+                    {{-- <a href="/fiturmaintenance/" class="nav-link {{ ($title === 'Inventaris') ? 'active disabled' : '' }}"> --}}
                       <i class="nav-icon fas fa-chart-pie ml-3"></i>
                       <p>Inventaris</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="/booking/" class="nav-link {{ ($title === 'Booking') ? 'active disabled' : '' }}">
+                    {{-- <a href="/booking/" class="nav-link {{ ($title === 'Booking') ? 'active disabled' : '' }}"> --}}
                       <i class="nav-icon fas fa-bookmark ml-3"></i>
                       <p>Peminjaman</p>
                     </a>
                   </li>
                 </ul>
               </li>
-            @endif
+            {{-- @endif --}}
 
-          @if(auth()->user()->hak_akses=="Admin" || auth()->user()->hak_akses=="Kepegawaian")
-            <li class="nav-item {{ ($title === 'Kehadiran' || $title === 'Cuti' || $title === 'Jumlah Cuti' || $title === 'Belum Absen Masuk' || $title === 'Belum Absen Pulang' || $title === 'Data Terlambat Harian' || $title === 'Rekapitulasi Masuk Pegawai' || $title === 'Pegawai' || $title === 'Rekapitulasi Terlambat Masuk Unit' || $title === 'Rekapitulasi Tidak Absen Pulang Pegawai' || $title === 'Pegawaii Tidak Aktif') ? 'menu-open menu-is-opening' : '' }}">
+          {{-- @if(auth()->user()->hak_akses=="Admin" || auth()->user()->hak_akses=="Kepegawaian") --}}
+            {{-- <li class="nav-item {{ ($title === 'Kehadiran' || $title === 'Cuti' || $title === 'Jumlah Cuti' || $title === 'Belum Absen Masuk' || $title === 'Belum Absen Pulang' || $title === 'Data Terlambat Harian' || $title === 'Rekapitulasi Masuk Pegawai' || $title === 'Pegawai' || $title === 'Rekapitulasi Terlambat Masuk Unit' || $title === 'Rekapitulasi Tidak Absen Pulang Pegawai' || $title === 'Pegawaii Tidak Aktif') ? 'menu-open menu-is-opening' : '' }}"> --}}
               <a class="nav-link">
                 <i class="nav-icon fas fa-users"></i>
                 <p>Tim Kepegawaian
@@ -75,12 +75,12 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="/kepegawaian/kehadiran" class="nav-link {{ ($title === 'Kehadiran') ? 'active disabled' : '' }}">
+                  {{-- <a href="/kepegawaian/kehadiran" class="nav-link {{ ($title === 'Kehadiran') ? 'active disabled' : '' }}"> --}}
                     <i class="nav-icon fas fa-clipboard ml-3"></i>
                     <p>Data Kehadiran</p>
                   </a>
                 </li>
-                <li class="nav-item {{ ($title === 'Cuti') || ($title === 'Jumlah Cuti') ? 'menu-open menu-is-opening' : '' }}">
+                {{-- <li class="nav-item {{ ($title === 'Cuti') || ($title === 'Jumlah Cuti') ? 'menu-open menu-is-opening' : '' }}"> --}}
                   <a class="nav-link">
                     <i class="nav-icon fas fa-users ml-3"></i>
                     <p>Cuti
@@ -89,13 +89,13 @@
                   </a>
                   <ul class="nav nav-treeview">
                     <li class="nav-item">
-                      <a href="/cuti" class="nav-link {{ ($title === 'Cuti') ? 'active disabled' : '' }}">
+                      {{-- <a href="/cuti" class="nav-link {{ ($title === 'Cuti') ? 'active disabled' : '' }}"> --}}
                         <i class="nav-icon fas fa-database ml-5"></i>
                         <p>Data Cuti</p>
                       </a>
                     </li>
                     <li class="nav-item">
-                      <a href="/jumlah-cuti" class="nav-link {{ ($title === 'Jumlah Cuti') ? 'active disabled' : '' }}">
+                      {{-- <a href="/jumlah-cuti" class="nav-link {{ ($title === 'Jumlah Cuti') ? 'active disabled' : '' }}"> --}}
                         <i class="nav-icon fas fa-equals ml-5"></i>
                         <p>Jumlah Cuti</p>
                       </a>
@@ -103,46 +103,46 @@
                   </ul>
                 </li>
                 <li class="nav-item">
-                  <a href="/store-masuk" class="nav-link {{ ($title === 'Belum Absen Masuk') ? 'active disabled' : '' }}">
+                  {{-- <a href="/store-masuk" class="nav-link {{ ($title === 'Belum Absen Masuk') ? 'active disabled' : '' }}"> --}}
                     <i class="nav-icon fas fa-clock ml-3"></i>
                     <p>Belum Absen Masuk</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="/store-pulang" class="nav-link {{ ($title === 'Belum Absen Pulang') ? 'active disabled' : '' }}">
+                  {{-- <a href="/store-pulang" class="nav-link {{ ($title === 'Belum Absen Pulang') ? 'active disabled' : '' }}"> --}}
                     <i class="nav-icon fas fa-clock ml-3"></i>
                     <p>Belum Absen Pulang</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="/terlambat-harian" class="nav-link {{ ($title === 'Data Terlambat Harian') ? 'active disabled' : '' }}">
+                  {{-- <a href="/terlambat-harian" class="nav-link {{ ($title === 'Data Terlambat Harian') ? 'active disabled' : '' }}"> --}}
                     <i class="nav-icon fas fa-exclamation ml-3"></i>
                     <p>Data Terlambat Harian</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="/rekap/terlambat-masuk" class="nav-link {{ ($title === 'Rekapitulasi Masuk Pegawai' || $title === 'Rekapitulasi Terlambat Masuk Unit' || $title === 'Rekapitulasi Tidak Absen Pulang Pegawai') ? 'active disabled' : '' }}">
+                  {{-- <a href="/rekap/terlambat-masuk" class="nav-link {{ ($title === 'Rekapitulasi Masuk Pegawai' || $title === 'Rekapitulasi Terlambat Masuk Unit' || $title === 'Rekapitulasi Tidak Absen Pulang Pegawai') ? 'active disabled' : '' }}"> --}}
                     <i class="nav-icon fas fa-file  ml-3"></i>
                     <p>Rekapitulasi</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="/master-pegawai" class="nav-link {{ ($title === 'Pegawai') ? 'active disabled' : '' }}">
+                  {{-- <a href="/master-pegawai" class="nav-link {{ ($title === 'Pegawai') ? 'active disabled' : '' }}"> --}}
                     <i class="nav-icon fas fa-address-book  ml-3"></i>
                     <p>Master Pegawai</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link {{ ($title === 'Pegawai Tidak Aktif') ? 'active disabled' : '' }}">
+                  {{-- <a href="#" class="nav-link {{ ($title === 'Pegawai Tidak Aktif') ? 'active disabled' : '' }}"> --}}
                     <i class="nav-icon fas fa-user-slash  ml-3"></i>
                     <p>Pegawai Tidak Aktif</p>
                   </a>
                 </li>
             </ul>
 
-          @endif
-          @if(auth()->user()->hak_akses=="Admin" || auth()->user()->hak_akses=="Keamanan")
-            <li class="nav-item {{ ($title === 'Kendaraan') ? 'menu-open menu-is-opening' : '' }}">
+          {{-- @endif --}}
+          {{-- @if(auth()->user()->hak_akses=="Admin" || auth()->user()->hak_akses=="Keamanan") --}}
+            <li class="nav-item">
                 <a class="nav-link">
                   <i class="nav-icon fas fa-users"></i>
                   <p>Tim Keamanan
@@ -158,17 +158,17 @@
                   </li>
                 </ul>
             </li>
-          @endif
-          @if(auth()->user()->hak_akses=="Admin")
+          {{-- @endif --}}
+          {{-- @if(auth()->user()->hak_akses=="Admin") --}}
             <li class="nav-item">
-              <a href="/index" class="nav-link {{ ($title === 'Pengguna') ? 'active disabled' : '' }}">
+              {{-- <a href="/index" class="nav-link {{ ($title === 'Pengguna') ? 'active disabled' : '' }}"> --}}
                 <i class="nav-icon fas fa-user-plus"></i>
                 <p>Pengguna</p>
               </a>
             </li>
-          @endif
-          @if(auth()->user()->hak_akses=="Admin" ||  auth()->user()->hak_akses=="Aset")
-            <li class="nav-item {{ ($title === 'Aset' || $title === 'Kode Aset' || $title === 'Bidang' || $title === 'Pengecualian Pegawai'|| $title === 'Kategori' || $title === 'Role' || $title === 'Merk' || $title === 'Satuan' || $title === 'Libur Nasional') ? 'menu-open menu-is-opening' : '' }}">
+          {{-- @endif --}}
+          {{-- @if(auth()->user()->hak_akses=="Admin" ||  auth()->user()->hak_akses=="Aset") --}}
+            <li class="nav-item">
               <a class="nav-link">
                 <i class="nav-icon fas fa-cog "></i>
                 <p>
@@ -176,74 +176,74 @@
                   <i class="right fas fa-angle-left"></i>
                 </p>
               </a>
-            @endif
+            {{-- @endif --}}
               <ul class="nav nav-treeview">
-            @if(auth()->user()->hak_akses=="Admin" || auth()->user()->hak_akses=="Aset")
+            {{-- @if(auth()->user()->hak_akses=="Admin" || auth()->user()->hak_akses=="Aset") --}}
                 <li class="nav-item">
-                  <a href="/kodeAset" class="nav-link {{ ($title === 'Kode Aset') ? 'active disabled' : '' }}">
+                  <a href="/kodeAset" class="nav-link">
                     <i class="nav-icon fas fa-book ml-3"></i>
                     <p>Kode Aset</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="/aset" class="nav-link {{ ($title === 'Aset') ? 'active disabled' : '' }}">
+                  <a href="/aset" class="nav-link">
                     <i class="nav-icon fas fa-weight ml-3"></i>
                     <p>Aset</p>
                   </a>
                 </li>
-            @endif
-            @if(auth()->user()->hak_akses=="Admin")
+            {{-- @endif --}}
+            {{-- @if(auth()->user()->hak_akses=="Admin") --}}
                 <li class="nav-item">
-                  <a href="/bidang" class="nav-link {{ ($title === 'Bidang') ? 'active disabled' : '' }}">
+                  <a href="/bidang" class="nav-link">
                     <i class="nav-icon fas fa-building ml-3"></i>
                     <p>Bidang</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="/kategori" class="nav-link {{ ($title === 'Kategori') ? 'active disabled' : '' }}">
+                  <a href="/kategori" class="nav-link ">
                     <i class="nav-icon fas fa-list ml-3"></i>
                     <p>Kategori</p>
                   </a>
                 </li>
-            @endif
-            @if(auth()->user()->hak_akses=="Admin" || auth()->user()->hak_akses=="Kepegawaian")
+            {{-- @endif --}}
+            {{-- @if(auth()->user()->hak_akses=="Admin" || auth()->user()->hak_akses=="Kepegawaian") --}}
                 <li class="nav-item">
-                  <a href="/pengecualian" class="nav-link {{ ($title === 'Pengecualian Pegawai') ? 'active disabled' : '' }}">
+                  <a href="/pengecualian" class="nav-link ">
                     <i class="nav-icon fas fa-ban ml-3"></i>
                     <p>Pengecualian Pegawai</p>
                   </a>
                 </li>
-            @endif
-            @if(auth()->user()->hak_akses=="Admin")
+            {{-- @endif --}}
+            {{-- @if(auth()->user()->hak_akses=="Admin") --}}
                 <li class="nav-item">
-                  <a href="/role/" class="nav-link {{ ($title === 'Role') ? 'active disabled' : '' }}">
+                  <a href="/role/" class="nav-link">
                     <i class="nav-icon fas fa-hard-hat ml-3"></i>
                     <p>Role</p>
                   </a>
                 </li>
-            @endif
-            @if(auth()->user()->hak_akses=="Admin" || auth()->user()->hak_akses=="Aset")
+            {{-- @endif --}}
+            {{-- @if(auth()->user()->hak_akses=="Admin" || auth()->user()->hak_akses=="Aset") --}}
                 <li class="nav-item">
-                  <a href="/merk/" class="nav-link {{ ($title === 'Merk') ? 'active disabled' : '' }}">
+                  <a href="/merk/" class="nav-link 'active disabled' : '' }}">
                   <i class="nav-icon fas fa-window-restore ml-3"></i>
                     <p>Merk</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="/satuan/" class="nav-link {{ ($title === 'Satuan') ? 'active disabled' : '' }}">
+                  {{-- <a href="/satuan/" class="nav-link {{ 'active disabled' : '' }}"> --}}
                   <i class="nav-icon fas fa-cookie-bite ml-3"></i>
                     <p>Satuan</p>
                   </a>
                 </li>
-            @endif
-            @if(auth()->user()->hak_akses=="Admin" || auth()->user()->hak_akses=="Kepegawaian")
+            {{-- @endif --}}
+            {{-- @if(auth()->user()->hak_akses=="Admin" || auth()->user()->hak_akses=="Kepegawaian") --}}
                 <li class="nav-item">
-                  <a href="/libur/" class="nav-link {{ ($title === 'Libur Nasional') ? 'active disabled' : '' }}">
+                  {{-- <a href="/libur/" class="nav-link {{'active disabled' : '' }}"> --}}
                   <i class="nav-icon fas fa-umbrella-beach ml-3"></i>
                     <p>Liburan</p>
                   </a>
                 </li>
-            @endif
+            {{-- @endif --}}
                 </ul>
           </ul>
       </nav>

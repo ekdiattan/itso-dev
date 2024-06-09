@@ -9,12 +9,8 @@ use App\Models\Pegawai;
 
 class DashboardController extends Controller
 {
-    public function index(Request $request){
-        
-        $laporan = Laporan::all();
-        $booking = Booking::all();
-        $pegawai = Pegawai::all();
-
-        return view('home.dashboard', ["title" => "Dashboard", 'laporan' => sizeof($laporan),'booking' => sizeof($booking),'pegawai' => sizeof($pegawai)]);
+    public function index()
+    {
+        return view('home.dashboard', ["title" => "Dashboard"]);
     }
 }
