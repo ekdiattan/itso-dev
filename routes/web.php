@@ -22,6 +22,7 @@ use App\Http\Controllers\TrackingController;
 use App\Http\Controllers\BlockController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\ModuleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -83,11 +84,11 @@ Route::post('/aset/{id}', [AsetController::class,'update']);
 Route::get('/aset/delete/{id}',[AsetController::class, 'delete']);
 
 //bidang
-Route::resource('/bidang', BidangController::class);
-Route::post('/bidang/create',[BidangController::class, 'store']);
-Route::get('/bidang/{id}', [BidangController::class,'edit']);
-Route::post('/bidang/{id}', [BidangController::class,'update']);
-Route::get('/bidang/delete/{id}',[BidangController::class, 'delete']);
+Route::get('/module', [ModuleController::class, 'index']);
+Route::post('/module/create',[ModuleController::class, 'store']);
+Route::get('/module/{id}', [ModuleController::class,'edit']);
+Route::post('/module/{id}', [ModuleController::class,'update']);
+Route::get('/module/delete/{id}',[ModuleController::class, 'delete']);
 
 
 // Account Setting 

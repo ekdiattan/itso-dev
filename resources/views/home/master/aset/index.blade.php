@@ -101,37 +101,21 @@
                       <thead  class="bg-gray disabled color-palette">
                         <tr>
                           <th>No</th>
-                          <th>Nama</th>
-                          <th>Merk</th>
-                          <th>Jenis Aset</th>
-                          <th>Jumlah</th>
-                          <th>Kapasitas</th>
-                          <th>Kode Unit</th>
-                          <th>Tahun</th>
-                          <th>Nomer Rangka</th>
-                          <th>Nomer Mesin</th>
-                          <th>Kebersihan</th>
-                          <th>Bahan Bakar</th>
-                          <th>Status</th>
+                          <th>Nama Aset</th>
+                          <th>Kode Aset</th>
+                          <th>Tipe Aset</th>
+                          <th>Tanggal Aset</th>
                           <th>Action</th>
                         </tr>
                       </thead>
                       <tbody>
-                        @foreach ($asets as $key => $post )  
+                        @foreach ($asets as $post )  
                         <tr>
-                          <td>{{ $asets->firstItem() + $key }}</td>
-                          <td>{{ $post->nama }}</td>
-                          <td>{{ $post->merk }}</td>
-                          <td>{{ $post->jenis }}</td>
-                          <td>{{ $post->jumlah }}</td>
-                          <td>{{ $post->kapasitas }}</td>
-                          <td>{{ $post->kodeUnit }}</td>
-                          <td>{{ $post->tahun }}</td>
-                          <td>{{ $post->rangka }}</td>
-                          <td>{{ $post->mesin }}</td>
-                          <td>{{ $post->kebersihan }}</td>
-                          <td>{{ $post->bahanBakar }}</td>
-                          <td>{{ $post->status }}</td>
+                          <td>{{ $loop->iteration }}</td>
+                          <td>{{ $post->MasterAsetName }}</td>
+                          <td>{{ $post->MasterAsetCode }}</td>
+                          <td>{{ $post->MasterAsetType }}</td>
+                          <td>{{ $post->MasterAsetBoughtDate }}</td>
                           <td>
                             <a href="/aset/{{ $post->id }}" class="badge bg-warning"><span class="menu-icon"><i class="far fa-edit"></i></span></a>
                             <form action="/aset/delete/{{$post->id}}" method="get" class="d-inline">
@@ -151,54 +135,4 @@
       </div>
     </div>
   </div>
-
-<script>
-
-function showPeriodForm() {
-        let jenis = document.getElementById("jenis");
-
-        let container = document.getElementById("period");
-        let sembunyi = document.getElementById("sembunyi");
-        let sembunyi2 = document.getElementById("sembunyi2");
-
-        let merk = document.getElementById('merk');
-        let kodeUnit = document.getElementById('kodeUnit');
-        let kebersihan = document.getElementById('kebersihan');
-        let bahanBakar = document.getElementById('bahanBakar');
-      
-        if(jenis.value == "Kendaraan") {
-            container.style.display = "block";
-            sembunyi.style.display = "block";
-            sembunyi2.style.display = "block";
-            merk.setAttribute('required', '');
-            kodeUnit.setAttribute('required', '');
-            kebersihan.setAttribute('required', '');
-            bahanBakar.setAttribute('required', '');
-        }else if(jenis.value == "Barang") {
-            container.style.display = "none";
-            sembunyi.style.display = "block";
-            sembunyi2.style.display = "none";
-            merk.setAttribute('required', '');
-            kodeUnit.removeAttribute('required', '');
-            kebersihan.removeAttribute('required', '');
-            bahanBakar.removeAttribute('required', '');
-        }else if(jenis.value == "Ruangan"){
-            container.style.display = "none";
-            sembunyi.style.display = "none";
-            sembunyi2.style.display = "block";
-            merk.removeAttribute('required', '');
-            kodeUnit.removeAttribute('required', '');
-            kebersihan.removeAttribute('required');
-            bahanBakar.removeAttribute('required', '');
-        }else {
-            container.style.display = "none";
-            sembunyi.style.display = "none";
-            sembunyi2.style.display = "none";
-            merk.removeAttribute('required', '');
-            kodeUnit.removeAttribute('required', '');
-            kebersihan.removeAttribute('required');
-            bahanBakar.removeAttribute('required', '');
-        }
-      }
-</script>
 @endsection

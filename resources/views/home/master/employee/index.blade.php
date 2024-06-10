@@ -10,7 +10,7 @@
       <div class="card">
         <div class="card-body">
           <h4 class="card-title">Tambahkan Pegawai</h4>
-          <form action="/employee/create" method="post" >
+          <form action="/employee/create" method="key" >
             @csrf
             <br>
             <div class="form-group">
@@ -30,7 +30,7 @@
       <div class="card">
         <div class="card-body">
           <div class="d-flex flex-row justify-content-between">
-            <h4 class="card-title mb-1"><b>Daftar Kode Aset</b></h4>
+            <h4 class="card-title mb-1"><b>Daftar Pegawai</b></h4>
           </div>
           <div class="row">
             <div class="col-12">
@@ -40,30 +40,33 @@
                       <thead  class="bg-gray disabled color-palette">
                         <tr>
                           <th>No</th>
-                          <th>Kode Barang</th>
-                          <th>Jenis Aset</th>
-                          <th>Umur Ekonomis</th>
+                          <th>Nama Pegawai</th>
+                          <th>Alamat Pegawai</th>
+                          <th>Nomor Pegawai</th>
+                          <th>Email Pegawai</th>
+                          <th>Nomor Hp Pegawai</th>
                           <th>Action</th>
                         </tr>
                       </thead>
                       <tbody>
-                        {{-- @foreach ($kodeasets as $key => $post )  
+                        @foreach ($employee as $key )  
                         <tr>
-                          <td>{{ $kodeasets->firstItem() + $key }}</td>
-                          <td>{{ $post->kodeBarang }}</td>
-                          <td>{{ $post->jenisAset }}</td>
-                          <td>{{ $post->umurEkonomis }}</td>
+                          <td>{{ $loop->iteration }}</td>
+                          <td>{{ $key->EmployeeName }}</td>
+                          <td>{{ $key->EmployeeAddress }}</td>
+                          <td>{{ $key->EmployeePhone }}</td>
+                          <td>{{ $key->EmployeeEmail }}</td>
+                          <td>{{ $key->EmployeePhone }}</td>
                           <td>
-                            <a href="/kodeAset/{{ $post->id }}" class="badge bg-warning"><span class="menu-icon"><i class="far fa-edit"></i></span></a>
-                            <form action="/kodeAset/delete/{{$post->id}}" method="get" class="d-inline">
+                            <a href="/kodeAset/" class="badge bg-warning"><span class="menu-icon"><i class="far fa-edit"></i></span></a>
+                            <form action="/kodeAset/delete/{{$key->id}}" method="get" class="d-inline">
                             @method('delete')
                             @csrf
                             <button class="badge bg-danger border-0"onclick="return confirm('Are you sure?')"><span class="menu-icon"><i class="fas fa-trash"></i></span></button>
                           </form>
                         </tr>
-                        @endforeach --}}
+                        @endforeach
                       </tbody>
-                      {{-- {{ $kodeasets->links() }} --}}
                     </table>
                   </div>
               </div>

@@ -82,7 +82,7 @@
             {{-- @endif --}}
             {{-- @if(auth()->user()->hak_akses=="Admin") --}}
                 <li class="nav-item">
-                  <a href="/bidang" class="nav-link">
+                  <a href="/module" class="nav-link">
                     <i class="nav-icon fas fa-building ml-3"></i>
                     <p>Modul</p>
                   </a>

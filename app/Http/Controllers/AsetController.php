@@ -7,17 +7,12 @@ use Illuminate\Http\Request;
 
 class AsetController extends Controller
 {
-    public function index(Request $request){
-
-        if($request){
-            $aset = DB::table('asets')->where('nama', 'ilike', '%'.$request->search2.'%')->paginate(10);
-        }else{
-            $aset = DB::table('asets')->where('nama', true)->paginate(10);
-        }
-
-        return view('home.master.aset.index', ['title' => 'Aset', 'asets'=> $aset,]);
+    public function index()
+    {   
+        $aset = Aset::all();
+        return view('home.master.aset.index', ['title' => 'Aset', 'asets'=> $aset]);
     }
-
+    
     public function store(Request $request)
     {
 
