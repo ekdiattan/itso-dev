@@ -11,10 +11,6 @@
       <!-- Left links -->
       <ul class="navbar-nav flex-row">
         <li class="nav-item me-auto">
-          <a class="nav-link" role="button" data-mdb-toggle="sidenav" data-mdb-target="#sidenav-1"
-            class="btn shadow-0 p-0 me-auto" aria-controls="#sidenav-1" aria-haspopup="true">
-            Filter Data Berdasarkan
-          </a>
         </li>
         <li class="nav-item me-auto">
           <a class="nav-link" href="/booking-reject" style="color:red;font-size:20px;" role="button" data-mdb-toggle="sidenav" data-mdb-target="#sidenav-1"
@@ -62,11 +58,11 @@
                             <tr>
                                 <th>No</th>
                                 <th>Tiket</th>
+                                <th>Nama Aset</th>
                                 <th>Nama Pemohon</th>
-                                <th>No Hp</th>
-                                <th>Bidang</th>
-                                <th>Perihal</th>
-                                <th>Tanggal Permohonan</th>
+                                <th>Tanggal Pinjam</th>
+                                <th>Selesai Pinjam</th>
+                                <th>Catatan</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
@@ -76,18 +72,18 @@
                             @foreach ($dalamPengajuan as $post)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $post->tiket }}</td>
-                                    <td>{{ $post->namaPemohon }}</td>
-                                    <td>{{ $post->noTelp }}</td>
-                                    <td>{{ $post->bidang }}</td>
-                                    <td>{{ $post->perihal }}</td>
-                                    <td>{{ $post->tanggalPermohonan }}</td>
-                                    <td>{{ $post->status }}</td>
+                                    <td>{{ $post->BookingCode}}</td>
+                                    <td>{{ $post->aset->MasterAsetName}}</td>
+                                    <td>{{ $post->user->employee->EmployeeName}}</td>
+                                    <td>{{ $post->BookingStart}}</td>
+                                    <td>{{ $post->BookingEnd}}</td>
+                                    <td>{{ $post->BookingRemark }}</td>
+                                    <td>{{ $post->BookingStatus }}</td>
                                     <td>
-                                        <a href="/booking/{{ $post->id }}" class="badge bg-info"><span class="menu-icon"><i class="far fa-eye"></i></span></a>
-                                        <a href="/booking-edit/{{ $post->id }}" class="badge bg-primary"><span class="menu-icon"><i class="fas fa-tools"></i></span></a>
-                                        <!-- <a href="#" class="badge bg-warning"><span class="menu-icon"><i class="far fa-edit"></i></span></a> -->
-                                        <form action="/booking/delete/{{ $post->id }}" method="get" class="d-inline">
+                                        <a href="/booking/" class="badge bg-info"><span class="menu-icon"><i class="far fa-eye"></i></span></a>
+                                        <a href="/booking-edit/" class="badge bg-primary"><span class="menu-icon"><i class="fas fa-tools"></i></span></a>
+                                        <a href="#" class="badge bg-warning"><span class="menu-icon"><i class="far fa-edit"></i></span></a>
+                                        <form action="/booking/delete/" method="get" class="d-inline">
                                             <button class="badge bg-danger border-0"
                                                 onclick="return confirm('Are you sure?')"><span class="menu-icon"><i
                                                         class="fas fa-trash"></i></span></button>

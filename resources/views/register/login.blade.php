@@ -44,7 +44,7 @@
                       @csrf   
                     <div class="form-group">
                       <label>Username *</label>
-                      <input type="text" class="form-control p_input" id="username" name="username" autofocus required>
+                      <input type="text" class="form-control p_input" id="name" name="name" autofocus required>
                     </div>
                     <div class="form-group">
                       <label>Password *</label>

@@ -21,7 +21,7 @@ class UserController extends Controller
     {
         return view('maintenance.fiturmaintenance',['title' => ' Fitur Maintenance']);
     }
-
+    
     // register
     public function index()
     {
@@ -114,8 +114,9 @@ class UserController extends Controller
 
     public function authenticate(Request $request)
     {
+
        $credentials = $request->validate([
-        'username'=>['required', 'max:255'],
+        'name'=>['required', 'max:255'],
         'password'=> ['required', 'max:100','min:6']
         ]);
 
@@ -123,9 +124,10 @@ class UserController extends Controller
             $request->session()->regenerate();
             return redirect()->intended('/dashboard');
         }
+        
         return back()->withErrors([
-            'username' => 'Login Failed, username or password may wrong',
-        ])->onlyInput('username');
+            'name' => 'Login Failed, name or password may wrong',
+        ])->onlyInput('name');
     }
 
     // logout

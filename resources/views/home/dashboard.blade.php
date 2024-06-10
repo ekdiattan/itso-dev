@@ -1,5 +1,4 @@
 @extends('home.partials.main')
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script> -->
 @section('container')
 <section class="content connectedSortable">
       <div class="container-fluid">
@@ -28,7 +27,7 @@
             <div class="small-box bg-success">
               <div class="inner">
                 <h3 id="count2"></h3>
-                <p>Data Peminjaman</p>
+                <p>Peminjaman Masuk</p>
               </div>
               <div class="icon">
                 <i class="ion ion-clipboard"></i>
@@ -44,7 +43,7 @@
             <div class="small-box bg-warning">
               <div class="inner">
                 <h3 id="count3"></h3>
-                <p>Data Pegawai Diskominfo</p>
+                <p>Peminjaman Berlangsung</p>
               </div>
               <div class="icon">
                 <i class="ion ion-person-add"></i>
@@ -61,43 +60,6 @@
 
     <!-- <canvas id="myChart" style="width:100%;max-width:600px"></canvas> -->
 
-<!-- Card -->
-  <h1>Berita</h1>
-  <div class="row">
-    <div class="col-sm-4">
-      <div class="card" style="width: 18rem;">
-        <img src="https://diskominfo.jabarprov.go.id/application/modules/post/images/WEB.png" class="card-img-top" alt="...">
-            <div class="card-body">
-          <h5 class="card-title">Diskominfo Jabar</h5>
-        <p class="card-text">Pengumuman 10 Finalis DATATHON - JABAR GEORESTART TAHUN 2022</p>
-      <a href="https://diskominfo.jabarprov.go.id/blog/875-Pengumuman-10-Finalis-DATATHON---JABAR-GEORESTART-TAHUN-2022" class="btn btn-primary">Ke Berita</a>
-  </div>
-      </div>
-        </div>
-<div class="col-sm-4">
-  <div class="card" style="width: 18rem;">
-    <img src="https://diskominfo.jabarprov.go.id/application/modules/post/images/10_Besar_Datathon@4x1.png" class="card-img-top" alt="...">
-      <div class="card-body">
-          <h5 class="card-title">Diskominfo Jabar</h5>
-        <p class="card-text">PENGUMUMAN 10 BESAR SATU DATA JABAR AWARDS TAHUN 2022</p>
-      <a href="https://diskominfo.jabarprov.go.id/blog/878-PENGUMUMAN-10-BESAR-SATU-DATA-JABAR-AWARDS-TAHUN-2022" class="btn btn-primary">Ke Berita</a>
-       </div>
-  </div>
-</div>
-    <div class="col-sm-4">
-    <div class="card" style="width: 18rem;">
-        <img src="https://diskominfo.jabarprov.go.id/application/modules/post/images/25_5_Bimtek_Jafung@1.5x_1.png" class="card-img-top" alt="...">
-            <div class="card-body">
-          <h5 class="card-title">Diskominfo Jabar</h5>
-        <p class="card-text">Bimbingan Teknis Jabatan Fungsional Diskominfo Jabar</p>
-      <a href="https://diskominfo.jabarprov.go.id/blog/872-Bimbingan-Teknis-Jabatan-Fungsional-Diskominfo-Jabar" class="btn btn-primary">Ke Berita</a>
-    </div>
-  </div>
-</div>
-</div>
-<br>
-
-
 {{-- <script>
   // Mendapatkan elemen target
   var countElement1 = document.getElementById('count1');
@@ -105,17 +67,19 @@
   var countElement3 = document.getElementById('count3');
   var startCount = 0;
 
-  var endCount1 = {{$laporan}}; // Ganti dengan variabel atau ekspresi yang sesuai dengan nilai $
-  var endCount2 = {{$booking}}; 
-  var endCount3 = {{$pegawai}}; 
-  
+  var endCount1 = {{$employee}}; 
+  var endCount2 = {{$bookingOverdue}}; 
+  var endCount3 = {{$bookingNow}}; 
+
   var duration = 2000;
-  
+
   // JANGAN DI EDIT
-  function countingEffect(countElement, endCount) {
+  function countingEffect(countElement, endCount) 
+  {
     var countDiff = endCount - startCount;
     var interval = Math.ceil(duration / countDiff);
     var currentCount = startCount;
+  
     var timer = setInterval(function () {
       currentCount++;
       countElement.innerText = currentCount;
@@ -128,15 +92,16 @@
   
   
   // Memulai efek hitungan untuk setiap elemen
-  if({{ $laporan }} != '0'){
+  if({{ $employee }} != '0'){
   countingEffect(countElement1, endCount1);
   }
-  if({{ $booking }} != '0'){
-    countingEffect(countElement2, endCount2);
+  if({{ $employee }} != '0'){
+  countingEffect(countElement2, endCount2);
   }
-  if({{ $pegawai }} != '0'){
+  if({{ $employee }} != '0'){
   countingEffect(countElement3, endCount3);
   }
+
 </script> --}}
 
 

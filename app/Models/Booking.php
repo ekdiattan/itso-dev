@@ -2,41 +2,43 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Booking extends Model
 {
-    use HasFactory;
+    use HasFactory,SoftDeletes;
 
-    protected $fillable = [
-        'aset_id',
-        'namaPemohon',
-        'nip',
-        'noTelp',
-        'bidang',
-        'tiket',
-        'mulai',
-        'selesai',
-        'keperluan',
-        'perihal',
-        'suratPermohonan',
-        'tanggalPermohonan',
-        'kebersihan',
-        'bahanBakar',
-        'penanggungJawab',
-        'pengambilKunci',
-        'keterangan',
-        'status',
-        'nama_email',
-        'penyetuju',
-        'waktu',
-        'hostname',
-        'ip',
-        'alasan'
+    protected $table = 'Booking';
+    protected $primaryKey = 'BookingId';
+
+    protected $guarded = 
+    [
+        'BookingCreatedAt',
+        'BookingUpdatedAt',
+        'BookingDeletedAt'
     ];
 
-    public function aset(){
-        return $this->hasOne(Aset::class, 'id', 'aset_id');
+    protected $attributes = [
+        'BookingApprovalStatus' => 0
+    ];
+
+    public function approval()
+    {
+        return $this->hasMany(Approval::class, 'ApprovalSourceId', 'BookingId');
     }
+
+    public function aset()
+    {
+        return $this->belongsTo(Aset::class, 'BookingAsetId', 'MasterAsetId');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'BookingCreatedBy', 'UserId');
+    }
+    const CREATED_AT = 'BookingCreatedAt';
+    const UPDATED_AT = 'BookingUpdatedAt';
+    const DELETED_AT = 'BookingDeletedAt';
 }

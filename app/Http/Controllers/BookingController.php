@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\BookingNotification;
-use App\Mail\BookingNotificationSelesai;
 use App\Mail\BookingNotificationTolak;
 use App\Mail\BookingNotificationSetuju;
 use App\Mail\BookingNotificationn;
@@ -23,17 +22,20 @@ use PDF;
 
 class BookingController extends Controller
 {
-    public function index (Request $request){
-        if($request->search == null){
-            $dalamPengajuan = DB::table('bookings')->where('status', 'Dalam Pengajuan')->orderBy('tiket', 'desc')->get();
+    public function index (Request $request)
+    {
+        if($request->search == null)
+        {
+            $dalamPengajuan = Booking::where('BookingStatus', 0)->orderBy('BookingCreatedAt', 'desc')->get();
         } else {
-            $dalamPengajuan = DB::table('bookings')->where('status', 'Dalam Pengajuan')->where('namaPemohon', 'ilike', '%'.$request->search.'%')->orwhere('bidang', 'ilike', '%'.$request->search.'%')->orwhere('tanggalPermohonan', 'ilike', '%'.$request->search.'%')->orderBy('tiket', 'desc')->get();
+            $dalamPengajuan = Booking::where('BookingStatus', 0)->where('BookingCode', 'ilike', '%'.$request->search.'%')->get();
         }
-        // change date format
-        foreach($dalamPengajuan as $result){
-            $result->tanggalPermohonan = Carbon::parse($result->tanggalPermohonan)->translatedFormat('d F Y');
-            $result->mulai = Carbon::parse($result->mulai)->translatedFormat('H:i:s, d F Y');
-            $result->selesai = Carbon::parse($result->selesai)->translatedFormat('H:i:s, d F Y');
+        
+        foreach($dalamPengajuan as $result)
+        {
+            // $result->BookingCreatedAt = Carbon::parse($result->BookingCreatedAt)->translatedFormat('d F Y');
+            // $result->BookingStart = Carbon::parse($result->BookingStart)->translatedFormat('H:i:s, d F Y');
+            // $result->BookingEnd = Carbon::parse($result->BookingEnd)->translatedFormat('H:i:s, d F Y');
         }
         return view('home.aset.booking.index', ['dalamPengajuan' => $dalamPengajuan, 'title' => 'Booking', 'search' => $request->search]);
     }
@@ -267,12 +269,10 @@ class BookingController extends Controller
     
     
     //admin
-    public function create (){
-        
-        $pegawai = Pegawai::all();
-        $bidang = Bidang::all();
+    public function create ()
+    {    
         $aset =  Aset::all();
-        return view('home.aset.booking.create', ['title' => 'Peminjaman','aset' => $aset,'bidang' => $bidang, 'pegawais' => $pegawai, 'before' => null]);
+        return view('home.aset.booking.create', ['title' => 'Peminjaman','aset' => $aset]);
     }
     
     public function bookingCheck(Request $request){
