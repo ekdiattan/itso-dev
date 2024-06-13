@@ -12,37 +12,31 @@
       <!-- Left links -->
       <ul class="navbar-nav flex-row">
         <li class="nav-item me-auto">
-          <a class="nav-link" role="button" data-mdb-toggle="sidenav" data-mdb-target="#sidenav-1"
-            class="btn shadow-0 p-0 me-auto" aria-controls="#sidenav-1" aria-haspopup="true">
-            Filter Data Berdasarkan
-          </a>
         </li>
         <li class="nav-item me-auto">
-          <a class="nav-link" href="/booking-reject" style="color:red;font-size:20px;" role="button" data-mdb-toggle="sidenav" data-mdb-target="#sidenav-1"
+          <a class="nav-link" href="/booking" style="color:rgb(250, 162, 0);font-size:20px;" role="button" data-mdb-toggle="sidenav" data-mdb-target="#sidenav-1"
             class="btn shadow-0 p-0 me-auto" aria-controls="#sidenav-1" aria-haspopup="true">
-            Ditolak
+            Menunggu
           </a>
         </li>
         <li class="nav-item me-auto">
           <a class="nav-link" href="/booking-acc" style="color:green;font-size:20px;" role="button" data-mdb-toggle="sidenav" data-mdb-target="#sidenav-1"
             class="btn shadow-0 p-0 me-auto" aria-controls="#sidenav-1" aria-haspopup="true">
-            Disetujui
+            Sedang Dipinjam
           </a>
         </li>
         <li class="nav-item me-auto">
-          <a class="nav-link" href="/booking-selesai" style="color:blue;font-size:20px;" role="button" data-mdb-toggle="sidenav" data-mdb-target="#sidenav-1"
+          <a class="nav-link" href="/booking-reject" style="color:rgb(255, 0, 0);font-size:20px;" role="button" data-mdb-toggle="sidenav" data-mdb-target="#sidenav-1"
+            class="btn shadow-0 p-0 me-auto" aria-controls="#sidenav-1" aria-haspopup="true">
+            Ditolak
+          </a>
+        </li>
+        <li class="nav-item me-auto">
+          <a class="nav-link" href="/booking-reject" style="color:rgb(22, 20, 134);font-size:20px;" role="button" data-mdb-toggle="sidenav" data-mdb-target="#sidenav-1"
             class="btn shadow-0 p-0 me-auto" aria-controls="#sidenav-1" aria-haspopup="true">
             Selesai
           </a>
         </li>
-        <div style="display: flex; justify-content: flex-end">
-            <li class="nav-item me-auto">
-                <a class="nav-link text-success" href="/booking/create" style="font-size:20px;" role="button" data-mdb-toggle="sidenav" data-mdb-target="#sidenav-1"
-                    class="btn shadow-0 p-0 me-auto" aria-controls="#sidenav-1" aria-haspopup="true">
-                    +Create New
-                </a>
-            </li>
-        </div>
       </ul>
     </div>
 </div>
@@ -56,7 +50,7 @@
         <br>
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title"><b>Permohonan</b></h4>
+                <h4 class="card-title"><b>Sedang Berlangsung Dipinjam</b></h4>
                 <div class="table-responsive">
                  <nav class="navbar bg-body-tertiary">
                     <!-- <form action="#" method="GET">
@@ -81,17 +75,17 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @if($dalamPengajuan != null)
-                            @foreach ($dalamPengajuan as $post)
+                            @if($disetujui != null)
+                            @foreach ($disetujui as $post)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $post->tiket }}</td>
-                                    <td>{{ $post->namaPemohon }}</td>
-                                    <td>{{ $post->noTelp }}</td>
-                                    <td>{{ $post->bidang }}</td>
-                                    <td>{{ $post->perihal }}</td>
-                                    <td>{{ $post->tanggalPermohonan }}</td>
-                                    <td>{{ $post->status }}</td>
+                                    <td>{{ $post->BookingCode}}</td>
+                                    <td>{{ $post->aset->MasterAsetName}}</td>
+                                    <td>{{ $post->user->employee->EmployeeName}}</td>
+                                    <td>{{ $post->BookingStart}}</td>
+                                    <td>{{ $post->BookingEnd}}</td>
+                                    <td>{{ $post->BookingRemark }}</td>
+                                    <td>{{ $post->BookingStatus }}</td>
                                     <td>
                                         <a href="/booking/{{ $post->id }}" class="badge bg-info"><span class="menu-icon"><i class="far fa-eye"></i></span></a>
                                         <a href="/booking-edit/{{ $post->id }}" class="badge bg-primary"><span class="menu-icon"><i class="fas fa-tools"></i></span></a>
@@ -111,55 +105,4 @@
             </div>
         </div>
     </div>
-    <br>
-    <br>
-    <div class="col-lg-12 grid-margin stretch-card">
-        <div class="card">
-            <div class="card-body">
-                <h4 class="card-title" style="color:green;"><b>Disetujui</b></h4>
-                <div class="table-responsive">
-                    <nav class="navbar bg-body-tertiary">
-                        <!-- <form action="#" method="GET">
-                            <form class="d-flex" role="search">
-                                <input class="form-control me-2" type="search2" placeholder="Masukan Nama Pemohon" aria-label="search2" name="search2" value="">
-                            </form>
-                            <a href="#" class="btn btn-danger" role="button">Reset</a> -->
-                        </form>
-                    </nav>
-                    <table id="dataTable2" class="table table-hover table-bordered table-striped">
-                        <thead  class="bg-gray disabled color-palette">
-                            <tr>
-                            <th>No</th>
-                                <th>Tiket</th>
-                                <th>Nama Pemohon</th>
-                                <th>No Hp</th>
-                                <th>Bidang</th>
-                                <th>Perihal</th>
-                                <th>Tanggal Permohonan</th>
-                                <th>Status</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($disetujui as $post)
-                                <tr>
-                                <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $post->tiket }}</td>
-                                    <td>{{ $post->namaPemohon }}</td>
-                                    <td>{{ $post->noTelp }}</td>
-                                    <td>{{ $post->bidang }}</td>
-                                    <td>{{ $post->perihal }}</td>
-                                    <td>{{ $post->tanggalPermohonan }}</td>
-                                    <td>{{ $post->status }}</td>
-                                    <td>
-                                    <a href="/booking/{{ $post->id }}" class="badge bg-info"><span class="menu-icon"><i class="far fa-eye"></i></span></a>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>    
 @endsection

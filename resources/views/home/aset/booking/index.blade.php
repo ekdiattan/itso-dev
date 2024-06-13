@@ -11,33 +11,29 @@
       <!-- Left links -->
       <ul class="navbar-nav flex-row">
         <li class="nav-item me-auto">
-        </li>
-        <li class="nav-item me-auto">
-          <a class="nav-link" href="/booking-reject" style="color:red;font-size:20px;" role="button" data-mdb-toggle="sidenav" data-mdb-target="#sidenav-1"
+          <a class="nav-link" href="/booking" style="color:rgb(250, 162, 0);font-size:20px;" role="button" data-mdb-toggle="sidenav" data-mdb-target="#sidenav-1"
             class="btn shadow-0 p-0 me-auto" aria-controls="#sidenav-1" aria-haspopup="true">
-            Ditolak
+            Menunggu
           </a>
         </li>
         <li class="nav-item me-auto">
           <a class="nav-link" href="/booking-acc" style="color:green;font-size:20px;" role="button" data-mdb-toggle="sidenav" data-mdb-target="#sidenav-1"
             class="btn shadow-0 p-0 me-auto" aria-controls="#sidenav-1" aria-haspopup="true">
-            Disetujui
+            Sedang Dipinjam
           </a>
         </li>
         <li class="nav-item me-auto">
-          <a class="nav-link" href="/booking-selesai" style="color:blue;font-size:20px;" role="button" data-mdb-toggle="sidenav" data-mdb-target="#sidenav-1"
+          <a class="nav-link" href="/booking-reject" style="color:rgb(255, 0, 0);font-size:20px;" role="button" data-mdb-toggle="sidenav" data-mdb-target="#sidenav-1"
             class="btn shadow-0 p-0 me-auto" aria-controls="#sidenav-1" aria-haspopup="true">
             Ditolak
           </a>
         </li>
-        <div style="display: flex; justify-content: flex-end">
-            <li class="nav-item me-auto">
-                <a class="nav-link text-success" href="/booking/create" style="font-size:20px;" role="button" data-mdb-toggle="sidenav" data-mdb-target="#sidenav-1"
-                    class="btn shadow-0 p-0 me-auto" aria-controls="#sidenav-1" aria-haspopup="true">
-                    +Create New
-                </a>
-            </li>
-        </div>
+        <li class="nav-item me-auto">
+          <a class="nav-link" href="/booking-done" style="color:rgb(22, 20, 134);font-size:20px;" role="button" data-mdb-toggle="sidenav" data-mdb-target="#sidenav-1"
+            class="btn shadow-0 p-0 me-auto" aria-controls="#sidenav-1" aria-haspopup="true">
+            Selesai
+          </a>
+        </li>
       </ul>
     </div>
 </div>
@@ -80,10 +76,9 @@
                                     <td>{{ $post->BookingRemark }}</td>
                                     <td>{{ $post->BookingStatus }}</td>
                                     <td>
-                                        <a href="/booking/" class="badge bg-info"><span class="menu-icon"><i class="far fa-eye"></i></span></a>
-                                        <a href="/booking-edit/" class="badge bg-primary"><span class="menu-icon"><i class="fas fa-tools"></i></span></a>
-                                        <a href="#" class="badge bg-warning"><span class="menu-icon"><i class="far fa-edit"></i></span></a>
-                                        <form action="/booking/delete/" method="get" class="d-inline">
+                                        <a href="/booking/{{$post->BookingId}}" class="badge bg-info"><span class="menu-icon"><i class="far fa-eye"></i></span></a>
+                                        <a href="/booking-edit/{{$post->BookingId}}" class="badge bg-warning"><span class="menu-icon"><i class="far fa-edit"></i></span></a>
+                                        <form action="/booking/delete/{{$post->BookingId}}" method="get" class="d-inline">
                                             <button class="badge bg-danger border-0"
                                                 onclick="return confirm('Are you sure?')"><span class="menu-icon"><i
                                                         class="fas fa-trash"></i></span></button>

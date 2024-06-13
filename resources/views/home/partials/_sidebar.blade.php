@@ -33,7 +33,7 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="/booking/" class="nav-link {{ ($title === 'Booking') ? 'active disabled' : '' }}">
+                    <a href="/booking" class="nav-link {{ ($title === 'Booking') ? 'active disabled' : '' }}">
                       <i class="nav-icon fas fa-bookmark ml-3"></i>
                       <p>Peminjaman</p>
                     </a>
@@ -88,7 +88,7 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="/kategori" class="nav-link ">
+                  <a href="/position" class="nav-link ">
                     <i class="nav-icon fas fa-list ml-3"></i>
                     <p>Jabatan</p>
                   </a>

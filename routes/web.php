@@ -1,28 +1,27 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AsetController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\LaporanController;
-use App\Http\Controllers\InventarisController;
-use App\Http\Controllers\BidangController;
-use App\Http\Controllers\KehadiranController;
+use App\Http\Controllers\BlockController;
+use App\Http\Controllers\LiburController;
 use App\Http\Controllers\MasukController;
+use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\PulangController;
+use App\Http\Controllers\SatuanController;
+use App\Http\Controllers\BookingController;
+use App\Http\Controllers\LaporanController;
+use App\Http\Controllers\PegawaiController;
+use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\PositionController;
+use App\Http\Controllers\TrackingController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\KehadiranController;
+use App\Http\Controllers\RekapUnitController;
+use App\Http\Controllers\InventarisController;
 use App\Http\Controllers\RekapMasukController;
 use App\Http\Controllers\RekapPulangController;
-use App\Http\Controllers\RekapUnitController;
-use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\PengecualianPegawaiController;
-use App\Http\Controllers\SatuanController;
-use App\Http\Controllers\LiburController;
-use App\Http\Controllers\KodeAsetController;
-use App\Http\Controllers\AsetController;
-use App\Http\Controllers\BookingController;
-use App\Http\Controllers\TrackingController;
-use App\Http\Controllers\BlockController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\EmployeeController;
-use App\Http\Controllers\ModuleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,11 +34,15 @@ use App\Http\Controllers\ModuleController;
 |
 */
 
+Route::get('/admin', function () {
+    return view('register.login');
+});
+
+Route::get('/',[TrackingController::class, 'index']);
 Route::get('/login',[UserController::class, 'login']);
 Route::post('/login',[UserController::class, 'authenticate']);
 
-Route::group(['middleware' =>[ 'auth' ]], function()
-{
+Route::group(['middleware' =>[ 'auth' ]], function(){
 
 Route::get('/employee',[EmployeeController::class, 'index']);
 
@@ -52,29 +55,21 @@ Route::post('/register/update/{id}', [UserController::class,'updateByUser']);
 Route::get('/register/delete/{id}',[UserController::class, 'delete']);
 
 Route::get('/dashboard',[DashboardController::class, 'index']);
-//inventaris
-Route::get('/inventaris',[InventarisController::class, 'index']);
-Route::get('/inventaris/create',[InventarisController::class, 'create']);
-Route::post('/inventaris/store',[InventarisController::class, 'store']);
-Route::get('/inventaris/{id}', [InventarisController::class,'show']);
-Route::get('/inventaris-update/{id}', [InventarisController::class,'edit']);
-Route::post('/inventaris-update/{id}', [InventarisController::class,'update']);
-Route::get('/inventaris/delete/{id}',[InventarisController::class, 'delete']);
-Route::get('/export-excel', [InventarisController::class, 'exportExcel']);
-
 
 // booking
-Route::get('/booking',[BookingController::class, 'index']);
 Route::get('/booking/create',[BookingController::class, 'create']);
 Route::post('/booking-check',[BookingController::class, 'bookingCheck']);
 Route::post('/booking-store',[BookingController::class, 'buat']);
 Route::get('/booking/{id}',[BookingController::class, 'show']);
 Route::get('/booking-edit/{id}',[BookingController::class, 'edit']);
+Route::get('/booking-reject',[BookingController::class, 'reject']);
 Route::post('/booking-update/{id}',[BookingController::class, 'update']);
 Route::get('/booking/delete/{id}',[BookingController::class, 'delete']);
+
+Route::get('/booking',[BookingController::class, 'index']);
 Route::get('/booking-reject',[BookingController::class, 'reject']);
 Route::get('/booking-acc',[BookingController::class, 'acc']);
-Route::get('/booking-selesai',[BookingController::class, 'selesai']);
+Route::get('/booking-done',[BookingController::class, 'done']);
 
 // aset
 Route::get('/aset',[AsetController::class, 'index']);
@@ -83,6 +78,8 @@ Route::get('/aset/{id}', [AsetController::class,'edit']);
 Route::post('/aset/{id}', [AsetController::class,'update']);
 Route::get('/aset/delete/{id}',[AsetController::class, 'delete']);
 
+// Module 
+Route::get('/module', [ModuleController::class, 'index']);
 //bidang
 Route::get('/module', [ModuleController::class, 'index']);
 Route::post('/module/create',[ModuleController::class, 'store']);
@@ -90,7 +87,8 @@ Route::get('/module/{id}', [ModuleController::class,'edit']);
 Route::post('/module/{id}', [ModuleController::class,'update']);
 Route::get('/module/delete/{id}',[ModuleController::class, 'delete']);
 
-
+// Position
+Route::get('/position', [PositionController::class, 'index']);
 // Account Setting 
 Route::get('/account/{id}', [UserController::class, 'editByUser']);
 Route::post('/account/{id}', [UserController::class, 'updateByUser']);
@@ -113,7 +111,6 @@ Route::get('/keamanan-proses/{id}',[BookingController::class, 'proses']);
 Route::post('/keamanan-upd/{id}',[BookingController::class, 'upd']);
 Route::post('/keamanan-prs/{id}',[BookingController::class, 'updproses']);
 
-
 Route::get('/kepegawaian/kehadiran', [KehadiranController::class, 'index']); 
 Route::get('/kepegawaian/kehadiran', [KehadiranController::class, 'show']);
 Route::get('/store/kehadiran', [KehadiranController::class, 'store']);
@@ -128,17 +125,6 @@ Route::get('/masuk-export', [MasukController::class, 'export']);
 Route::get('/absen-pulang', [PulangController::class, 'index']);
 Route::get('/store-pulang', [PulangController::class, 'store']);
 Route::get('/pulang-export', [PulangController::class, 'export']);
-
-// Rekapitulasi
-Route::get('/rekap/terlambat-masuk', [RekapMasukController::class,'index']);
-Route::get('/store/terlambat-masuk', [RekapMasukController::class,'store']);
-
-Route::get('/rekap/tidak-absen-pulang', [RekapPulangController::class,'index']);
-Route::get('/store/tidak-absen-pulang', [RekapPulangController::class,'store']);
-
-Route::get('/rekap/terlambat-masuk-unit', [RekapUnitController::class,'index']);
-Route::get('/store/terlambat-masuk-unit', [RekapUnitController::class,'store']);
-
 
 //PEGAWAI
 Route::get('/master-pegawai', [PegawaiController::class, 'index']);
@@ -156,7 +142,6 @@ Route::get('/update-pengecualian/{id}', [PengecualianPegawaiController::class, '
 Route::post('/update-pengecualian/{id}', [PengecualianPegawaiController::class, 'update']);
 Route::get('/delete-pengecualian/{id}', [PengecualianPegawaiController::class, 'delete']);
 
-
 // libur
 Route::get('/libur', [LiburController::class, 'index']);
 Route::post('/libur/create',[LiburController::class, 'store']);
@@ -164,34 +149,13 @@ Route::get('/libur/{id}', [LiburController::class,'edit']);
 Route::post('/libur/{id}', [LiburController::class, 'update']);
 Route::get('/libur/delete/{id}',[LiburController::class, 'delete']);
 
-
-Route::get('/laporan', [LaporanController::class,'index']);
-Route::get('/laporan/create',[LaporanController::class, 'create']);
-Route::post('/laporan/create',[LaporanController::class, 'store']);
-Route::get('/laporan-edit/{id}', [LaporanController::class,'edit']);
-Route::put('/laporan-edit/{id}', [LaporanController::class,'update']);
-Route::get('/laporan-execute/{id}', [LaporanController::class,'execute']);
-Route::put('/laporan-execute/{id}', [LaporanController::class,'executed']);
-Route::get('/laporan/{id}', [LaporanController::class,'show']);
-Route::get('/laporan-delete/{id}', [LaporanController::class,'delete']);
-
-Route::get('/change', function () {
-    return view('home/settings/change');
-});
-
-Route::get('/settings', function () {
-    return view('home/settings/settings');
-});
-
-Route::get('/light', function () {
-    return view('home/settings/light');
-});
+Route::get('/change', function () {return view('home/settings/change');});
+Route::get('/settings', function () {return view('home/settings/settings');});
+Route::get('/light', function () {return view('home/settings/light');});
 
 });
 
 // ROUTE UNTUK PUBLIC
-
-// tracking
 Route::get('/public',[TrackingController::class, 'index']);
 Route::get('/tracking',[TrackingController::class, 'track']);
 Route::post('/tracking',[TrackingController::class, 'find']);
@@ -203,7 +167,6 @@ Route::post('/upload-surat/{id}',[TrackingController::class, 'unggah']);
 Route::get('/block',[BlockController::class, 'block']);
 Route::get('/tes',[TrackingController::class, 'tes']);
 Route::get('/booking-export/{id}', [BookingController::class, 'export']);
-
 
 //permohonan publik
 Route::get('/peminjaman',[BookingController::class, 'permohonan']);

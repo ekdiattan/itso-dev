@@ -12,20 +12,22 @@ class TrackingController extends Controller
 {
    
 
-    public function index (){
+    public function index ()
+    {
         return view('home.tracking.index', ['title' => 'Public']);
     }
-
-
+    
     public function track (Request $request){
         return view('home.tracking.tracking', ['title' => 'Tracking', 'laporan' => null, 'booking' => null, 'keyword' => null]);
     }
 
-    public function laporPermasalahan (Request $request){
+    public function laporPermasalahan ()
+    {
         return view('home.tracking.laporPermasalahan', ['title' => 'Lapor Permasalahan', 'laporan' => null]);
     }
 
-    public function pinjam (Request $request){
+    public function pinjam ()
+    {
         return view('home.tracking.pinjam', ['title' => 'Pinjam', 'laporan' => null]);
     }
 

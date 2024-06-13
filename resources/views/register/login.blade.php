@@ -39,8 +39,8 @@
                 @endforeach
                 <marquee>Selamat Datang di Website IT Solution Dinas Komunikasi & Informatika Provinsi Jawa Barat, Alamat : Jl. Tamansari No.55, Lb. Siliwangi, Kecamatan Coblong, Kota Bandung, Jawa Barat 40132, Telp : 0222502898, Website : diskominfo.jabarprov.go.id</marquee>
                 <h3 class="card-title text-left mb-3">Login</h3>
-                <main class="form-signin" id="main">  
-                  <form action="\login" method="post">  
+                <main class="form-signin" id="main">
+                  <form action="\login" method="post">
                       @csrf   
                     <div class="form-group">
                       <label>Username *</label>
@@ -53,7 +53,7 @@
                     </div>
                     <div class="text-center">
                       <button type="submit" class="btn btn-primary btn-block enter-btn" id="submit-btn">Login</button>
-                      <p class="text-center mt-3">© Dinas Komunikasi & Informatika Provinsi Jawa Barat  {{ date('Y') }}</p>
+                      <p class="text-center mt-3">© Dinas Komunikasi & Informatika Provinsi Jawa Barat {{ date('Y') }}</p>
                     </div>
                   </form>
                 </main>
@@ -90,7 +90,8 @@
 
     document.getElementById("submit-btn").disabled = true;
 
-    function validateForm() {
+    function validateForm() "
+    {
       if (username.value.trim() === '' || password.value.trim() === '') {
         submitBtn.disabled = true;
       } else {

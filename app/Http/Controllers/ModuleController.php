@@ -11,7 +11,7 @@ class ModuleController extends Controller
     public function index()
     {
         $module = Module::all();
-        return view('home.master.bidang.index', ['module'=> $module, 'title' => 'Bidang']);
+        return view('home.master.module.index', ['module'=> $module, 'title' => 'Module']);
     }
     public function create()
     {

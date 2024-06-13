@@ -9,39 +9,29 @@
             <span class="count bg-success"></span>
           </div>
          <div class="profile-name text-center">
-            <h5 class="mt-4 font-weight-normal">{{ auth()->user()->nama }}</h5>
+            <h5 class="mt-4 font-weight-normal">{{$user->employee->EmployeeName}}</h5>
             <span>{{ auth()->user()->hak_akses }}</span>
           </div>
-          <form action='/account/{{ $user->id }}' method="post">
+          <form action='/account/{{ $user->UserId }}' method="post">
   <!-- <fieldset> -->
               <div class="mb-3 p-3">
                 <h4>Username</h4>
-                <h5>{{ auth()->user()->username }}</h5>
+                <h5>{{$user->name}}</h5>
               </div>
               <br>
               <div class="mb-3 p-3">
               <h4>Nama</h4>
-                <h5>{{ auth()->user()->nama }}</h5>
+                <h5>{{$user->employee->EmployeeName}}</h5>
               </div>
               <br>
               <div class="mb-3 p-3">
                 <h4>Hak Akses</h4>
-                <h5>{{ auth()->user()->hak_akses }}</h5>
-              </div>
-              <br>
-              <div class="mb-3 p-3">
-                <h4>NIP</h4>
-                <h5>{{ auth()->user()->nip }}</h5>
-              </div>
-              <br>
-              <div class="mb-3 p-3">
-                <h4>Jabatan</h4>
-                <h5>{{ auth()->user()->jabatan }}</h5>
+                <h5>{{$user->role->MasterRoleCode}}</h5>
               </div>
               <br>
               <div class="mb-3 p-3">
                 <h4>No HP</h4>
-                <h5>{{ auth()->user()->no_hp }}</h5>
+                <h5>{{$user->employee->EmployeePhone}}</h5>
               </div>
 
       <!-- Baru dikomen 8 mei 2023 -->
@@ -59,7 +49,7 @@
       </div> 
       @endif
 
-      <form action="/register/update/{{ $user->id }}" method="post" enctype="multipart/form-data">
+      <form action="/register/update/{{ $user->UserId }}" method="post" enctype="multipart/form-data">
         @csrf
             <div class="form-group">
             <label for="password"> Ganti Foto Profile</label>
@@ -75,7 +65,7 @@
             <div class="input-group-append">
               <button type="submit" class="btn btn-primary mr-2 btn-flat float-right" id="submit-btn">Change</button>
               <span class="input-group-text" >
-                        <i class="far fa-eye" id="show-password" type="button" ></i>
+                  <i class="far fa-eye" id="show-password" type="button" ></i>
             </div>
             <div class="form-group">
             

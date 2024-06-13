@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Booking extends Model
 {
     use HasFactory,SoftDeletes;
-
+    
     protected $table = 'Booking';
     protected $primaryKey = 'BookingId';
 

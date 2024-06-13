@@ -158,11 +158,12 @@ class UserController extends Controller
         return redirect('/index')->with('success', 'Pengguna berhasil dihapus');
     }
 
-    public function editByUser($id){
+    public function editByUser($id)
+    {
         $user = User::find($id);
         return view('home.settings.account', ['user'=>$user, 'title' => 'Pengguna']);
     }
-    
+
     public function updateByUser(Request $request, $id){
         // dd($request->image);
         $user = User::find($id);

@@ -12,20 +12,19 @@
       <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
     </li>
   </ul>
+
   <marquee bgcolor="#FFFFFF"><img src="{{ asset('assets/images/logo_diskom.svg') }}" alt="Diskominfo" class="brand-image" style="height: 50px; width: 150px; margin-left: 35px;">Selamat datang di website IT Solution Dinas Komunikasi & Informatika Provinsi Jawa Barat <img src="{{ asset('assets/images/logo_diskom.svg') }}" alt="Diskominfo" class="brand-image" style="height: 50px; width: 150px; margin-left: 0px;"></marquee>
- 
   <ul class="navbar-nav ml-auto">
     <div class="container">
       <a href="#" class="navbar-brand" id="profileDropdown" data-toggle="dropdown">
-      <img src="" alt="Avatar" class="brand-image img-circle" style="height: 50px;width:50px;">
+      <img src="https://bkpsdm.serangkab.go.id/an-component/media/upload-gambar-artikel/PNS.jpg" alt="Avatar" class="brand-image img-circle" style="height: 50px;width:50px;">
         <span class="brand-text font-weight-light"></span>
         <i class="fas fa-caret-down"></i>
       </a>
-      
-        <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="profileDropdown">
+      <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="profileDropdown">
         <h6 class="p-3 mb-0">Profile</h6>
         <div class="dropdown-divider"></div>
-          <a class="dropdown-item preview-item" href="/account/">
+          <a class="dropdown-item preview-item" href="/account/{{ auth()->user()->UserId }}">
             <div class="preview-thumbnail">
               <i class="fas fa-cog">Settings</i>
             </div>
