@@ -38,6 +38,11 @@ class Booking extends Model
     {
         return $this->belongsTo(User::class, 'BookingCreatedBy', 'UserId');
     }
+
+    public function employee()
+    {
+        return $this->belongsTo(Employee::class, 'BookingEmployeeId', 'EmployeeId');
+    }
     const CREATED_AT = 'BookingCreatedAt';
     const UPDATED_AT = 'BookingUpdatedAt';
     const DELETED_AT = 'BookingDeletedAt';

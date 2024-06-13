@@ -35,8 +35,7 @@
           <div class="col-md-15">
               <div class="input-group">
                 <!-- <form class="d-flex" role="search"> -->
-                  <input type="search" class="form-control rounded m-1" placeholder="Input Ticket" aria-label="Search" name="search" name="search"aria-describedby="search-addon" value="{{ ($keyword == 'null') ? '' : $keyword }}"/>
-                  <!-- <input class="form-control rounded m-1" type="search" placeholder="Masukan Nama Pemohon" aria-label="Search" name="search" value=""> -->
+                  <input type="search" class="form-control rounded m-1" placeholder="Input Ticket" aria-label="Search" name="BookingCode" value="{{old('BookingCode')}}"/>
                   <button type="submit" class="btn btn-outline-primary m-1">search</button>
                <!-- </form> -->
                   <a href="/tracking" type="button" class="btn btn-outline-danger m-1">reset</a>
@@ -49,150 +48,27 @@
   </div>
   <br><br>
 
-<!-- UNTUK LAPORAN/CATATAN IT -->
-@if($laporan != null)
-<div class="card mb-4">
-    <div class="card-body">
-    @if($laporan->isDone)
-    <div class="alert alert-success" role="alert">
-    <b>Status : Selesai</b>
-    </div>
-    @else
-    <div class="alert alert-warning" role="alert">
-    <b>Status : Dalam Proses</b>
-    </div>
-    @endif
-      <div class="row">
-            <div class="col-md-6">
-              <div class="form-group row">
-                <label class="col-sm-3 col-form-label">Nomor Tiket</label>
-                <div class="col-sm-9">
-                  <input type="text" class="form-control" id="disabledTextinput" name="tiket" value='{{ $laporan->tiket }}'
-                     readonly/>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group row">
-                <label class="col-sm-3 col-form-label">Tgl Mencatat</label>
-                <div class="col-sm-9">
-                  <input type="text" class="form-control"  id="tanggalmencatat" name="tanggalmencatat" value='{{ $laporan->tanggalmencatat }}' readonly>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group row">
-                <label class="col-sm-3 col-form-label">Nip Pencatat</label>
-                <div class="col-sm-9">
-                  <input type="text" class="form-control" id="nippencatat" name="nippencatat" value='{{ $laporan->nippencatat }}'  readonly/>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group row">
-                <label class="col-sm-3 col-form-label">Nama Pencatat</label>
-                <div class="col-sm-9">
-                  <input type="text" class="form-control" id="namapencatat" name="namapencatat" value='{{ $laporan->namapencatat }}'readonly/>
-                </div>
-              </div>
-            </div>
-          </div>
-          <p class="card-description">Pelapor</p>
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group row">
-                <label class="col-sm-3 col-form-label">Nama Pelapor</label>
-                <div class="col-sm-9">
-                  <input type="text" class="form-control" id="namapelapor" name="namapelapor" value='{{ $laporan->namapelapor }}' readonly/>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group row">
-                <label class="col-sm-3 col-form-label">Nama Bidang</label>
-                <div class="col-sm-9">
-                  <input type="text" class="form-control" id="namabidang" name="namabidang" value='{{ $laporan->namabidang }}' readonly />
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group row">
-                <label class="col-sm-3 col-form-label">Nomor Hp</label>
-                <div class="col-sm-9">
-                  <input type="text" class="form-control" id="nomorhp" name="nomorhp" value='{{ $laporan->nomorhp }}' readonly/>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group row">
-                <label class="col-sm-3 col-form-label">Permasalahan</label>
-                <div class="col-sm-9">
-                  <textarea class="form-control" id="permasalahan" name="permasalahan" rows="4"readonly>{{ $laporan->permasalahan }}</textarea>
-                </div>
-              </div>
-            </div>
-          </div>
-          @if($size != 0)
-          <div class="row">
-            <div class="col-md-12">
-              <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Solusi Masalah</label>
-                <div class="col-sm-10">
-                  <table class="table table-responsive table-hover table-bordered">
-                    <thead class="bg-gray disabled color-palette">
-                      <tr>
-                        <td style="text-align: center; font-weight: bold; width:25%">Eksekutor</td>
-                        <td style="text-align: center; font-weight: bold; width:40%">Solusi</td>
-                        <td style="text-align: center; font-weight: bold; width:25%">Pada</td>
-                        <td style="text-align: center; font-weight: bold; width:10%">Dokumentasi</td>
-                      </tr>
-                    </thead>
-                    @for($i = 0; $i < $size; $i++)
-                    <tbody>
-                      <tr>
-                        <td>{{ $users[$i]->nama }}</td>
-                        <td>{{ $solusis[$i]->solusi }}</td>
-                        <td>{{ $solusis[$i]->created_at }}</td>
-                        <td><a href="/{{ $images[$i]->image }}" target="blank">Dokumentasi</a></td>
-                      </tr>
-                    </tbody>
-                    @endfor
-                  </table>
-                </div>
-              </div>
-            </div>
-          </div>
-          @endif
-      </div>
-    </div>
-</div>
-@endif
-
 <!-- UNTUK BOOKING -->
 @if($booking != null)
 <div class="card mb-4">
     <div class="card-body">
-    @if($booking->status == "Disetujui")
+    @if($booking->BookingStatus == 1)
     <div class="alert alert-success" role="alert">
       <b>Status : Disetujui</b>
     </div>
-    @elseif($booking->status == "Dalam Pengajuan")
+    @elseif($booking->BookingStatus == 0)
     <div class="alert alert-warning" role="alert">
       <b>Status : Dalam Pengajuan</b>
     </div>
-    @elseif($booking->status == "Dipinjam")
+    @elseif($booking->BookingStatus == 2)
     <div class="alert alert-primary" role="alert">
       <b>Status : Dipinjam</b>
     </div>
-    @elseif($booking->status == "Ditolak")
+    @elseif($booking->BookingStatus == 3)
     <div class="alert alert-danger" role="alert">
       <b>Status : Ditolak</b>
     </div>
-    @elseif($booking->status == "Selesai")
+    @elseif($booking->BookingStatus == 4)
     <div class="alert alert-success" role="alert">
       <b>Status : Selesai</b>
     </div>
@@ -203,7 +79,7 @@
               <div class="form-group row">
                 <label class="col-sm-3 col-form-label">Nomor Tiket</label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" id="disabledTextinput" name="tiket" value="{{ $booking->tiket }}" readonly/>
+                  <input type="text" class="form-control" id="disabledTextinput" name="tiket" value="{{$booking->BookingCode}}" readonly/>
                 </div>
               </div>
             </div>
@@ -211,7 +87,7 @@
               <div class="form-group row">
                 <label class="col-sm-3 col-form-label">Nama Peminjam</label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control"  id="namaPeminjam" name="namaPeminjam" value="{{ $booking->namaPemohon }}" readonly>
+                  <input type="text" class="form-control"  id="namaPeminjam" name="namaPeminjam" value="{{$booking->employee->EmployeeName}}" readonly>
                 </div>
               </div>
             </div>
@@ -221,7 +97,7 @@
               <div class="form-group row">
                 <label class="col-sm-3 col-form-label">Bidang</label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" id="bidang" name="bidang" value="{{ $booking->bidang }}"  readonly/>
+                  <input type="text" class="form-control" id="bidang" name="bidang" value="{{$booking->employee->position->MasterPositionName}}"  readonly/>
                 </div>
               </div>
             </div>
@@ -229,7 +105,7 @@
               <div class="form-group row">
                 <label class="col-sm-3 col-form-label">No Telepon</label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" id="noTelp" name="noTelp" value="{{ $booking->noTelp }}" readonly/>
+                  <input type="text" class="form-control" id="noTelp" name="noTelp" value="{{$booking->employee->EmployeePhone}}" readonly/>
                 </div>
               </div>
             </div>
@@ -240,7 +116,7 @@
               <div class="form-group row">
                 <label class="col-sm-3 col-form-label">Nama Aset</label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" id="aset" name="aset" value="{{ $booking->aset->merk }} {{ $booking->aset->nama }}" readonly/>
+                  <input type="text" class="form-control" id="aset" name="aset" value="{{$booking->aset->MasterAsetName}}" readonly/>
                 </div>
               </div>
             </div>
@@ -248,7 +124,7 @@
               <div class="form-group row">
                 <label class="col-sm-3 col-form-label">Kode Unit</label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" id="kodeUnit" name="kodeUnit" value="{{ $booking->aset->kodeUnit }}" readonly />
+                  <input type="text" class="form-control" id="kodeUnit" name="kodeUnit" value="{{$booking->employee->position->MasterPositionCode}}" readonly />
                 </div>
               </div>
             </div>
@@ -258,7 +134,7 @@
               <div class="form-group row">
                 <label class="col-sm-3 col-form-label">Mulai</label>
                 <div class="col-sm-9">
-                  <input type="datetime-local" class="form-control" id="mulai" name="mulai" value="{{ $booking->mulai }}" readonly/>
+                  <input type="date" class="form-control" id="mulai" name="mulai" value="{{$booking->BookingStart}}" readonly/>
                 </div>
               </div>
             </div>
@@ -266,57 +142,23 @@
               <div class="form-group row">
                 <label class="col-sm-3 col-form-label">Selesai</label>
                 <div class="col-sm-9">
-                  <input type="datetime-local" class="form-control" id="selesai" name="selesai" value="{{ $booking->selesai }}" readonly/>
+                  <input type="date" class="form-control" id="selesai" name="selesai" value="{{$booking->BookingEnd}}" readonly/>
                 </div>
               </div>
             </div>
           </div>
           <div class="row">
-            @if($booking->alasan != null)
             <div class="col-md-6">
               <div class="form-group row">
-                <label class="col-sm-3 col-form-label">Alasan Ditolak</label>
+                <label class="col-sm-3 col-form-label">Catatan</label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" id="alasan" name="alasan" value="{{ $booking->alasan }}" readonly/>
+                  <textarea class="form-control" id="perihal" name="perihal" rows="4"readonly>{{$booking->BookingRemark}}</textarea>
                 </div>
               </div>
-            </div>
-            @endif
-            <div class="col-md-6">
-              <div class="form-group row">
-                <label class="col-sm-3 col-form-label">Perihal</label>
-                <div class="col-sm-9">
-                  <textarea class="form-control" id="perihal" name="perihal" rows="4"readonly>{{ $booking->perihal }}</textarea>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group row">
-                <label class="col-sm-3 col-form-label">Status Peminjaman</label>
-                <div class="col-sm-9">
-                  <input type="text" class="form-control" id="status" name="status" value="{{ $booking->status }}" readonly/>
-                </div>
-              </div>
-            </div>  
+            </div> 
           </div>  
-    <!-- <form method="post" action="/upload-surat/{{ $booking->id }}" enctype="multipart/form-data">  
-      @csrf 
-        <h5 class="card-description">Masukan Surat Permohonan</h5>
-        <div class="row">
-          <div class="col-md-6">
-            <div class="form-group row">
-              <label class="col-sm-3 col-form-label">Surat Permohonan</label>
-              <div class="col-sm-9">
-                <input type="file" class="form-control" id="suratPermohonan" name="suratPermohonan" accept=".pdf"/>
-                <br>
-                <button type="submit" class="btn btn-primary">Unggah</button>
-              </div>
-            </div>
-          </div>
-        </div>
-    </form> -->
-    </div>
-</div>
+      </div>
+  </div>
 @endif
 
 @endsection

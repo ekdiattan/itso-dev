@@ -15,19 +15,19 @@
             <br>
             <div class="form-group">
                 <label for="exampleInputUsername1">No Tiket</label>
-                <input type="text" class="form-control" id="tiket" name="tiket"  maxlength="255" value="{{$edit->tiket}}" readonly>
+                <input type="text" class="form-control" id="tiket" name="tiket"  maxlength="255" value="{{$edit->BookingCode}}" readonly>
             </div>
             <div class="form-group">
                 <label for="exampleInputUsername1">Nama Pemohon</label>
-                <input type="text" class="form-control" id="namaPemohon" name="namaPemohon"  maxlength="255" value="{{$edit->namaPemohon}}" readonly>
+                <input type="text" class="form-control" id="namaPemohon" name="namaPemohon"  maxlength="255" value="{{$edit->employee->EmployeeName}}" readonly>
             </div>
             <div class="form-group">
                 <label for="exampleInputUsername1">No Telepon</label>
-                <input type="text" class="form-control" id="noTelp"  name="noTelp" maxlength="255" value="{{$edit->noTelp}}" readonly>
+                <input type="text" class="form-control" id="noTelp"  name="noTelp" maxlength="255" value="{{$edit->employee->EmployeePhone}}" readonly>
             </div>
             <div class="form-group">
                 <label for="exampleInputUsername1">Bidang</label>
-                <input type="text" class="form-control" id="bidang" name="bidang"  maxlength="255" value="{{$edit->bidang}}" readonly>
+                <input type="text" class="form-control" id="bidang" name="bidang"  maxlength="255" value="{{$edit->employee->position->MasterPositionName}} - ({{$edit->employee->position->MasterPositionCode}})" readonly>
             </div>
         </div>
     </div>
@@ -45,45 +45,31 @@
         <div class="card-body">
             <div class="form-group">
                 <label for="exampleInputUsername1">Mulai</label>
-                <input type="text" class="form-control" id="mulai" name="mulai" value="{{$edit->mulai}}" readonly>
+                <input type="text" class="form-control" id="mulai" name="BookingStart" value="{{$edit->BookingStart}}" readonly>
             </div>
             <div class="form-group">
                 <label for="exampleInputUsername1">Selesai</label>
-                <input type="text" class="form-control" id="selesai" name="selesai" value="{{$edit->selesai}}" readonly>
+                <input type="text" class="form-control" id="selesai" name="BookingEnd" value="{{$edit->BookingEnd}}" readonly>
             </div>
             <div class="form-group">
                 <label for="exampleInputUsername1">Perihal</label>
-                <input type="text" class="form-control" id="perihal" name="perihal" value="{{$edit->perihal}}" readonly>
-            </div>
-            <div class="form-group">
-                <label for="suratPermohonan">Surat Permohonan</label>
-                <input class="form-control" type="file" id="suratPermohonan" name="suratPermohonan" accept=".pdf">
+                <input type="text" class="form-control" id="perihal" name="BookingRemark" value="{{$edit->BookingRemark}}" readonly>
             </div>
             <div class="form-group">
                 <label for="exampleInputUsername1">Tanggal Permohonan</label>
-                <input type="text" class="form-control" id="tanggalPermohonan" name="tanggalPermohonan" value="{{$edit->tanggalPermohonan}}" readonly>
+                <input type="text" class="form-control" id="tanggalPermohonan" name="BookingCreatedAt" value="{{$edit->BookingCreatedAt}}" readonly>
             </div>
-            <!-- <div class="form-group">
-                <label for="exampleInputUsername1">Hostname</label>
-                <input type="text" class="form-control" id="hostname" name="hostname" value="{{$edit->hostname}}" readonly>
-            </div>
-            <div class="form-group">
-                <label for="exampleInputUsername1">Ip</label>
-                <input type="text" class="form-control" id="ip" name="ip" value="{{$edit->ip}}" readonly>
-            </div> -->
             <div class="form-group">
                 <label for="exampleInputUsername1">Status</label>
                 <select class="form-control" id="status" name="status" onchange="ShowHideReason()" required>
                     <option value="">---PILIH---</option>
                     <option value="Disetujui">Setujui</option>
                     <option value="Ditolak">Tolak</option>
-                    <option value="Selesai">Selesai</option>
                 </select>
             </div>
-            <!-- Menggunakan javascript untuk alasan -->
             <div class="form-group" style="display:none;" id="alasan-container">
                 <label for="exampleInputUsername1">Alasan </label>
-                <textarea type="text" class="form-control" id="alasan" name="alasan" value="{{$edit->alasan}}"></textarea>
+                <textarea type="text" class="form-control" id="alasan" name="BookingReason" value="{{$edit->alasan}}"></textarea>
             </div>
         </div>
       </div>

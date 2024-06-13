@@ -9,7 +9,7 @@ class ProfileController extends Controller
     public function update(Request $request)
     {
         $user = auth()->user();
-
+        
         // Periksa apakah ada file yang diunggah
         if ($request->hasFile('image')) {
             // Validasi file

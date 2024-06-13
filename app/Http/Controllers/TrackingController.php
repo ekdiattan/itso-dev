@@ -35,60 +35,11 @@ class TrackingController extends Controller
         return view('home.tracking.tes', ['title' => 'Pinjam', 'laporan' => null]);
     }
 
-    public function find(Request $request){
-        if(substr($request->search, 0, 1) == 'L'){ // untuk CATATAN IT
-            $laporans = Laporan::all(); 
-            foreach($laporans as $laporan){
-                if($laporan->tiket == $request->search){
-                    $result = $laporan;
-                    $solusis = DB::table('solusis')->where('tiket', '=', $laporan->tiket)->orderBy('created_at', 'desc')->get();
-                    $images = DB::table('solusis')->select('image')->where('tiket', '=', $laporan->tiket)->orderBy('created_at', 'desc')->get();
-                    $users = collect();
-                    foreach($solusis as $solusi){
-                        $users->push(
-                            DB::table('users')->select('nama')
-                            ->where('nip', '=', $solusi->nip)
-                            ->get()
-                        );
-                    }
-                    $users = $users->collapse();
-                    $size = sizeof($solusis);
-                    break;
-                } else {
-                    $result = null;
-                    $solusis = null;
-                    $size = null;
-                    $users = null;
-                    $images = null;
-                }
-            }    
-            if (count((array)$result)) {
-                // Tampilkan hasil pencarian
-                return view('home.tracking.tracking', ['title' => 'Tracking', 'laporan' => $result, 'solusis' => $solusis, 'size' => $size, 'users' => $users, 'images' => $images, 'keyword' => $request->search, 'booking' => null, 'aset' => null]);
-            } else {
-                // Tampilkan pesan bahwa tidak ditemukan hasil pencarian
-                return redirect('/tracking')->with('notFound', 'Pencarian tidak ditemukan');
-            }
-        } else if(substr($request->search, 0, 1) == 'B'){  // Untuk BOOKING
-            $bookings = Booking::all();
-            foreach($bookings as $booking){
-                if($booking->tiket == $request->search){
-                    $result = $booking;
-                    break;
-                } else {
-                    $result = null;
-                }
-            }
-            if (count((array)$result)) {
-                // Tampilkan hasil pencarian);
-                return view('home.tracking.tracking', ['title' => 'Tracking', 'laporan' => null, 'solusis' => null, 'size' => null, 'users' => null, 'images' => null, 'keyword' => $request->search, 'booking' => $result, 'aset' => $result->aset->first()]);
-            } else {
-                // Tampilkan pesan bahwa tidak ditemukan hasil pencarian
-                return redirect('/tracking')->with('notFound', 'Pencarian tidak ditemukan');
-            }
-        } else {
-            return redirect('/tracking')->with('invalid', 'Tiket tidak Valid!');
-        }   
+    public function find(Request $request)
+    {
+        $booking = Booking::where('BookingCode', $request->BookingCode)->first();
+        return view('home.tracking.tracking', ['title' => 'Tracking', 'booking' => $booking]);
+           
     }
 
     public function found($ticket){
