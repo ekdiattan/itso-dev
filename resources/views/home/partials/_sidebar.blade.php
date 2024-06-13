@@ -94,22 +94,6 @@
                   </a>
                 </li>
             {{-- @endif --}}
-            {{-- @if(auth()->user()->hak_akses=="Admin" || auth()->user()->hak_akses=="Kepegawaian") --}}
-                <li class="nav-item">
-                  <a href="/pengecualian" class="nav-link ">
-                    <i class="nav-icon fas fa-ban ml-3"></i>
-                    <p>Data Hak Akses</p>
-                  </a>
-                </li>
-            {{-- @endif --}}
-            {{-- @if(auth()->user()->hak_akses=="Admin") --}}
-                <li class="nav-item">
-                  <a href="/unit" class="nav-link">
-                    <i class="nav-icon fas fa-hard-hat ml-3"></i>
-                    <p>Unit</p>
-                  </a>
-                </li>
-            {{-- @endif --}}
             {{-- @if(auth()->user()->hak_akses=="Admin" || auth()->user()->hak_akses=="Aset") --}}
                 <li class="nav-item">
                   <a href="/merk/" class="nav-link 'active disabled' : '' }}">

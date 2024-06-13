@@ -22,6 +22,7 @@ use App\Http\Controllers\RekapUnitController;
 use App\Http\Controllers\InventarisController;
 use App\Http\Controllers\RekapMasukController;
 use App\Http\Controllers\RekapPulangController;
+use App\Http\Controllers\MasterApprovalController;
 use App\Http\Controllers\PengecualianPegawaiController;
 
 /*
@@ -124,6 +125,7 @@ Route::get('/light', function () {return view('home/settings/light');});
 // Unit
 Route::get('/unit', [UnitController::class, 'index']);
 Route::get('/unit/delete/{id}', [UnitController::class, 'delete']);
+
 });
 
 // ROUTE UNTUK PUBLIC
