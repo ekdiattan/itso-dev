@@ -104,7 +104,7 @@
             {{-- @endif --}}
             {{-- @if(auth()->user()->hak_akses=="Admin") --}}
                 <li class="nav-item">
-                  <a href="/role/" class="nav-link">
+                  <a href="/unit" class="nav-link">
                     <i class="nav-icon fas fa-hard-hat ml-3"></i>
                     <p>Unit</p>
                   </a>

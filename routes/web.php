@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AsetController;
+use App\Http\Controllers\UnitController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BlockController;
 use App\Http\Controllers\LiburController;
@@ -42,7 +43,8 @@ Route::get('/',[TrackingController::class, 'index']);
 Route::get('/login',[UserController::class, 'login']);
 Route::post('/login',[UserController::class, 'authenticate']);
 
-Route::group(['middleware' =>[ 'auth' ]], function(){
+Route::group(['middleware' =>[ 'auth' ]], function()
+{
 
 Route::get('/employee',[EmployeeController::class, 'index']);
 
@@ -96,12 +98,6 @@ Route::post('/change-password', [UserController::class, 'changePassword']);
 Route::get('/maintenance', [UserController::class, 'maintenance']);
 Route::get('/fiturmaintenance', [UserController::class, 'fiturmaintenance']);
 
-Route::get('/satuan', [SatuanController::class, 'index']);
-Route::post('/satuan/create',[SatuanController::class, 'store']);
-Route::get('/satuan/{id}', [SatuanController::class,'edit']);
-Route::post('/satuan/{id}', [SatuanController::class,'update']);
-Route::get('/satuan/delete/{id}',[SatuanController::class, 'delete']);
-
 Route::get('/keamanan', [BookingController::class, 'beranda']);
 Route::get('/keamanan-riwayat', [BookingController::class, 'riwayat']);
 Route::get('/keamanan-riwayatdetail/{id}',[BookingController::class, 'riwayatdetail']);
@@ -110,21 +106,6 @@ Route::get('/keamanan-edit/{id}',[BookingController::class, 'edt']);
 Route::get('/keamanan-proses/{id}',[BookingController::class, 'proses']);
 Route::post('/keamanan-upd/{id}',[BookingController::class, 'upd']);
 Route::post('/keamanan-prs/{id}',[BookingController::class, 'updproses']);
-
-Route::get('/kepegawaian/kehadiran', [KehadiranController::class, 'index']); 
-Route::get('/kepegawaian/kehadiran', [KehadiranController::class, 'show']);
-Route::get('/store/kehadiran', [KehadiranController::class, 'store']);
-Route::get('/terlambat-harian',[KehadiranController::class, 'belum_absendet']);
-
-// Masuk
-Route::get('/absen-masuk', [MasukController::class, 'index']);
-Route::get('/store-masuk', [MasukController::class, 'store']);
-Route::get('/masuk-export', [MasukController::class, 'export']);
-
-// Pulang
-Route::get('/absen-pulang', [PulangController::class, 'index']);
-Route::get('/store-pulang', [PulangController::class, 'store']);
-Route::get('/pulang-export', [PulangController::class, 'export']);
 
 //PEGAWAI
 Route::get('/master-pegawai', [PegawaiController::class, 'index']);
@@ -135,24 +116,14 @@ Route::get('/delete{id}', [PegawaiController::class, 'delete']);
 Route::get('/pns', [PegawaiController::class, 'pnsindex']);
 Route::get('/nonpns', [PegawaiController::class, 'nonpnsindex']);
 
-// exception pegawai
-Route::get('/pengecualian', [PengecualianPegawaiController::class, 'index']);
-Route::post('/insert-pengecualian', [PengecualianPegawaiController::class, 'insert']);
-Route::get('/update-pengecualian/{id}', [PengecualianPegawaiController::class, 'edit']);
-Route::post('/update-pengecualian/{id}', [PengecualianPegawaiController::class, 'update']);
-Route::get('/delete-pengecualian/{id}', [PengecualianPegawaiController::class, 'delete']);
-
 // libur
-Route::get('/libur', [LiburController::class, 'index']);
-Route::post('/libur/create',[LiburController::class, 'store']);
-Route::get('/libur/{id}', [LiburController::class,'edit']);
-Route::post('/libur/{id}', [LiburController::class, 'update']);
-Route::get('/libur/delete/{id}',[LiburController::class, 'delete']);
-
 Route::get('/change', function () {return view('home/settings/change');});
 Route::get('/settings', function () {return view('home/settings/settings');});
 Route::get('/light', function () {return view('home/settings/light');});
 
+// Unit
+Route::get('/unit', [UnitController::class, 'index']);
+Route::get('/unit/delete/{id}', [UnitController::class, 'delete']);
 });
 
 // ROUTE UNTUK PUBLIC
@@ -164,7 +135,6 @@ Route::get('/laporPermasalahan',[TrackingController::class, 'laporPermasalahan']
 Route::get('/pinjam',[TrackingController::class, 'pinjam']);
 Route::post('/upload-surat/{id}',[TrackingController::class, 'unggah']);
 
-Route::get('/block',[BlockController::class, 'block']);
 Route::get('/tes',[TrackingController::class, 'tes']);
 Route::get('/booking-export/{id}', [BookingController::class, 'export']);
 
