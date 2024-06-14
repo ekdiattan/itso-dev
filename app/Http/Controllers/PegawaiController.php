@@ -8,7 +8,8 @@ class PegawaiController extends Controller
 {
     public function index(Request $request)
     {
-        if($request->search == null){
+        if($request->search == null)
+        {
             $data = DB::table('pegawais')->orderBy('noPegawai', 'asc')->get();
         }else{
             $data = DB::table('pegawais')->where('nama', 'ilike', '%'.$request->search.'%')->orwhere('unitKerja', 'ilike', '%'.$request->search.'%')->get();

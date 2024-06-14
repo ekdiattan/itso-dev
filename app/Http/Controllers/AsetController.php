@@ -1,22 +1,30 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Helpers\AsetHelper;
 use App\Models\Aset;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class AsetController extends Controller
 {
+    protected $asetHelper;
+
+    public function __construct()
+    {
+        $this->asetHelper = new AsetHelper();
+    }
+
     public function index()
     {   
         $aset = Aset::all();
-        return view('home.master.aset.index', ['title' => 'Aset', 'asets'=> $aset]);
+         return view('home.master.aset.index', ['title' => 'Aset', 'asets'=> $aset]);
     }
-    
+
     public function store(Request $request)
     {
-
-        Aset::create($request->all());
+        $asetCodes = $this->asetHelper->generateasetcode($request->MasterAsetBoughtDate,5);
+        Aset::create([ 'MasterAsetCode' => $asetCodes ,$request->all()]);
         
         $request->accepts('session');
         session()->flash('success', 'Berhasil menambahkan data!');

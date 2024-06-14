@@ -4,26 +4,13 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AsetController;
 use App\Http\Controllers\UnitController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\BlockController;
-use App\Http\Controllers\LiburController;
-use App\Http\Controllers\MasukController;
 use App\Http\Controllers\ModuleController;
-use App\Http\Controllers\PulangController;
-use App\Http\Controllers\SatuanController;
 use App\Http\Controllers\BookingController;
-use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\PositionController;
 use App\Http\Controllers\TrackingController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\KehadiranController;
-use App\Http\Controllers\RekapUnitController;
-use App\Http\Controllers\InventarisController;
-use App\Http\Controllers\RekapMasukController;
-use App\Http\Controllers\RekapPulangController;
-use App\Http\Controllers\MasterApprovalController;
-use App\Http\Controllers\PengecualianPegawaiController;
 
 /*
 |--------------------------------------------------------------------------
