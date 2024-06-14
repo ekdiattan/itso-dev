@@ -23,58 +23,42 @@
         <thead class="disabled">
           <tr>
             <td>No. Tiket</td>
-            <td>{{ $data->tiket }}</td>
+            <td>{{ $booking->BookingCode }}</td>
           </tr>
           <tr>
             <td>Pemohon</td>
-            <td>{{ $data->namaPemohon }}</td>
+            <td>{{ $booking->employee->EmployeeName }}</td>
           </tr>
-          <!-- <tr>
-            <td>Nip</td>
-            <td>{{ $data->nip }}</td>
-          </tr> -->
           <tr>
             <td>No. Telepon</td>
-            <td>{{ $data->noTelp }}</td>
+            <td>{{ $booking->employee->EmployeePhone }}</td>
           </tr>
           <tr>
             <td>Bidang</td>
-            <td>{{ $data->bidang }}</td>
+            <td>{{ $booking->employee->position->unit->MasterUnitName }}</td>
           </tr>
           <tr>
             <td>Mulai</td>
-            <td>{{ $data->mulai }}</td>
+            <td>{{ $booking->BookingStart }}</td>
           </tr>
           <tr>
             <td>Selesai</td>
-            <td>{{ $data->selesai }}</td>
-          </tr>
-          <tr>
-            <td>Keperluan</td>
-            <td>{{ $data->keperluan }}</td>
+            <td>{{ $booking->BookingEnd }}</td>
           </tr>
           <tr>
             <td>Perihal</td>
-            <td>{{ $data->perihal }}</td>
-          </tr>
-          <tr>
-            <td>Surat Permohonan</td>
-            <td> <a href="/booking-export/{{$data->id}}">Cetak Surat </a> </td>
-          </tr>
-          <tr>
-            <td>Tanggal Permohonan</td>
-            <td>{{ $data->tanggalPermohonan }}</td>
+            <td>{{ $booking->BookingRemark }}</td>
           </tr>
           <tr>
             <td>Status Peminjaman</td>
-            <td>{{ $data->status }}</td>
+            <td>{{ $booking->BookingStatus }}</td>
           </tr>
         </thead>
       </table>
     </div>
   </div>
   <a class="btn btn-danger" href="/public" role="button">Kembali</a>
-  <a class="btn btn-success" href="/tracking/{{$data->tiket}}" role="button" target="_blank">Ke Tracking</a>
+  <a class="btn btn-success" href="/tracking/{{ $booking->BookingCode }}" role="button" target="_blank" value="{{$booking->BookingCode}}">Ke Tracking</a>
 
 </div>
 @endsection

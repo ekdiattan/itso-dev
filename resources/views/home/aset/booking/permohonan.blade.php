@@ -32,9 +32,9 @@
               <div class="form-group row">
                 <label class="col-sm-3 col-form-label">Nama Pemohon</label>
                 <div class="col-sm-9">
-                  <select class="form-control selectpicker" id="namaPemohon" name="namaPemohon" data-live-search="true" onchange="setBidang();">
+                  <select class="form-control selectpicker" id="namaPemohon" name="BookingEmployeeId" data-live-search="true" onchange="setBidang();">
                     @foreach($employee as $employee)
-                      <option value="{{ $employee->EmployeeName }}">{{$employee->EmployeeName}} - {{$employee->position->unit->MasterUnitName}} - {{ $employee->position->MasterPositionName}}</option>
+                      <option value="{{ $employee->EmployeeId }}">{{$employee->EmployeeName}} - {{$employee->position->unit->MasterUnitName}} - {{ $employee->position->MasterPositionName}}</option>
                     @endforeach
                   </select>
                 </div>
@@ -46,9 +46,9 @@
               <div class="form-group row">
                 <label class="col-sm-3 col-form-label" for="jenisAset">Jenis Aset</label>
                 <div class="col-sm-9">
-                  <select class="form-control selectpicker" id="namaPemohon" name="namaPemohon">
+                  <select class="form-control selectpicker" id="namaPemohon" name="BookingAsetId">
                   @foreach($asset as $asset)
-                    <option value="{{ $asset->MasterAsetName}}">{{$asset->MasterAsetName}}</option>
+                    <option value="{{ $asset->MasterAsetId}}">{{$asset->MasterAsetName}}</option>
                   @endforeach
                   </select>
                 </div>
@@ -61,7 +61,7 @@
                 <div class="form-group row">
                   <label class="col-sm-3 col-form-label">Mulai Pinjam</label>
                   <div class="col-sm-9">
-                    <input type="datetime-local" placeholder="dd-mm-yyyy" class="form-control" id="mulai" name="mulai" onChange="check()" value="" required/>
+                    <input type="datetime-local" placeholder="dd-mm-yyyy" class="form-control" id="mulai" name="BookingStart" onChange="check()" value="" required/>
                   </div>
                 </div>
               </div>
@@ -69,7 +69,7 @@
                 <div class="form-group row">
                   <label class="col-sm-3 col-form-label">Selesai Pinjam</label>
                   <div class="col-sm-9">
-                    <input type="datetime-local" class="form-control" id="selesai" name="selesai" onChange="check()" value="" required/>
+                    <input type="datetime-local" class="form-control" id="selesai" name="BookingEnd" onChange="check()" value="" required/>
                   </div>
                 </div>
               </div>
@@ -80,9 +80,9 @@
                 <div class="form-group row">
                   <label class="col-sm-3 col-form-label" for="keperluan">Keperluan</label>
                   <div class="col-sm-9">
-                    <input type="radio" name="keperluan" id="dinas" value="Dinas" checked>
+                    <input type="radio" name="BookingUsed" id="dinas" value="1" checked>
                     Dinas
-                    <input type="radio" name="keperluan" id="pribadi" value="Pribadi">
+                    <input type="radio" name="BookingUsed" id="pribadi" value="2">
                     Pribadi
                   </div>
                 </div>
@@ -93,7 +93,7 @@
                 <div class="form-group row">
                   <label class="col-sm-3 col-form-label">Perihal</label>
                   <div class="col-sm-9">
-                    <textarea id="textbox" class="form-control" maxlength="255" name="perihal" rows="5" required></textarea>
+                    <textarea id="textbox" class="form-control" maxlength="255" name="BookingRemark" rows="5" required></textarea>
                     <span id="char_count"></span>
                   </div>
                 </div>

@@ -120,12 +120,7 @@ Route::get('/public',[TrackingController::class, 'index']);
 Route::get('/tracking',[TrackingController::class, 'track']);
 Route::post('/tracking',[TrackingController::class, 'find']);
 Route::get('/tracking/{ticket}',[TrackingController::class, 'found']);
-Route::get('/laporPermasalahan',[TrackingController::class, 'laporPermasalahan']);
 Route::get('/pinjam',[TrackingController::class, 'pinjam']);
-Route::post('/upload-surat/{id}',[TrackingController::class, 'unggah']);
-
-Route::get('/tes',[TrackingController::class, 'tes']);
-Route::get('/booking-export/{id}', [BookingController::class, 'export']);
 
 //permohonan publik
 Route::get('/peminjaman',[BookingController::class, 'permohonan']);

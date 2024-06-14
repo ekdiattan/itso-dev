@@ -1,34 +1,26 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Carbon\Carbon;
 use App\Models\Aset;
-use App\Models\Bidang;
 use App\Models\Booking;
 use App\Models\Employee;
-use App\Models\Pegawai;
-use Carbon\CarbonPeriod;
+use App\Enums\BookingEnum;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use App\Helpers\BookingHelper;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 class BookingController extends Controller
 {
-    public function index (Request $request)
+    protected $bookingHelper;
+    public function __construct( ){
+        $this->bookingHelper = new BookingHelper();
+    }
+    public function index ()
     {
-        if($request->search == null)
-        {
-            $dalamPengajuan = Booking::where('BookingStatus', 0)->orderBy('BookingCreatedAt', 'desc')->get();
-        } else {
-            $dalamPengajuan = Booking::where('BookingStatus', 0)->where('BookingCode', 'ilike', '%'.$request->search.'%')->get();
-        }
-        
-        foreach($dalamPengajuan as $result)
-        {
-            
-        }
-        return view('home.aset.booking.index', ['dalamPengajuan' => $dalamPengajuan, 'title' => 'Booking', 'search' => $request->search]);
+        $dalamPengajuan = Booking::where('BookingStatus', 0)->orderBy('BookingCreatedAt', 'desc')->get();
+        return view('home.aset.booking.index', ['dalamPengajuan' => $dalamPengajuan, 'title' => 'Booking']);
     }
 
     public function acc()
@@ -113,5 +105,25 @@ class BookingController extends Controller
     {
         $done = Booking::where('BookingStatus', 2)->orderBy('BookingCreatedAt', 'desc')->get();
         return view('home.aset.booking.selesai',['title' => 'Booking', 'done' => $done]);
+    }
+
+    public function store(Request $request)
+    {
+        $bookingCode = $this->bookingHelper->createrandobooking(5);
+
+        $booking = Booking::create([
+            'BookingCode' => $bookingCode,
+            'BookingEmployeeId' => $request->BookingEmployeeId,
+            'BookingAsetId' => $request->BookingAsetId,
+            'BookingStart' => $request->BookingStart,
+            'BookingEnd' => $request->BookingEnd,
+            'BookingUsed' => $request->BookingUsed,
+            'BookingStatus' => BookingEnum::WAITING,
+            'BookingRemark' => $request->BookingRemark ?? null,
+            'BookingCreatedBy' => Auth::id(),
+            'BookingUpdatedBy' => Auth::id()
+           ]);
+
+        return view('home.aset.booking.result', ['title' => 'Permohonan', 'booking' => $booking]);
     }
 }

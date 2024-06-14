@@ -10,19 +10,9 @@
   <source src="/assets/videos/sdikominfo.mp4" type="video/mp4">
   </video>
   @section('container')
-
 <br>
 <br>
 <div class="wrapper">
-  <div class="row">
-    <div class="card mx-auto" style="width:375px;height: 250px;" id="box1" >
-      <div class="card-body">
-        <h5 class="card-body text-center">Menu Laporan Permasalahan</h5>
-        <p class="card-text">Laporkan permasalahan yang berkaitan dengan IT atau melihat progress dari permasalahan yang sebelumnya dilaporkan</p>
-        </div>
-        <a href="/laporPermasalahan/" class="btn btn-primary">Laporan Permasalahan</a>
-      </div>
-    </div>
     <div class="row">
       <div class="card mx-auto" style="width:375px;height: 250px;" id="box1">
         <div class="card-body">

@@ -21,9 +21,9 @@ class Booking extends Model
     ];
 
     protected $attributes = [
-        'BookingApprovalStatus' => 0
+        'BookingStatus' => 0
     ];
-
+    
     public function approval()
     {
         return $this->hasMany(Approval::class, 'ApprovalSourceId', 'BookingId');
@@ -38,7 +38,7 @@ class Booking extends Model
     {
         return $this->belongsTo(User::class, 'BookingCreatedBy', 'UserId');
     }
-
+    
     public function employee()
     {
         return $this->belongsTo(Employee::class, 'BookingEmployeeId', 'EmployeeId');
