@@ -10,7 +10,7 @@
       <div class="card">
         <div class="card-body">
           <h4 class="card-title">Tambahkan Pegawai</h4>
-          <form action="/employee/create" method="key" >
+          <form action="/employee/create" method="post" >
             @csrf
             <br>
             <div class="form-group">
@@ -20,6 +20,25 @@
             <div class="form-group">
               <label for="exampleInputUsername1">Alamat Pegawai</label>
               <input type="text" class="form-control" id="EmployeeAddress" name="EmployeeAddress" maxlength="255" required>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputUsername1">Nomor Telepon Pegawai</label>
+              <input type="number" class="form-control" id="EmployeePhone" name="EmployeePhone" maxlength="255" required>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputUsername1">Jenis Kelamin</label>
+              <select class="form-control" aria-label="Default select example" id="position_id" name="EmployeeGender" required>
+                <option value="1">Laki - Laki</option>
+                <option value="2">Perempuan</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputUsername1">Jabatan</label>
+              <select class="form-control" aria-label="Default select example" id="position_id" name="EmployeePositionId" required>
+                @foreach ($position as $position)
+                <option value="{{ $position->MasterPositionId }}">{{ $position->MasterPositionName }}</option>
+                @endforeach
+              </select>
             </div>
             <button type="submit" class="btn btn-primary mr-2">Submit</button>
           </form>
@@ -41,9 +60,7 @@
                         <tr>
                           <th>No</th>
                           <th>Nama Pegawai</th>
-                          <th>Alamat Pegawai</th>
                           <th>Nomor Pegawai</th>
-                          <th>Email Pegawai</th>
                           <th>Nomor Hp Pegawai</th>
                           <th>Action</th>
                         </tr>
@@ -53,13 +70,11 @@
                         <tr>
                           <td>{{ $loop->iteration }}</td>
                           <td>{{ $key->EmployeeName }}</td>
-                          <td>{{ $key->EmployeeAddress }}</td>
-                          <td>{{ $key->EmployeePhone }}</td>
-                          <td>{{ $key->EmployeeEmail }}</td>
+                          <td>{{ $key->EmployeeNumber }}</td>
                           <td>{{ $key->EmployeePhone }}</td>
                           <td>
-                            <a href="/kodeAset/" class="badge bg-warning"><span class="menu-icon"><i class="far fa-edit"></i></span></a>
-                            <form action="/kodeAset/delete/{{$key->id}}" method="get" class="d-inline">
+                            <a href="/employee/edit/{{ $key->EmployeeId }}" class="badge bg-warning"><span class="menu-icon"><i class="far fa-edit"></i></span></a>
+                            <form action="/employee/delete/{{$key->EmployeeId}}" method="get" class="d-inline">
                             @method('delete')
                             @csrf
                             <button class="badge bg-danger border-0"onclick="return confirm('Are you sure?')"><span class="menu-icon"><i class="fas fa-trash"></i></span></button>

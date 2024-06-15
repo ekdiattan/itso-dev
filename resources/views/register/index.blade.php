@@ -37,11 +37,11 @@
                             <td>{{ $post->role->MasterRoleCode}}</td>
                             <td>{{ $post->employee->EmployeePhone}}</td>
                             <td>
-                              <a href="/register/{{ $post->id }}" class="badge bg-info">
+                              <a href="/register/{{ $post->UserId}}" class="badge bg-info">
                                 <span class="menu-icon"><i class="far fa-eye"></i></span></a>
-                                <a href="/register/edit/{{$post->id}}" class="badge bg-warning"><span
+                                <a href="/register/edit/{{$post->UserId}}" class="badge bg-warning"><span
                                                 class="menu-icon"><i class="far fa-edit"></i></span></a>
-                              <form action="/register/delete/{{ $post->id }}" method="get" class="d-inline">
+                              <form action="/register/delete/{{ $post->UserId }}" method="get" class="d-inline">
                               @csrf
                               <button class="badge bg-danger border-0" onclick="return confirm('Are you sure?')"><span class="menu-icon"><i class="fas fa-trash"></i></span></button>
                               </form>

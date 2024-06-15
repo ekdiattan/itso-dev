@@ -3,7 +3,7 @@
 <div class="col-12 grid-margin">
   <div class="card">
     <div class="card-body">
-      <form action="/register/update/{{ $user->id }}" method="post">
+      <form action="/register/update/{{ $user->UserId }}" method="post">
         @csrf
         <p class="card-description">Edit Data Pengguna </p>
         <div class="row">
@@ -11,7 +11,7 @@
             <div class="form-group row">
               <label class="col-sm-3 col-form-label">Nip</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" id="nip" name="nip" value="{{ $user->nip }}" />
+                <input type="text" class="form-control" id="nip" value="{{ $user->employee->EmployeeNumber }}" readonly />
               </div>
             </div>
           </div>
@@ -19,7 +19,7 @@
             <div class="form-group row">
               <label class="col-sm-3 col-form-label">Username</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" id="username" name="username" value="{{ $user->username }}"/>
+                <input type="text" class="form-control" id="username" name="name" value="{{ $user->name }}" />
               </div>
             </div>
           </div>
@@ -29,7 +29,7 @@
             <div class="form-group row">
               <label class="col-sm-3 col-form-label">Nama</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" id="nama" name="nama" value="{{ $user->nama }}"/>
+                <input type="text" class="form-control" id="nama" value="{{ $user->employee->EmployeeName }}" readonly/>
               </div>
             </div>
           </div>
@@ -37,7 +37,7 @@
             <div class="form-group row" style="display:none;" id="emaill">
               <label class="col-sm-3 col-form-label">Email</label>
               <div class="col-sm-9 input-group-append">
-              <input type="text" class="form-control p_input" id="email" name="email" value="{{$user->email}}">
+              <input type="text" class="form-control p_input" id="email" value="{{$user->employee->EmployeeEmail}}" readonly>
             </div>
             </div>
         </div>
@@ -45,7 +45,7 @@
             <div class="form-group row">
               <label class="col-sm-3 col-form-label">Jabatan</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" id="jabatan" name="jabatan" value="{{ $user->jabatan }}"/>
+                <input type="text" class="form-control" id="jabatan" value="{{ $user->employee->position->MasterPositionName }}" readonly/>
               </div>
             </div>
           </div>
@@ -55,7 +55,7 @@
             <div class="form-group row">
               <label class="col-sm-3 col-form-label">Nama Bidang</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" id="nama_bidang" name="nama_bidang" value="{{ $user->nama_bidang }}"/>
+                <input type="text" class="form-control" id="nama_bidang" value="{{ $user->employee->position->unit->MasterUnitName }}" readonly/>
               </div>
             </div>
           </div>
@@ -63,7 +63,7 @@
             <div class="form-group row">
               <label class="col-sm-3 col-form-label">No Hp</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" id="no_hp" name="no_hp" value="{{ $user->no_hp }}"/>
+                <input type="text" class="form-control" id="no_hp" value="{{ $user->employee->EmployeePhone }}" readonly/>
               </div>
             </div>
           </div>
@@ -73,7 +73,11 @@
             <div class="form-group row">
               <label class="col-sm-3 col-form-label">Hak Akses</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" id="hak_akses" name="hak_akses" value="{{ $user->hak_akses }}"/>
+                <select class="form-control" id="hak_akses" name="UserRoleId">
+                  @foreach ($role as $roles)
+                    <option value={{$roles->MasterRoleId}}>{{$roles->MasterRoleCode}} - {{$roles->MasterRoleName}}</option>
+                  @endforeach
+                </select>
             </div>
           </div>
       </div>
@@ -103,30 +107,5 @@
 
 <script src="../../assets/js/mata.js"></script>
 <script src="../../assets/js/alertpasswordregister.js"></script>
-
-<script>
-  // Mendapatkan elemen <select> dan <div> form alasan
-  var hakAksesSelect = document.getElementById('hak_akses');
-  var formAlasan = document.getElementById('emaill');
-
-  // Menambahkan event listener untuk perubahan pada opsi yang dipilih
-  hakAksesSelect.addEventListener('change', function () {
-    var selectedValue = hakAksesSelect.value;
-
-    // Menampilkan/sembunyikan form alasan berdasarkan kondisi
-    if (selectedValue === 'Aset') {
-      formAlasan.style.display = 'block';
-    } else {
-      formAlasan.style.display = 'none';
-    }
-  });
-
-  // Memeriksa nilai awal pada saat halaman dimuat
-  if (hakAksesSelect.value === 'Aset') {
-    formAlasan.style.display = 'block';
-  }
-</script>
-
-
 
 @endsection

@@ -9,8 +9,7 @@
               <div class="form-group row">
                 <label class="col-sm-3 col-form-label">Nip</label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" id="nip" name="nip"
-                  value="{{ $user->nip }}" readonly/>
+                  <input type="text" class="form-control" id="nip" name="nip"value="{{ $user->employee->EmployeeNumber }}" readonly/>
                 </div>
               </div>
             </div>
@@ -19,7 +18,7 @@
                 <label class="col-sm-3 col-form-label">Username</label>
                 <div class="col-sm-9">
                   <input type="text" class="form-control"  id="username" name="username"
-                   value="{{ $user->username }}" readonly>
+                   value="{{ $user->name }}" readonly>
                 </div>
               </div>
             </div>
@@ -29,7 +28,7 @@
               <div class="form-group row">
                 <label class="col-sm-3 col-form-label">Nama</label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" id="nama" name="nama" value="{{ $user->nama }}" readonly/>
+                  <input type="text" class="form-control" id="nama" name="nama" value="{{ $user->employee->EmployeeName }}" readonly/>
                 </div>
               </div>
             </div>
@@ -37,7 +36,7 @@
               <div class="form-group row">
                 <label class="col-sm-3 col-form-label">Jabatan</label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" id="jabatan" name="jabatan" value="{{ $user->jabatan }}" readonly/>
+                  <input type="text" class="form-control" id="jabatan" name="jabatan" value="{{ $user->employee->position->MasterPositionName }}" readonly/>
                 </div>
               </div>
             </div>
@@ -47,7 +46,7 @@
               <div class="form-group row">
                 <label class="col-sm-3 col-form-label">Nama Bidang</label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" id="nama_bidang" name="nama_bidang" value="{{ $user->nama_bidang }}" readonly/>
+                  <input type="text" class="form-control" id="nama_bidang" name="nama_bidang" value="{{ $user->employee->position->unit->MasterUnitName }}" readonly/>
                 </div>
               </div>
             </div>
@@ -55,7 +54,7 @@
               <div class="form-group row">
                 <label class="col-sm-3 col-form-label">Nomor Hp</label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" id="no_hp" name="no_hp" value="{{ $user->no_hp }}" readonly/>
+                  <input type="text" class="form-control" id="no_hp" name="no_hp" value="{{ $user->employee->EmployeePhone }}" readonly/>
                 </div>
               </div>
             </div>
@@ -63,18 +62,18 @@
               <div class="form-group row">
                 <label class="col-sm-3 col-form-label">Email</label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" id="email" name="email" value="{{ $user->email }}" readonly/>
+                  <input type="text" class="form-control" id="email" name="email" value="{{ $user->employee->EmployeeEmail }}" readonly/>
                 </div>
               </div>
             </div>
-            <div class="col-md-6">
+            {{-- <div class="col-md-6">
               <div class="form-group row">
                 <label class="col-sm-3 col-form-label">Hak Akses</label>
                 <div class="col-sm-9">
                 <input type="text" class="form-control" id="hak_akses" name="hak_akses" value="{{ $user->hak_akses }}" readonly/>
                 </div>
               </div>
-            </div>
+            </div> --}}
           </div>
           <div class="box">
             <div class="box-header with-border">

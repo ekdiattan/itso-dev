@@ -35,6 +35,9 @@ Route::group(['middleware' =>[ 'auth' ]], function()
 {
 
 Route::get('/employee',[EmployeeController::class, 'index']);
+Route::get('/employee/delete/{id}',[EmployeeController::class, 'delete']);
+Route::get('/employee/edit/{id}',[EmployeeController::class, 'edit']);
+Route::post('/employee/create',[EmployeeController::class, 'store']);
 
 Route::get('/index',[UserController::class, 'index']);
 Route::get('/register',[UserController::class, 'register']);
@@ -43,6 +46,7 @@ Route::get('/register/{id}', [UserController::class, 'show']);
 Route::get('/register/edit/{id}', [UserController::class,'edit']);
 Route::post('/register/update/{id}', [UserController::class,'updateByUser']);
 Route::get('/register/delete/{id}',[UserController::class, 'delete']);
+Route::get('/logout', [UserController::class, 'logout']);
 
 Route::get('/dashboard',[DashboardController::class, 'index']);
 

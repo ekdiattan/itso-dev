@@ -21,7 +21,11 @@
                   <div class="form-group row">
                     <div class="col-sm-6">
                       <label>Nama</label>
-                      <input type="text" class="form-control p_input" id="nama" name="nama">
+                      <select class="form-control" id="nama_bidang" name="nama_bidang">
+                        @foreach ($user as $users)
+                        <option value="{{ $users->EmployeeId }}">{{ $users->EmployeeName }}</option>
+                        @endforeach  
+                      </select>
                     </div>
                     <div class="col-sm-6">
                       <label>Jabatan</label>
@@ -32,17 +36,17 @@
                     <div class="col-sm-6">
                       <label for="exampleFormControlSelect2">Nama Bidang</label>
                         <select class="form-control" id="nama_bidang" name="nama_bidang">
-                          @foreach ($bidang as $bidang)
+                          {{-- @foreach ($bidang as $bidang)
                           <option value="{{ $bidang->namabidang }}">{{ $bidang->namabidang }}</option>
-                          @endforeach  
+                          @endforeach   --}}
                         </select>
                     </div>
                     <div class="col-sm-6">
                       <label for="exampleFormControlSelect2">Hak Akses</label>
                       <select class="form-control" id="hak_akses" name="hak_akses">
-                          @foreach ($role as $role)
+                          {{-- @foreach ($role as $role)
                             <option value="{{ $role->role }}">{{ $role->role }}</option>
-                          @endforeach
+                          @endforeach --}}
                         </select>
                     </div>
                   </div>

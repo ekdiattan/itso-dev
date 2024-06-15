@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Bidang;
+use App\Models\Employee;
 use App\Models\Role;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -31,40 +32,13 @@ class UserController extends Controller
 
     public function register()
     {   
-        $bidang = Bidang::all();
-        $role = Role::all();
-        
-        return view('register.register', ['title' => 'Pengguna'], compact('bidang', 'role'));
-    }
+        // mencari id employee user yang tidak ada
+        $users = User::all();
+        $getId = $users->pluck('UserEmployeeId');
 
-    public function store_register(Request $request){
-        $validatedDate = $request->validate([
-            'nip' => 'required|max:18',
-            'username' => 'required',
-            'nama' => 'required|max:255',
-            'jabatan' => 'required',
-            'nama_bidang' => 'required',
-            'hak_akses' => 'required',
-            'no_hp' => 'required',
-            'email' => '',
-            'image' => 'image|file|max:1024',
-            'password' => 'required|min:6'
-        ]);
-        if ($request->hasFile('image')) {
-            $imageName = $request->file('image')->getClientOriginalName();
-            $request->file('image')->move('images/profile/', $imageName);
-            $data->image = $imageName;
-        }
-        $data->save();
-        
-        $password = bcrypt($request->password);
-        $validatedDate['password'] = bcrypt($validatedDate['password']);
+        $data = Employee::whereNotIn('EmployeeId', $getId)->get();
 
-        User::create($validatedDate);
-        $request->accepts('session');
-        session()->flash('success', 'Berhasil menambahkan user!');
-
-        return redirect('/index');
+        return view('register.register', ['title' => 'Pengguna', 'user' => $data]);
     }
 
     public function show($id)
@@ -77,7 +51,8 @@ class UserController extends Controller
     public function edit($id)
     {
         $edit = User::find($id);
-        return view('register.edit',['user'=> $edit, 'title' => 'Pengguna']);
+        $role = Role::all();
+        return view('register.edit',['user'=> $edit, 'title' => 'Pengguna', 'role' => $role]);
     }
 
     public function update(Request $request, $id)
@@ -130,29 +105,21 @@ class UserController extends Controller
         ])->onlyInput('name');
     }
 
-    // logout
     public function logout(Request $request){
         Auth::logout();
  
         $request->session()->invalidate();
      
         $request->session()->regenerateToken();
-     
+        
         return redirect('/login');
     }   
 
-    public function destroy(User $user)
-    {
-        User::destroy($user->id);
-        return redirect('/index')->with('succes', 'User has been deleted');
-    }
-
-    // delete
     public function delete($id)
     {
         $user = User::find($id);
         $user->delete();
-        // $id->accepts(session());
+
         session()->flash('success', 'Pengguna Berhasil dihapus');
         
         return redirect('/index')->with('success', 'Pengguna berhasil dihapus');
@@ -164,22 +131,27 @@ class UserController extends Controller
         return view('home.settings.account', ['user'=>$user, 'title' => 'Pengguna']);
     }
 
-    public function updateByUser(Request $request, $id){
-        // dd($request->image);
+    public function updateByUser(Request $request, $id)
+    {
         $user = User::find($id);
-        $email = $request->email;
-        if ($request->filled('password')) {
+
+        $email = $request->name;
+
+        if ($request->filled('password')) 
+        {
             $password = bcrypt($request->password);
         }else {
             $password = $user->password;
         }
+
         $user->update([
             'password' => $password,
-            'email' => $email,
+            'name' => $email,
+            'UserRoleId' => $request->UserRoleId
         ]);
         
         $request->session()->flash('success', 'Berhasil mengupdate Data!');
-        return redirect('/dashboard')->with('success', 'Berhasil Mengupdate Data');
+        return redirect('/index')->with('success', 'Berhasil Mengupdate Data');
     }
 
     public function editPw($id){
@@ -199,14 +171,4 @@ class UserController extends Controller
 
         return redirect('/dashboard')->with('succes', 'New Post has been Added');
     }
-    // Update 
-    public function store(Request $request)
-{
-    $request->validate([
-        'password' => 'required|min:6'
-    ]);
-
-    // Kode untuk menyimpan data ke database
-}
-
 }
