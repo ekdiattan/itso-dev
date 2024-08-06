@@ -4,7 +4,7 @@ const passwordStrength = document.getElementById('password-strength');
 const submitBtns = document.getElementById('submit-btn');
 const password = document.getElementById('password');
 
-document.getElementById("submit-btn").disabled = true;
+document.getElementById("submit-btn").disabled = false;
 
 function validateForm() {
     if (password.value.trim() === '') {
@@ -18,13 +18,11 @@ password.addEventListener('input', validateForm);
 passwordInput.addEventListener('input', function () {
     // mengambil nilai password dari input
     const password = passwordInput.value;
-
+    
     // memeriksa apakah password memenuhi kriteria
     const hasNumber = /\d/.test(password);
-    const hasSymbol = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password);
     const hasUppercase = /[A-Z]/.test(password);
 
-    // menampilkan alert sesuai dengan hasil pengecekan
     if (password.length === 0) {
         passwordStrength.innerHTML = '';
         submitBtns.disabled = true;

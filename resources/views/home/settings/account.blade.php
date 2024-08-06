@@ -1,8 +1,6 @@
 @extends('home.partials.main')
 @section('container')
-<!-- Profile -->
-
-      <div class="profile-desc mt-2">
+  <div class="profile-desc mt-2">
         <div class="profile-pic">
           <div class="count-indicator">
             <img class="rounded-circle mx-auto d-block " src="{{ $user->image ?? asset('assets/images/faces/face15.jpg') }}" alt="image">
@@ -13,7 +11,6 @@
             <span>{{ auth()->user()->hak_akses }}</span>
           </div>
           <form action='/account/{{ $user->UserId }}' method="post">
-  <!-- <fieldset> -->
               <div class="mb-3 p-3">
                 <h4>Username</h4>
                 <h5>{{$user->name}}</h5>
@@ -33,9 +30,7 @@
                 <h4>No HP</h4>
                 <h5>{{$user->employee->EmployeePhone}}</h5>
               </div>
-
-      <!-- Baru dikomen 8 mei 2023 -->
-      <form action="/profile/{{$user->id}}" method="post"enctype="multipart/form-data">
+      <form action="/profile/{{$user->id}}" method="post" enctype="multipart/form-data" >
         @csrf
       </form>
      <br>
@@ -48,33 +43,23 @@
         </ul>
       </div> 
       @endif
-
       <form action="/register/update/{{ $user->UserId }}" method="post" enctype="multipart/form-data">
         @csrf
-            <div class="form-group">
+          <div class="form-group">
             <label for="password"> Ganti Foto Profile</label>
               <input  type="file" class="form-control" id="image" name="image">
             </div>
-            <div class="input-group-append">
-              <button type="submit" class="btn btn-primary mr-2 btn-flat float-right" id="submit">Change</button>
-            </div>
-              <label for="password"> Ganti Password</label>
-              <input  type="password" class="form-control" id="password" name="password" placeholder ="Masukan kata sandi baru">
-            </div>
-            <div id="password-strength"></div>
-            <div class="input-group-append">
-              <button type="submit" class="btn btn-primary mr-2 btn-flat float-right" id="submit-btn">Change</button>
-              <span class="input-group-text" >
-                  <i class="far fa-eye" id="show-password" type="button" ></i>
-            </div>
-            <div class="form-group">
-            
+            <label for="password"> Ganti Password</label>
+            <input  type="password" class="form-control" id="password" name="password" placeholder ="Masukan kata sandi baru">
+          </div>
+          <div id="password-strength"></div>
+          <br>
+          <div class="input-group-append">
+          <button type="submit" class="btn btn-primary mr-2 btn-flat float-right" id="submit-btn">Change</button>
+            <span class="input-group-text" >
+                <i class="far fa-eye" id="show-password" type="button" ></i>
+          </div>
       </form> 
-
-<!-- End Profile -->
-
-<!-- Info -->
-  <script src="../../assets/js/mata.js"></script>
-  <script src="../../assets/js/password.js"></script>
-
+<script src="../../assets/js/mata.js"></script>
+<script src="../../assets/js/password.js"></script>
 @endsection

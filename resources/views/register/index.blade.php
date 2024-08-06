@@ -7,12 +7,6 @@
                 <div class="card">
                   <div class="card-body">  
                     <a class="btn btn-success" href="/register">+ Pengguna</a>
-                    <!-- <form action="/index" method="GET">
-                        <form class="d-flex" role="search">
-                            <input class="form-control me-2" type="search" placeholder="Masukan Nama" aria-label="Search" name="search">
-                            <a href="/inventaris" style="margin-left: 5px; color: red;">Reset</a>
-                        </form>
-                    </form> -->
                     <div id="dataTable_wrapper" class="table-responsive">
                       <table id="dataTable" class="table table-hover">
                         <br>

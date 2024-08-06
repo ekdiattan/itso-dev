@@ -143,14 +143,15 @@ class UserController extends Controller
         }else {
             $password = $user->password;
         }
-
+        
         $user->update([
             'password' => $password,
-            'name' => $email,
-            'UserRoleId' => $request->UserRoleId
+            'name' => $email ?? $user->name,
+            'UserRoleId' => $request->UserRoleId ?? $user->UserRoleId
         ]);
-        
+
         $request->session()->flash('success', 'Berhasil mengupdate Data!');
+
         return redirect('/index')->with('success', 'Berhasil Mengupdate Data');
     }
 
