@@ -84,11 +84,15 @@ class BookingController extends Controller
     }
     public function edit($id)
     {
-        $edit= Booking::find($id);
-        $edit->mulai = Carbon::parse($edit->BookingStart)->translatedFormat('d F Y');
-        $edit->selesai = Carbon::parse($edit->BookingEnd)->translatedFormat('d F Y');
-        $edit->tanggalPermohonan = Carbon::parse($edit->BookingCreatedAt)->translatedFormat('d F Y');
-        return view('home.aset.booking.edit',['edit'=> $edit, 'title' => 'Booking']);
+        $booking= Booking::find($id);
+        
+        $booking->update([
+            'BookingApprovalStatus' => BookingEnum::BOOKING,
+            'BookingUpdatedBy' => Auth::id(),
+            'BookingUpdatedAt' => Carbon::now()
+        ]);
+
+        return view('home.aset.booking.edit',['edit'=> $booking, 'title' => 'Booking']);
     }
     public function delete($id)
     {

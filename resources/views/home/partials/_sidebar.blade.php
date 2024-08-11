@@ -1,9 +1,5 @@
- <!-- Main Sidebar Container -->
  <aside class="main-sidebar sidebar-light-primary">
-    <!-- Brand Logo -->
-    <!-- Sidebar -->
     <div class="sidebar">
-      <!-- Sidebar Menu -->  
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
           <div class="m-auto">
             <a href="/dashboard" class="navbar-brand">
@@ -21,41 +17,27 @@
                 </p>
               </a>
             </li>
-          {{-- @if(auth()->user()->hak_akses=="Admin" || auth()->user()->hak_akses=="IT") --}}
-            {{-- @endif --}}
-
-            {{-- @if(auth()->user()->hak_akses=="Admin" || auth()->user()->hak_akses=="Aset") --}}
-              <li class="nav-item {{ ($title === 'Inventaris' || $title === 'Booking') ? 'menu-open menu-is-open' : '' }}">
-                <a class="nav-link">
-                  <i class="nav-icon fas fa-users"></i>
-                  <p>Tim Aset</p>
-                    <i class="fas fa-angle-left right"></i>
-                </a>
-                <ul class="nav nav-treeview">
-                  <li class="nav-item">
-                    <a href="/booking" class="nav-link {{ ($title === 'Booking') ? 'active disabled' : '' }}">
-                      <i class="nav-icon fas fa-bookmark ml-3"></i>
-                      <p>Peminjaman</p>
-                    </a>
-                  </li>
-                </ul>
+            <li class="nav-item {{ ($title === 'Inventaris' || $title === 'Booking') ? 'menu-open menu-is-open' : '' }}">
+              <a class="nav-link">
+                <i class="nav-icon fas fa-users"></i>
+                <p>Tim Aset</p>
+                  <i class="fas fa-angle-left right"></i>
+              </a>
+        <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="/booking" class="nav-link {{ ($title === 'Booking') ? 'active disabled' : '' }}">
+                <i class="nav-icon fas fa-bookmark ml-3"></i>
+                <p>Peminjaman</p>
+              </a>
+            </li>
+        </ul>
               </li>
-            {{-- @endif --}}
-
-          {{-- @if(auth()->user()->hak_akses=="Admin" || auth()->user()->hak_akses=="Kepegawaian") --}}
-          {{-- @endif --}}
-
-          {{-- @if(auth()->user()->hak_akses=="Admin" || auth()->user()->hak_akses=="Keamanan") --}}
-          {{-- @endif --}}
-          {{-- @if(auth()->user()->hak_akses=="Admin") --}}
             <li class="nav-item">
               <a href="/index" class="nav-link {{ ($title === 'Pengguna') ? 'active disabled' : '' }}">
                 <i class="nav-icon fas fa-user-plus"></i>
                 <p>Pengguna</p>
               </a>
             </li>
-          {{-- @endif --}}
-          {{-- @if(auth()->user()->hak_akses=="Admin" ||  auth()->user()->hak_akses=="Aset") --}}
             <li class="nav-item">
               <a class="nav-link">
                 <i class="nav-icon fas fa-cog "></i>
@@ -64,9 +46,7 @@
                   <i class="right fas fa-angle-left"></i>
                 </p>
               </a>
-            {{-- @endif --}}
               <ul class="nav nav-treeview">
-            {{-- @if(auth()->user()->hak_akses=="Admin" || auth()->user()->hak_akses=="Aset") --}}
                 <li class="nav-item">
                   <a href="/employee" class="nav-link">
                     <i class="nav-icon fas fa-book ml-3"></i>
@@ -79,8 +59,6 @@
                     <p>Aset</p>
                   </a>
                 </li>
-            {{-- @endif --}}
-            {{-- @if(auth()->user()->hak_akses=="Admin") --}}
                 <li class="nav-item">
                   <a href="/module" class="nav-link">
                     <i class="nav-icon fas fa-building ml-3"></i>
@@ -93,21 +71,14 @@
                     <p>Jabatan</p>
                   </a>
                 </li>
-            {{-- @endif --}}
-            {{-- @if(auth()->user()->hak_akses=="Admin" || auth()->user()->hak_akses=="Aset") --}}
                 <li class="nav-item">
                   <a href="/merk/" class="nav-link 'active disabled' : '' }}">
                   <i class="nav-icon fas fa-window-restore ml-3"></i>
                     <p>Pengaturan Hak Akses</p>
                   </a>
                 </li>
-            {{-- @endif --}}
-            {{-- @if(auth()->user()->hak_akses=="Admin" || auth()->user()->hak_akses=="Kepegawaian") --}}
-            {{-- @endif --}}
                 </ul>
           </ul>
       </nav>
-      <!-- /.sidebar-menu -->
     </div>
-    <!-- /.sidebar -->
   </aside>

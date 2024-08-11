@@ -4,7 +4,6 @@
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h2>Peminjaman Aset</h2>
 </div>
-
 <!-- double navbar -->
 <div class="nav navbar navbar-expand navbar-white navbar-light border-bottom p-0">
     <!-- Container wrapper -->
@@ -53,11 +52,6 @@
                 <h4 class="card-title"><b>Sedang Berlangsung Dipinjam</b></h4>
                 <div class="table-responsive">
                  <nav class="navbar bg-body-tertiary">
-                    <!-- <form action="#" method="GET">
-                        <form class="d-flex" role="search">
-                            <input class="form-control me-2" type="search" placeholder="Masukan Nama Pemohon" aria-label="Search" name="search" value="">
-                        </form>
-                    <a href="#" class="btn btn-danger" role="button">Reset</a> -->
                     </form>
                  </nav>
                 <table id="dataTable" class="table table-hover table-bordered table-striped">
@@ -65,8 +59,8 @@
                             <tr>
                                 <th>No</th>
                                 <th>Tiket</th>
+                                <th>Nama Aset</th>
                                 <th>Nama Pemohon</th>
-                                <th>No Hp</th>
                                 <th>Bidang</th>
                                 <th>Perihal</th>
                                 <th>Tanggal Permohonan</th>
