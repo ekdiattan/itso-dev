@@ -36,7 +36,15 @@
               <label for="exampleInputUsername1">Jabatan</label>
               <select class="form-control" aria-label="Default select example" id="position_id" name="EmployeePositionId" required>
                 @foreach ($position as $position)
-                <option value="{{ $position->MasterPositionId }}">{{ $position->MasterPositionName }}</option>
+                  <option value="{{ $position->MasterPositionId }}">{{ $position->MasterPositionName }}</option>
+                @endforeach
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputUsername1">Bidang</label>
+              <select class="form-control" aria-label="Default select example" id="position_id" name="EmployeePositionId" required>
+                @foreach ($unit as $unit)
+                  <option value="{{ $unit->MasterUnitId }}">{{ $unit->MasterUnitName }}</option>
                 @endforeach
               </select>
             </div>
@@ -67,19 +75,19 @@
                       </thead>
                       <tbody>
                         @foreach ($employee as $key )  
-                        <tr>
-                          <td>{{ $loop->iteration }}</td>
-                          <td>{{ $key->EmployeeName }}</td>
-                          <td>{{ $key->EmployeeNumber }}</td>
-                          <td>{{ $key->EmployeePhone }}</td>
-                          <td>
-                            <a href="/employee/edit/{{ $key->EmployeeId }}" class="badge bg-warning"><span class="menu-icon"><i class="far fa-edit"></i></span></a>
-                            <form action="/employee/delete/{{$key->EmployeeId}}" method="get" class="d-inline">
-                            @method('delete')
-                            @csrf
-                            <button class="badge bg-danger border-0"onclick="return confirm('Are you sure?')"><span class="menu-icon"><i class="fas fa-trash"></i></span></button>
-                          </form>
-                        </tr>
+                          <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $key->EmployeeName }}</td>
+                            <td>{{ $key->EmployeeNumber }}</td>
+                            <td>{{ $key->EmployeePhone }}</td>
+                            <td>
+                              <a href="/employee/edit/{{ $key->EmployeeId }}" class="badge bg-warning"><span class="menu-icon"><i class="far fa-edit"></i></span></a>
+                              <form action="/employee/delete/{{$key->EmployeeId}}" method="get" class="d-inline">
+                              @method('delete')
+                              @csrf
+                              <button class="badge bg-danger border-0"onclick="return confirm('Are you sure?')"><span class="menu-icon"><i class="fas fa-trash"></i></span></button>
+                            </form>
+                          </tr>
                         @endforeach
                       </tbody>
                     </table>
@@ -91,5 +99,4 @@
       </div>
     </div>
   </div>
-  
 @endsection

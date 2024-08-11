@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Required meta tags -->
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Diskominfo Jabar | {{ $title }}</title>
-
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-    
     <!-- Font Awesome -->
     <link rel="stylesheet" href="/AdminLTE-3.2.0/plugins/fontawesome-free/css/all.min.css">
     <!-- Ionicons -->
@@ -36,20 +34,18 @@
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- multiselect -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
-    <!-- calendar
-    <link href='/fullcalendar-master/assets/css/fullcalendar.css' rel='stylesheet' />
-    <link href='/fullcalendar-master/assets/css/fullcalendar.print.css' rel='stylesheet' media='print' /> -->
+
+    <link rel="shortcut icon" href="{{ asset('assets/images/jabar.png') }}">
+
     @stack('css')
+
   </head>
 
 <body>
 <div class="wrapper">
-  <!-- Preloade -->
   <div class="preloader flex-column justify-content-center align-items-center">
     <img class="animation__shake" src="{{ asset('assets/images/logo_diskom.svg') }}" alt="AdminLTELogo" height="100" width="300">
   </div>
-  <!-- End Preloade -->
-  
   @include('home.partials._sidebar')
   @include('home.partials._navbar')
   <div class="container-fluid">
@@ -154,7 +150,6 @@
     }).buttons().container().appendTo($('#dataTable2_wrapper .col-md-6:eq(0)'));
   });
 </script>
-
 
 </body>
 </html>

@@ -105,10 +105,9 @@ Route::get('/light', function () {return view('home/settings/light');});
 // Unit
 Route::get('/unit', [UnitController::class, 'index']);
 Route::get('/unit/delete/{id}', [UnitController::class, 'delete']);
-
 });
 
-// ROUTE UNTUK PUBLIC
+// PUBLIC ROUTE
 Route::get('/public',[TrackingController::class, 'index']);
 Route::get('/tracking',[TrackingController::class, 'track']);
 Route::post('/tracking',[TrackingController::class, 'find']);

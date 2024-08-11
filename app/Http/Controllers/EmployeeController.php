@@ -1,12 +1,18 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
+use App\Helpers\EmployeeHelper;
+
 use App\Models\User;
 use App\Models\Employee;
 use App\Models\Position;
-use Illuminate\Http\Request;
-use App\Helpers\EmployeeHelper;
 use App\Models\Role;
+use App\Models\Unit;
+use Illuminate\Support\Facades\Auth;
 
 class EmployeeController extends Controller
 {
@@ -20,33 +26,49 @@ class EmployeeController extends Controller
     {
         $employee = Employee::all();
         $position = Position::all();
+        $unit = Unit::all();
 
-        return view('home.master.employee.index',[ 'title' => 'Employee', 'employee' => $employee, 'position' => $position]);
+        return view('home.master.employee.index',[ 'title' => 'Employee', 'employee' => $employee, 'position' => $position, 'unit' => $unit]);
     }
 
     public function store(Request $request)
     {
-        $employeeHelper = $this->employeeHelper->generateNumber(5);
+        DB::beginTransaction();
 
-        $dataEmployee = Employee::create([
-            'EmployeeAddress' => $request->EmployeeAddress,
-            'EmployeeName' => $request->EmployeeName,
-            'EmployeeNumber' => $employeeHelper,
-            'EmployeeEmail' => $request->EmployeeEmail,
-            'EmployeePhone' => $request->EmployeePhone,
-            'EmployeePositionId' => $request->EmployeePositionId,
-            'EmployeeGender' => $request->EmployeeGender
-        ]);
+        try{
 
-        $roleDefault = Role::where('MasterRoleName', 'US')->first();
+            $employeeHelper = $this->employeeHelper->generateNumber(5);
 
-        User::create([
-            'UserEmployeeId' => $dataEmployee['EmployeeId'],
-            'UserRoleId' => $roleDefault->MasterRoleId,
-            'name' => $this->employeeHelper->generateusername($dataEmployee['EmployeeName']),
-            'password' => bcrypt($this->employeeHelper->createPassword())
-        ]);
+            $dataEmployee = Employee::create([
+                'EmployeeAddress' => $request->EmployeeAddress ?? null,
+                'EmployeeName' => $request->EmployeeName,
+                'EmployeeNumber' => $employeeHelper,
+                'EmployeeEmail' => $request->EmployeeEmail,
+                'EmployeePhone' => $request->EmployeePhone,
+                'EmployeePositionId' => $request->EmployeePositionId,
+                'EmployeeGender' => $request->EmployeeGender
+            ]);
 
+            $roleDefault = Role::where('MasterRoleName', 'US')->first();
+
+            User::create([
+                'UserEmployeeId' => $dataEmployee['EmployeeId'],
+                'UserRoleId' => $roleDefault->MasterRoleId,
+                'name' => $this->employeeHelper->generateusername($dataEmployee['EmployeeName']),
+                'password' => bcrypt($this->employeeHelper->createPassword()),
+                'UserCreatedAt' => now(),
+                'UserUpdatedAt' => now(),
+                'UserCreatedBy' => Auth::id(),
+                'UserUpdatedBy' => Auth::id()
+            ]);
+
+            DB::commit();
+
+        }catch(\Exception $e){
+
+            DB::rollBack();
+            throw new \Exception($e->getMessage());    
+        }
         return redirect('/employee');
     }
 
@@ -54,18 +76,7 @@ class EmployeeController extends Controller
     {
         $employee = Employee::find($id);
         $position = Position::all();
-
+        
         return view('home.master.employee.edit',[ 'title' => 'Employee', 'employee' => $employee, 'position' => $position]);
-    }
-
-    public function delete($id)
-    {
-        $user = User::where('UserEmployeeId', $id)->first();
-        $user->delete();
-
-        $employee = Employee::find($id);
-        $employee->delete();
-
-        return redirect('/employee');
     }
 }

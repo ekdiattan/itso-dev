@@ -19,7 +19,7 @@
         <div class="row">
           <div class="col-md-6">
             <div class="form-group row">
-              <label class="col-sm-3 col-form-label">Jenis Aset</label>
+              <label class="col-sm-3 col-form-label">Alamat Pegawai</label>
               <div class="col-sm-9">
                 <input type="text" class="form-control" id="jenisAset" name="jenisAset" value="" maxlength="255" required/>
               </div>
@@ -29,9 +29,52 @@
         <div class="row">
           <div class="col-md-6">
             <div class="form-group row">
-              <label class="col-sm-3 col-form-label">Umur Ekonomis</label>
+              <label class="col-sm-3 col-form-label">Jabatan</label>
               <div class="col-sm-9">
                 <input type="text" class="form-control" id="umurEkonomis" name="umurEkonomis" value="" maxlength="255" required/>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group row">
+              <label class="col-sm-3 col-form-label">Nomor Pegawai</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="umurEkonomis" name="umurEkonomis" value="" maxlength="255" required/>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group row">
+              <label class="col-sm-3 col-form-label">Email</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="umurEkonomis" name="umurEkonomis" value="" maxlength="255" required/>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group row">
+              <label class="col-sm-3 col-form-label">Nomor HP</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="umurEkonomis" name="umurEkonomis" value="" maxlength="255" required/>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group row">
+              <label class="col-sm-3 col-form-label">Jenis Kelamin</label>
+              <div class="col-sm-9">
+                <select class="form-control" aria-label="Default select example" id="position_id" name="EmployeeGender" required>
+                  <option value="1">Laki - Laki</option>
+                  <option value="2">Perempuan</option>
+                </select>              
               </div>
             </div>
           </div>

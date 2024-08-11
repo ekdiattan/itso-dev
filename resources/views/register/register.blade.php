@@ -9,27 +9,13 @@
                   @csrf
                   <div class="form-group row">
                     <div class="col-sm-6">
-                      <label>NIP</label>
+                      <label>Nama Pegawai</label>
                       <input type="text" class="form-control p_input" id="nip" name="nip">
                     </div>
                     <div class="col-sm-6">
                       <label>Username</label>
                       <input  type="text" class="form-control p_input" id="username" name="username" >
                       <div id="username-message"></div>
-                    </div>
-                  </div>
-                  <div class="form-group row">
-                    <div class="col-sm-6">
-                      <label>Nama</label>
-                      <select class="form-control" id="nama_bidang" name="nama_bidang">
-                        @foreach ($user as $users)
-                        <option value="{{ $users->EmployeeId }}">{{ $users->EmployeeName }}</option>
-                        @endforeach  
-                      </select>
-                    </div>
-                    <div class="col-sm-6">
-                      <label>Jabatan</label>
-                      <input  type="text" class="form-control p_input" id="jabatan" name="jabatan" >
                     </div>
                   </div>
                   <div class="form-group row">
@@ -51,14 +37,6 @@
                     </div>
                   </div>
                   <div class="form-group row">
-                    <div class="col-sm-6">
-                      <label>Nomor HP</label>
-                      <input type="text" class="form-control p_input" id="no_hp" name="no_hp">
-                    </div>
-                    <div class="col-sm-6">
-                      <label>Foto Profile</label>
-                      <input type="file" class="form-control p_input" id="image" name="image">
-                    </div>
                     <div class="col-sm-6" id="emaill" style="display:none;">
                       <label>Email</label>
                       <input type="email" class="form-control p_input" id="email" name="email" placeholder="Email">
