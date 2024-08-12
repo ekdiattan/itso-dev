@@ -181,9 +181,6 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-        Yajra\DataTables\DataTablesServiceProvider::class,
-        Intervention\Image\ImageServiceProvider::class,
-
         /*
          * Package Service Providers...
          */
@@ -219,9 +216,6 @@ return [
         /*
          *	Dompdf
          * */
-        'PDF' => Barryvdh\DomPDF\Facade::class,
-        'Image' => Intervention\Image\Facades\Image::class,
-        'Telegram' => Telegram\Bot\Laravel\Facades\Telegram::class,
     ])->toArray(),
 
 ];
