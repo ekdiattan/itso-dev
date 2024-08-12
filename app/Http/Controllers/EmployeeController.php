@@ -2,22 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-
 use App\Helpers\EmployeeHelper;
-
-use App\Models\User;
 use App\Models\Employee;
 use App\Models\Position;
 use App\Models\Role;
 use App\Models\Unit;
+use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class EmployeeController extends Controller
 {
     protected $employeeHelper;
-    public function __construct( EmployeeHelper $employeeHelper)
+
+    public function __construct(EmployeeHelper $employeeHelper)
     {
         $this->employeeHelper = $employeeHelper;
     }
@@ -28,14 +27,14 @@ class EmployeeController extends Controller
         $position = Position::all();
         $unit = Unit::all();
 
-        return view('home.master.employee.index',[ 'title' => 'Employee', 'employee' => $employee, 'position' => $position, 'unit' => $unit]);
+        return view('home.master.employee.index', ['title' => 'Employee', 'employee' => $employee, 'position' => $position, 'unit' => $unit]);
     }
 
     public function store(Request $request)
     {
         DB::beginTransaction();
 
-        try{
+        try {
 
             $employeeHelper = $this->employeeHelper->generateNumber(5);
 
@@ -46,7 +45,7 @@ class EmployeeController extends Controller
                 'EmployeeEmail' => $request->EmployeeEmail,
                 'EmployeePhone' => $request->EmployeePhone,
                 'EmployeePositionId' => $request->EmployeePositionId,
-                'EmployeeGender' => $request->EmployeeGender
+                'EmployeeGender' => $request->EmployeeGender,
             ]);
 
             $roleDefault = Role::where('MasterRoleName', 'US')->first();
@@ -59,16 +58,17 @@ class EmployeeController extends Controller
                 'UserCreatedAt' => now(),
                 'UserUpdatedAt' => now(),
                 'UserCreatedBy' => Auth::id(),
-                'UserUpdatedBy' => Auth::id()
+                'UserUpdatedBy' => Auth::id(),
             ]);
 
             DB::commit();
 
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
 
             DB::rollBack();
-            throw new \Exception($e->getMessage());    
+            throw new \Exception($e->getMessage());
         }
+
         return redirect('/employee');
     }
 
@@ -76,7 +76,7 @@ class EmployeeController extends Controller
     {
         $employee = Employee::find($id);
         $position = Position::all();
-        
-        return view('home.master.employee.edit',[ 'title' => 'Employee', 'employee' => $employee, 'position' => $position]);
+
+        return view('home.master.employee.edit', ['title' => 'Employee', 'employee' => $employee, 'position' => $position]);
     }
 }

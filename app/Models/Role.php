@@ -14,14 +14,16 @@ class Role extends Model
 
     protected $primaryKey = 'MasterRoleId';
 
-    protected $guarded = 
-    [
-        'MasterRoleCreatedAt',
-        'MasterRoleUpdatedAt',
-        'MasterRoleDeletedAt'
-    ];
-    
+    protected $guarded =
+        [
+            'MasterRoleCreatedAt',
+            'MasterRoleUpdatedAt',
+            'MasterRoleDeletedAt',
+        ];
+
     const CREATED_AT = 'MasterRoleCreatedAt';
+
     const UPDATED_AT = 'MasterRoleUpdatedAt';
-    const DELETED_AT = 'MasterRoleDeletedAt';    
+
+    const DELETED_AT = 'MasterRoleDeletedAt';
 }

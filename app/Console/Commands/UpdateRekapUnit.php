@@ -2,11 +2,11 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
+use App\Models\RekapUnit;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
 use GuzzleHttp\Client;
-use App\Models\RekapUnit;
+use Illuminate\Console\Command;
 
 class UpdateRekapUnit extends Command
 {
@@ -35,23 +35,22 @@ class UpdateRekapUnit extends Command
         $now = Carbon::yesterday();
         $previous = CarbonPeriod::create($todayDate, $now);
 
-
         foreach ($previous as $p) {
             if ($p->format('l') !== 'Saturday' && $p->format('l') !== 'Sunday') {
-                $client = new Client();
+                $client = new Client;
                 $response = $client->request(
                     'GET',
                     'https://siap.jabarprov.go.id/integrasi/api/v1/kmob/presensi-harian',
                     [
                         'query' => ['tanggal' => $p->format('Y-m-d')],
-                        'auth' => ['diskominfo_presensi', 'diskominfo_presensi12345']
+                        'auth' => ['diskominfo_presensi', 'diskominfo_presensi12345'],
                     ]
                 );
                 $body = $response->getBody();
                 $body_array = json_decode($body);
-                
+
                 foreach ($body_array as $post) {
-                    $post = (array)$post;
+                    $post = (array) $post;
 
                     RekapUnit::Create(
                         [
@@ -59,7 +58,7 @@ class UpdateRekapUnit extends Command
                             'nama' => $post['nama'],
                             'unitkerja_nama' => $post['unitkerja_nama'],
                             'tanggal' => $p->format('d M Y'),
-                            'telpon'
+                            'telpon',
                         ]
                     );
                 }

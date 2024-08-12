@@ -4,9 +4,11 @@ namespace App\Enums;
 
 class BookingEnum
 {
-    const
-        WAITING = 0,
-        BOOKING = 1,
-        REJECT = 3,
-        COMPLETED = 4;
+    const WAITING = 0;
+
+    const BOOKING = 1;
+
+    const REJECT = 3;
+
+    const COMPLETED = 4;
 }

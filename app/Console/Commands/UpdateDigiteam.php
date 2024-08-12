@@ -2,11 +2,9 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
-use Carbon\Carbon;
-use Carbon\CarbonPeriod;
-use GuzzleHttp\Client;
 use App\Models\Digiteam;
+use GuzzleHttp\Client;
+use Illuminate\Console\Command;
 
 class UpdateRekapitulasi extends Command
 {
@@ -31,40 +29,40 @@ class UpdateRekapitulasi extends Command
      */
     public function handle()
     {
-        $client = new Client();
+        $client = new Client;
         $login = $client->request(
             'POST', 'https://groupware-api.digitalservice.id/auth/admin/login/', [
                 'form_params' => [
                     'username' => 'yudiwardoyozz',
-                    'password' => 'yudiwardoyozz', 
-                ]
+                    'password' => 'yudiwardoyozz',
+                ],
             ]
         );
         $result = json_decode($login->getBody()->getContents());
         $token = $result->auth_token;
         $page = 1;
         $maxPage = 2;
-        while($page <= $maxPage){
-            $response = $client->request ('GET', 'https://groupware-api.digitalservice.id/user/?page='.$page, [
+        while ($page <= $maxPage) {
+            $response = $client->request('GET', 'https://groupware-api.digitalservice.id/user/?page='.$page, [
                 'headers' => [
-                    'Authorization' => 'Bearer '. $token,
-                ]
+                    'Authorization' => 'Bearer '.$token,
+                ],
             ]);
             $body = $response->getBody();
             $body_array = json_decode($body);
             $maxPage = $body_array->_meta->totalPage;
-            foreach($body_array->results as $results){
+            foreach ($body_array->results as $results) {
                 Digiteam::updateOrCreate([
-                    "username" => $results->username,
+                    'username' => $results->username,
                 ], [
-                    "email" => $results->email,
-                    "fullname" => $results->fullname,
-                    "birth_date" => $results->birth_date,
-                    "id_divisi" => $results->id_divisi,
-                    "divisi" => $results->divisi,
-                    "id_jabatan" => $results->id_jabatan,
-                    "jabatan" => $results->jabatan,
-                    "is_admin" => $results->is_admin,
+                    'email' => $results->email,
+                    'fullname' => $results->fullname,
+                    'birth_date' => $results->birth_date,
+                    'id_divisi' => $results->id_divisi,
+                    'divisi' => $results->divisi,
+                    'id_jabatan' => $results->id_jabatan,
+                    'jabatan' => $results->jabatan,
+                    'is_admin' => $results->is_admin,
                 ]);
             }
             $page++;

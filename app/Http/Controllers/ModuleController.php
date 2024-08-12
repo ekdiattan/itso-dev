@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Bidang;
-use Illuminate\Http\Request;
 use App\Models\Module;
 
 class ModuleController extends Controller
@@ -11,8 +9,10 @@ class ModuleController extends Controller
     public function index()
     {
         $module = Module::all();
-        return view('home.master.module.index', ['module'=> $module, 'title' => 'Module']);
+
+        return view('home.master.module.index', ['module' => $module, 'title' => 'Module']);
     }
+
     public function create()
     {
         return view('home.master.bidang.create', ['title' => 'Module']);
@@ -21,6 +21,7 @@ class ModuleController extends Controller
     public function edit(int $id)
     {
         $module = Module::find($id);
+
         return view('home.master.module.edit', ['title' => 'Module', 'module' => $module]);
     }
 }

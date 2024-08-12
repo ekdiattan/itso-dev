@@ -2,28 +2,29 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Booking extends Model
 {
     use HasFactory,SoftDeletes;
-    
+
     protected $table = 'Booking';
+
     protected $primaryKey = 'BookingId';
 
-    protected $guarded = 
-    [
-        'BookingCreatedAt',
-        'BookingUpdatedAt',
-        'BookingDeletedAt'
-    ];
+    protected $guarded =
+        [
+            'BookingCreatedAt',
+            'BookingUpdatedAt',
+            'BookingDeletedAt',
+        ];
 
     protected $attributes = [
-        'BookingStatus' => 0
+        'BookingStatus' => 0,
     ];
-    
+
     public function approval()
     {
         return $this->hasMany(Approval::class, 'ApprovalSourceId', 'BookingId');
@@ -38,12 +39,15 @@ class Booking extends Model
     {
         return $this->belongsTo(User::class, 'BookingCreatedBy', 'UserId');
     }
-    
+
     public function employee()
     {
         return $this->belongsTo(Employee::class, 'BookingEmployeeId', 'EmployeeId');
     }
+
     const CREATED_AT = 'BookingCreatedAt';
+
     const UPDATED_AT = 'BookingUpdatedAt';
+
     const DELETED_AT = 'BookingDeletedAt';
 }

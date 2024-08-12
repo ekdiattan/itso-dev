@@ -4,9 +4,11 @@ namespace App\Enums;
 
 class ApprovalEnum
 {
-    const
-        WAITING = 0,
-        APPROVED = 1,
-        REJECTED = 2,
-        ENDED = 3;
+    const WAITING = 0;
+
+    const APPROVED = 1;
+
+    const REJECTED = 2;
+
+    const ENDED = 3;
 }

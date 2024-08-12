@@ -2,11 +2,11 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
-use Illuminate\Support\Facades\DB;
+use App\Models\Masuk;
 use Carbon\Carbon;
 use GuzzleHttp\Client;
-use App\Models\Masuk;
+use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
 
 class UpdateBelumMasuk extends Command
 {
@@ -35,32 +35,32 @@ class UpdateBelumMasuk extends Command
         $todayDate = date('Y-m-d');
         $now = Carbon::now();
         DB::table('masuks')->truncate();
-        $client = new Client();
+        $client = new Client;
         $response = $client->request(
             'GET',
             'https://siap.jabarprov.go.id/integrasi/api/v1/kmob/presensi-harian',
             [
                 'query' => ['tanggal' => $todayDate],
-                'auth' => ['diskominfo_presensi', 'diskominfo_presensi12345']
+                'auth' => ['diskominfo_presensi', 'diskominfo_presensi12345'],
             ]
         );
         $body = $response->getBody();
         $body_array = json_decode($body);
 
         foreach ($body_array as $post) {
-            $post = (array)$post;
+            $post = (array) $post;
 
             Masuk::updateOrCreate(
                 [
                     'nip' => $post['nip'],
                     'nama' => $post['nama'],
                     'unitkerja_nama' => $post['unitkerja_nama'],
-                    'tanggal' => $todayDate
+                    'tanggal' => $todayDate,
                 ],
                 [
                     'masuk' => $post['masuk'],
                     'terlambat' => $post['terlambat'],
-                    'update' => $now
+                    'update' => $now,
                 ],
             );
         }

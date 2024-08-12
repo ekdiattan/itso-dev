@@ -11,6 +11,7 @@ class UnitController extends Controller
     public function index()
     {
         $unit = Unit::all();
+
         return view('home.master.bidang.index', ['title' => 'Unit', 'unit' => $unit]);
     }
 
@@ -19,7 +20,7 @@ class UnitController extends Controller
         $unit = Unit::find($request->id);
 
         $unit->update([
-            'MasterUnitDeletedBy' => Auth::id()      
+            'MasterUnitDeletedBy' => Auth::id(),
         ]);
 
         $unit->delete();

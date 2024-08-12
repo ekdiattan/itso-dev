@@ -70,7 +70,7 @@ return [
     */
 
     'timezone' => env('APP_TIMEZONE'),
-    
+
     /*
     |--------------------------------------------------------------------------
     | Application Locale Configuration
@@ -195,11 +195,11 @@ return [
         App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
-	    App\Providers\RouteServiceProvider::class,
+        App\Providers\RouteServiceProvider::class,
         /*
         * Dompdf
         * */
-	    Barryvdh\DomPDF\ServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
         Telegram\Bot\Laravel\TelegramServiceProvider::class,
     ],
 
@@ -215,13 +215,13 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
-	    // 'ExampleClass' => App\Example\ExampleClass::class,
+        // 'ExampleClass' => App\Example\ExampleClass::class,
 
-	    /*
-	     *	Dompdf
-	     * */
-	    'PDF' => Barryvdh\DomPDF\Facade::class,
-	    'Image'     => Intervention\Image\Facades\Image::class,
+        /*
+         *	Dompdf
+         * */
+        'PDF' => Barryvdh\DomPDF\Facade::class,
+        'Image' => Intervention\Image\Facades\Image::class,
         'Telegram' => Telegram\Bot\Laravel\Facades\Telegram::class,
     ])->toArray(),
 

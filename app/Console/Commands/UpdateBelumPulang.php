@@ -2,11 +2,11 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
-use Illuminate\Support\Facades\DB;
+use App\Models\Pulang;
 use Carbon\Carbon;
 use GuzzleHttp\Client;
-use App\Models\Pulang;
+use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
 
 class UpdateBelumPulang extends Command
 {
@@ -33,20 +33,20 @@ class UpdateBelumPulang extends Command
     {
         date_default_timezone_set('Asia/Jakarta');
         $todayDate = date('Y-m-d');
-	    $now = Carbon::now();
-	    DB::table('pulangs')->truncate();
-        $client = new Client();
-        $response = $client->request ('GET', 'https://siap.jabarprov.go.id/integrasi/api/v1/kmob/presensi-harian',
-        [
-            'query' => ['tanggal'=>$todayDate],
-            'auth' => ['diskominfo_presensi','diskominfo_presensi12345']
-        ]);
+        $now = Carbon::now();
+        DB::table('pulangs')->truncate();
+        $client = new Client;
+        $response = $client->request('GET', 'https://siap.jabarprov.go.id/integrasi/api/v1/kmob/presensi-harian',
+            [
+                'query' => ['tanggal' => $todayDate],
+                'auth' => ['diskominfo_presensi', 'diskominfo_presensi12345'],
+            ]);
         $body = $response->getBody();
         $body_array = json_decode($body);
-    
-        foreach ($body_array as $post){
-            $post = (array)$post;
-            
+
+        foreach ($body_array as $post) {
+            $post = (array) $post;
+
             Pulang::updateOrCreate(
                 [
                     'nip' => $post['nip'],
@@ -54,7 +54,7 @@ class UpdateBelumPulang extends Command
                     'unitkerja_nama' => $post['unitkerja_nama'],
                     'tanggal' => $todayDate,
                     'pulang' => $post['pulang'],
-                    'update' => $now
+                    'update' => $now,
                 ],
             );
         }

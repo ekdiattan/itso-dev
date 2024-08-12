@@ -15,13 +15,14 @@ class RoleController extends Controller
      */
     public function index(Request $request)
     {
-        
+
         if ($request) {
             $role = DB::table('roles')->where('role', 'ilike', '%'.$request->search2.'%')->paginate(10);
-        }else{
+        } else {
             $role = DB::table('roles')->where('role', true)->paginate(10);
         }
-        return view('home.master.role.index', ['roles'=> $role, 'title' => 'Role']);
+
+        return view('home.master.role.index', ['roles' => $role, 'title' => 'Role']);
     }
 
     /**
@@ -37,7 +38,6 @@ class RoleController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -45,6 +45,7 @@ class RoleController extends Controller
         Role::create($request->all());
         $request->accepts('session');
         session()->flash('success', 'Berhasil menambahkan data!');
+
         return redirect('/role');
     }
 
@@ -57,6 +58,7 @@ class RoleController extends Controller
     public function show($id)
     {
         $role = Role::find($id);
+
         return view('home.master.role.edit', ['role' => $role, 'title' => 'Role']);
     }
 
@@ -75,7 +77,6 @@ class RoleController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -100,7 +101,7 @@ class RoleController extends Controller
         $role = Role::find($id);
         $role->delete();
         session()->flash('success', 'Role Berhasil dihapus');
-        
+
         return redirect('/role')->with('success', 'Role berhasil dihapus');
     }
 }

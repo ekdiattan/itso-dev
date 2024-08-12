@@ -2,9 +2,9 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
 use App\Models\Kehadiran;
 use GuzzleHttp\Client;
+use Illuminate\Console\Command;
 
 class UpdateKehadiran extends Command
 {
@@ -30,17 +30,17 @@ class UpdateKehadiran extends Command
     public function handle()
     {
         $todayDate = date('Y-m-d');
-        $client = new Client();
-        $response = $client->request ('GET', 'https://siap.jabarprov.go.id/integrasi/api/v1/kmob/presensi-harian',
-        [
-            'query' => ['tanggal'=>$todayDate],
-            'auth' => ['diskominfo_presensi','diskominfo_presensi12345']
-        ]);
+        $client = new Client;
+        $response = $client->request('GET', 'https://siap.jabarprov.go.id/integrasi/api/v1/kmob/presensi-harian',
+            [
+                'query' => ['tanggal' => $todayDate],
+                'auth' => ['diskominfo_presensi', 'diskominfo_presensi12345'],
+            ]);
         $body = $response->getBody();
         $body_array = json_decode($body);
 
-        foreach ($body_array as $post){
-            $post = (array)$post;
+        foreach ($body_array as $post) {
+            $post = (array) $post;
             Kehadiran::updateOrCreate(
                 [
                     'nip' => $post['nip'],
@@ -49,7 +49,7 @@ class UpdateKehadiran extends Command
                     'masuk' => $post['masuk'],
                     'pulang' => $post['pulang'],
                     'terlambat' => $post['terlambat'],
-                    'tanggal' => $todayDate
+                    'tanggal' => $todayDate,
                 ]
             );
         }

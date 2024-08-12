@@ -11,16 +11,19 @@ class Aset extends Model
     use HasFactory, SoftDeletes;
 
     protected $table = 'MasterAset';
+
     protected $primaryKey = 'MasterAsetId';
-    
-    protected $guarded  = 
-    [
-        'MasterAsetCreatedAt',
-        'MasterAsetUpdatedAt',
-        'MasterAsetDeletedAt',
-    ];
+
+    protected $guarded =
+        [
+            'MasterAsetCreatedAt',
+            'MasterAsetUpdatedAt',
+            'MasterAsetDeletedAt',
+        ];
 
     const CREATED_AT = 'MasterAsetCreatedAt';
+
     const UPDATED_AT = 'MasterAsetUpdatedAt';
+
     const DELETED_AT = 'MasterAsetDeletedAt';
 }

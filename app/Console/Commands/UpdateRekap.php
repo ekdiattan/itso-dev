@@ -2,12 +2,12 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
+use App\Models\Pegawai;
+use App\Models\Rekapitulasi;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
 use GuzzleHttp\Client;
-use App\Models\Rekapitulasi;
-use App\Models\Pegawai;
+use Illuminate\Console\Command;
 
 class UpdateRekap extends Command
 {
@@ -35,43 +35,43 @@ class UpdateRekap extends Command
         $pegawais = Pegawai::select('nama', 'noPegawai', 'unitKerja')->orderBy('noPegawai', 'asc')->get()->toArray();
         $past = Carbon::now()->subDays(2)->format('l, d F Y');
         $today = Carbon::now();
-        $previous = CarbonPeriod::create($past, $today);  
-        foreach ($previous as $p){ // lakukan dengan tanggal yang berbeda selama 10 hari ke belakang
-            if($p->format('l') !== 'Saturday' && $p->format('l') !== 'Sunday'){ // melakukan filter terhadap  hari sabtu dan minggu
-                $client = new Client();
-                $response = $client->request ('GET', 'https://siap.jabarprov.go.id/integrasi/api/v1/kmob/presensi-harian',
-                [
-                    'query' => ['tanggal'=>$p->format('Y-m-d')],
-                    'auth' => ['diskominfo_presensi','diskominfo_presensi12345']
-                ]);
+        $previous = CarbonPeriod::create($past, $today);
+        foreach ($previous as $p) { // lakukan dengan tanggal yang berbeda selama 10 hari ke belakang
+            if ($p->format('l') !== 'Saturday' && $p->format('l') !== 'Sunday') { // melakukan filter terhadap  hari sabtu dan minggu
+                $client = new Client;
+                $response = $client->request('GET', 'https://siap.jabarprov.go.id/integrasi/api/v1/kmob/presensi-harian',
+                    [
+                        'query' => ['tanggal' => $p->format('Y-m-d')],
+                        'auth' => ['diskominfo_presensi', 'diskominfo_presensi12345'],
+                    ]);
                 $body = $response->getBody();
                 $body_array = json_decode($body);
 
-                foreach($pegawais as $pegawai){
-                    foreach($body_array as $result){
-                        $post = (array)$result;
-                        if($pegawai['nama'] == $post['nama']){
-                            if($pegawai['nama'] == $post['nama'] && $pegawai['unitKerja'] == $post['unitkerja_nama']){
+                foreach ($pegawais as $pegawai) {
+                    foreach ($body_array as $result) {
+                        $post = (array) $result;
+                        if ($pegawai['nama'] == $post['nama']) {
+                            if ($pegawai['nama'] == $post['nama'] && $pegawai['unitKerja'] == $post['unitkerja_nama']) {
                                 Rekapitulasi::updateOrCreate([
                                     'nip' => $post['nip'],
                                     'nama' => $post['nama'],
-                                    'unitkerja'=>$post['unitkerja_nama'],
-                                    'tanggal' => $p->format('Y-m-d')
+                                    'unitkerja' => $post['unitkerja_nama'],
+                                    'tanggal' => $p->format('Y-m-d'),
                                 ], [
                                     'masuk' => $post['masuk'],
                                     'pulang' => $post['pulang'],
-                                    'terlambat' => $post['terlambat']
+                                    'terlambat' => $post['terlambat'],
                                 ]);
                             } else {
                                 Rekapitulasi::updateOrCreate([
                                     'nip' => $post['nip'],
                                     'nama' => $post['nama'],
-                                    'unitkerja'=>$pegawai['unitKerja'],
-                                    'tanggal' => $p->format('Y-m-d')
+                                    'unitkerja' => $pegawai['unitKerja'],
+                                    'tanggal' => $p->format('Y-m-d'),
                                 ], [
                                     'masuk' => $post['masuk'],
                                     'pulang' => $post['pulang'],
-                                    'terlambat' => $post['terlambat']
+                                    'terlambat' => $post['terlambat'],
                                 ]);
                             }
                         }

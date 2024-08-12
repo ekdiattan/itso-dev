@@ -10,27 +10,25 @@ class Kernel extends ConsoleKernel
     /**
      * Define the application's command schedule.
      *
-     * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
      * @return void
      */
-
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('UpdateBelumMasuk:cron')
         //     ->dailyAt('07:40')
         //     ->runInBackground()
         //     ->withoutOverlapping();
-            
+
         // $schedule->command('UpdateBelumPulang:cron')
         //     ->dailyAt('16:10')
         //     ->runInBackground()
         //     ->withoutOverlapping();
-        
+
         // $schedule->command('UpdateRekapMasuk:cron')
         //     ->everyTenMinutes()
         //     ->runInBackground()
         //     ->withoutOverlapping();
-        
+
         // $schedule->command('UpdateRekapPulang:cron')
         //     ->everyTenMinutes()
         //     ->runInBackground()
@@ -45,7 +43,7 @@ class Kernel extends ConsoleKernel
         //     ->everyTenMinutes()
         //     ->runInBackground()
         //     ->withoutOverlapping();
-        
+
         $schedule->command('UpdateCuti:cron')
             ->hourly()
             ->weekdays()
@@ -54,13 +52,12 @@ class Kernel extends ConsoleKernel
         $schedule->command('UpdateDigi:cron')
             ->everyTenMinutes()
             ->runInBackground();
-            
+
         $schedule->command('UpdateRekap:cron')
             ->hourly()
             ->weekdays()
             ->runInBackground();
 
-        
         $schedule->command('TelegramAbsenMasuk:cron')->weekdays()->dailyAt('7:00')->runInBackground();
         $schedule->command('TelegramAbsenMasuk:cron')->weekdays()->dailyAt('7:15')->runInBackground();
         $schedule->command('TelegramAbsenMasuk:cron')->weekdays()->dailyAt('7:25')->runInBackground();
@@ -81,4 +78,3 @@ class Kernel extends ConsoleKernel
         require base_path('routes/console.php');
     }
 }
-

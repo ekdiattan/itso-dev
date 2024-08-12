@@ -8,20 +8,23 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Unit extends Model
 {
-    use HasFactory, 
+    use HasFactory,
         SoftDeletes;
-    
+
     protected $table = 'MasterUnit';
+
     protected $primaryKey = 'MasterUnitId';
 
-    protected $guarded = 
-    [
-        'MasterUnitCreatedAt',
-        'MasterUnitUpdatedAt',
-        'MasterUnitDeletedAt'
-    ];
+    protected $guarded =
+        [
+            'MasterUnitCreatedAt',
+            'MasterUnitUpdatedAt',
+            'MasterUnitDeletedAt',
+        ];
 
     const CREATED_AT = 'MasterUnitCreatedAt';
+
     const UPDATED_AT = 'MasterUnitUpdatedAt';
+
     const DELETED_AT = 'MasterUnitDeletedAt';
 }

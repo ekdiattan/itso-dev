@@ -2,9 +2,9 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
-use GuzzleHttp\Client;
 use App\Models\Pegawai;
+use GuzzleHttp\Client;
+use Illuminate\Console\Command;
 
 class UpdatePegawai extends Command
 {
@@ -30,19 +30,19 @@ class UpdatePegawai extends Command
     public function handle()
     {
         $todayDate = date('Y-m-d');
-        $client = new Client();
-        $response = $client->request ('GET', 'https://siap.jabarprov.go.id/integrasi/api/v1/kmob/presensi-harian',
-        [
-            'query' => ['tanggal'=>$todayDate],
-            'auth' => ['diskominfo_presensi','diskominfo_presensi12345']
-        ]);
+        $client = new Client;
+        $response = $client->request('GET', 'https://siap.jabarprov.go.id/integrasi/api/v1/kmob/presensi-harian',
+            [
+                'query' => ['tanggal' => $todayDate],
+                'auth' => ['diskominfo_presensi', 'diskominfo_presensi12345'],
+            ]);
         $body = $response->getBody();
         $body_array = json_decode($body);
 
-        echo "<pre>";
+        echo '<pre>';
 
-        foreach ($body_array as $post){
-            $post = (array)$post;
+        foreach ($body_array as $post) {
+            $post = (array) $post;
 
             Pegawai::upsert([
                 'nama' => $post['nama'],
@@ -73,8 +73,8 @@ class UpdatePegawai extends Command
                 'telp' => null,
                 'hp' => null,
                 'email' => null,
-                'kedudukanPegawai' => null
-                ], ['noPegawai'], ['nama', 'unitKerja']
+                'kedudukanPegawai' => null,
+            ], ['noPegawai'], ['nama', 'unitKerja']
             );
         }
     }
