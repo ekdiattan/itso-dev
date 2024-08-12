@@ -12,9 +12,11 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $employee = Employee::count();
-        $bookingOverdue = Booking::where('BookingStatus', 0)->count();
-        $bookingNow = Booking::where('BookingStatus', 1)->count();
-        return view('home.dashboard', ["title" => "Dashboard", "employee" => $employee, "bookingOverdue" => $bookingOverdue, "bookingNow" => $bookingNow]);
+        $bookingWaiting = Booking::where('BookingStatus', 0)->count();
+        $bookingBooked = Booking::where('BookingStatus', 1)->count();
+        $bookingReject = Booking::where('BookingStatus', 2)->count();
+        $bookingDone = Booking::where('BookingStatus', 3)->count();
+        
+        return view('home.dashboard', ["title" => "Dashboard", "employee" => $bookingWaiting, "bookingWaiting" => $bookingBooked, "bookingBooked" => $bookingBooked, "bookingReject" => $bookingReject, "bookingDone" => $bookingDone]);
     }
 }

@@ -20,7 +20,7 @@ class AsetController extends Controller
         $aset = Aset::all();
          return view('home.master.aset.index', ['title' => 'Aset', 'asets'=> $aset]);
     }
-
+    
     public function store(Request $request)
     {
         $asetCodes = $this->asetHelper->generateasetcode($request->MasterAsetBoughtDate,5);
@@ -31,27 +31,17 @@ class AsetController extends Controller
 
         return redirect('/aset');
     }
-
-    public function show($id)
-    {
-        // $aset = Aset::find($id);
-        // $edit = Aset::find($id);
-
-        // return view('home.master.aset.edit',['asets'=> $aset, 'data'=> $aset, 'title' => 'Aset']);
-    }
-
     public function edit($id)
     {
         $aset = Aset::find($id);
-        $edit = Aset::find($id);
-
-        return view('home.master.aset.edit',['asets'=> $aset, 'data'=> $aset, 'title' => 'Aset']);
+        return view('home.master.aset.edit',['aset'=> $aset, 'title' => 'Aset']);
     }
 
     public function update(Request $request, $id)
     {
         $aset = Aset::find($id);
         $aset->update($request->all());
+        
         $request->accepts('session');
         session()->flash('success', 'Berhasil menambahkan data!');
 

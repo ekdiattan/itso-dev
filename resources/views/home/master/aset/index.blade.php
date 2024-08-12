@@ -64,7 +64,7 @@
                           <td>{{ $post->MasterAsetType }}</td>
                           <td>{{ $post->MasterAsetBoughtDate }}</td>
                           <td>
-                            <a href="/aset/{{ $post->id }}" class="badge bg-warning"><span class="menu-icon"><i class="far fa-edit"></i></span></a>
+                            <a href="/aset/{{ $post->MasterAsetId }}" class="badge bg-warning"><span class="menu-icon"><i class="far fa-edit"></i></span></a>
                             <form action="/aset/delete/{{$post->id}}" method="get" class="d-inline">
                             @method('delete')
                             @csrf
