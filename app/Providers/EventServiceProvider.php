@@ -27,7 +27,7 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Event::listen(DataSubmitted::class, SendTelegramNotification::class);
+        
     }
 
     /**

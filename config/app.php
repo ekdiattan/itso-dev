@@ -200,7 +200,6 @@ return [
         * Dompdf
         * */
         Barryvdh\DomPDF\ServiceProvider::class,
-        Telegram\Bot\Laravel\TelegramServiceProvider::class,
     ],
 
     /*
