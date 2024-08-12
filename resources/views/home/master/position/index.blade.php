@@ -46,7 +46,7 @@
                           <td>{{ $loop->iteration }}</td>
                           <td>{{ $position->MasterPositionName}}</td>
                           <td>
-                              <a href="/bidang/{{ $position->MasterModuleId }}" class="badge bg-warning"><span class="menu-icon"><i class="far fa-edit"></i></span></a>
+                              <a href="/position/{{ $position->MasterModuleId }}" class="badge bg-warning"><span class="menu-icon"><i class="far fa-edit"></i></span></a>
                               <form action="/bidang/{{ $position->MasterModuleId }}" method="post" class="d-inline">
                                 @method('delete')
                                 @csrf

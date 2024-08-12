@@ -23,7 +23,7 @@
       <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="profileDropdown">
         <h6 class="p-3 mb-0">Profile</h6>
         <div class="dropdown-divider"></div>
-          <a class="dropdown-item preview-item" href="/account/{{ auth()->user()->UserId }}">
+          <a class="dropdown-item preview-item" href="/account">
             <div class="preview-thumbnail">
               <i class="fas fa-cog">Settings</i>
             </div>

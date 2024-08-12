@@ -61,10 +61,9 @@
                                 <th>Tiket</th>
                                 <th>Nama Aset</th>
                                 <th>Nama Pemohon</th>
-                                <th>Bidang</th>
-                                <th>Perihal</th>
-                                <th>Tanggal Permohonan</th>
-                                <th>Status</th>
+                                <th>Tanggal Pinjam</th>
+                                <th>Tanggal Selesai Pinjam</th>
+                                <th>Catatan</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -79,16 +78,9 @@
                                     <td>{{ $post->BookingStart}}</td>
                                     <td>{{ $post->BookingEnd}}</td>
                                     <td>{{ $post->BookingRemark }}</td>
-                                    <td>{{ $post->BookingStatus }}</td>
                                     <td>
                                         <a href="/booking/{{ $post->id }}" class="badge bg-info"><span class="menu-icon"><i class="far fa-eye"></i></span></a>
                                         <a href="/booking-edit/{{ $post->id }}" class="badge bg-primary"><span class="menu-icon"><i class="fas fa-tools"></i></span></a>
-                                        <!-- <a href="#" class="badge bg-warning"><span class="menu-icon"><i class="far fa-edit"></i></span></a> -->
-                                        <form action="/booking/delete/{{ $post->id }}" method="get" class="d-inline">
-                                            <button class="badge bg-danger border-0"
-                                                onclick="return confirm('Are you sure?')"><span class="menu-icon"><i
-                                                        class="fas fa-trash"></i></span></button>
-                                        </form>
                                     </td>
                                 </tr>
                             @endforeach

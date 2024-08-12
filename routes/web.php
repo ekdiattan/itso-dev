@@ -73,7 +73,7 @@ Route::get('/module/delete/{id}',[ModuleController::class, 'delete']);
 // Position
 Route::get('/position', [PositionController::class, 'index']);
 // Account Setting 
-Route::get('/account/{id}', [UserController::class, 'editByUser']);
+Route::get('/account', [UserController::class, 'editByUser']);
 Route::post('/account/{id}', [UserController::class, 'updateByUser']);
 Route::post('/change-password', [UserController::class, 'changePassword']);
 Route::get('/maintenance', [UserController::class, 'maintenance']);

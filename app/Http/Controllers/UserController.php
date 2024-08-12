@@ -29,7 +29,7 @@ class UserController extends Controller
 
         return view('register.register', ['title' => 'Pengguna', 'user' => $data]);
     }
-
+    
     public function show($id)
     {
         $user = User::find($id);
@@ -87,9 +87,9 @@ class UserController extends Controller
         return redirect('/index')->with('success', 'Pengguna berhasil dihapus');
     }
 
-    public function editByUser($id)
+    public function editByUser()
     {
-        $user = User::find($id);
+        $user = User::find(Auth::id());
         return view('home.settings.account', ['user'=>$user, 'title' => 'Pengguna']);
     }
 
