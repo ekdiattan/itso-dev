@@ -16,7 +16,7 @@
   <ul class="navbar-nav ml-auto">
     <div class="container">
       <a href="#" class="navbar-brand" id="profileDropdown" data-toggle="dropdown">
-      <img src="https://bkpsdm.serangkab.go.id/an-component/media/upload-gambar-artikel/PNS.jpg" alt="Avatar" class="brand-image img-circle" style="height: 50px;width:50px;">
+      <img src="" alt="Avatar" class="brand-image img-circle" style="height: 50px;width:50px;">
         <span class="brand-text font-weight-light"></span>
         <i class="fas fa-caret-down"></i>
       </a>

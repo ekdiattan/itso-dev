@@ -46,9 +46,6 @@
       <form action="/register/update/{{ $user->UserId }}" method="post" enctype="multipart/form-data">
         @csrf
           <div class="form-group">
-            <label for="password"> Ganti Foto Profile</label>
-              <input  type="file" class="form-control" id="image" name="image">
-            </div>
             <label for="password"> Ganti Password</label>
             <input  type="password" class="form-control" id="password" name="password" placeholder ="Masukan kata sandi baru">
           </div>
@@ -57,7 +54,7 @@
           <div class="input-group-append">
           <button type="submit" class="btn btn-primary mr-2 btn-flat float-right" id="submit-btn">Change</button>
             <span class="input-group-text" >
-                <i class="far fa-eye" id="show-password" type="button" ></i>
+                <i class="far fa-eye" id="show-password" type="button"></i>
           </div>
       </form> 
 <script src="../../assets/js/mata.js"></script>
