@@ -60,15 +60,7 @@ Route::post('/aset/create',[AsetController::class, 'store']);
 Route::get('/aset/{id}', [AsetController::class,'edit']);
 Route::post('/aset/{id}', [AsetController::class,'update']);
 Route::get('/aset/delete/{id}',[AsetController::class, 'delete']);
-
 // Module 
-Route::get('/module', [ModuleController::class, 'index']);
-//bidang
-Route::get('/module', [ModuleController::class, 'index']);
-Route::post('/module/create',[ModuleController::class, 'store']);
-Route::get('/module/{id}', [ModuleController::class,'edit']);
-Route::post('/module/{id}', [ModuleController::class,'update']);
-Route::get('/module/delete/{id}',[ModuleController::class, 'delete']);
 
 // Position
 Route::get('/position', [PositionController::class, 'index']);

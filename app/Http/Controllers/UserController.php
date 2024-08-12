@@ -56,7 +56,7 @@ class UserController extends Controller
         'name'=>['required', 'max:255'],
         'password'=> ['required', 'max:100','min:6']
         ]);
-
+        
         if(Auth::attempt($credentials)){
             $request->session()->regenerate();
             return redirect()->intended('/dashboard');

@@ -38,7 +38,7 @@
                 <p>Pengguna</p>
               </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item {{ $title === 'Employee' || $title === 'Aset' || $title === 'Position' ? 'menu-open menu-is-open' : '' }}">
               <a class="nav-link">
                 <i class="nav-icon fas fa-cog "></i>
                 <p>
@@ -48,25 +48,19 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="/employee" class="nav-link">
+                  <a href="/employee"class="nav-link {{ ($title === 'Employee') ? 'active disabled' : '' }}">
                     <i class="nav-icon fas fa-book ml-3"></i>
                     <p>Pegawai</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="/aset" class="nav-link">
+                  <a href="/aset" class="nav-link {{ ($title === 'Aset') ? 'active disabled' : '' }}">
                     <i class="nav-icon fas fa-weight ml-3"></i>
                     <p>Aset</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="/module" class="nav-link">
-                    <i class="nav-icon fas fa-building ml-3"></i>
-                    <p>Modul</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="/position" class="nav-link ">
+                  <a href="/position" class="nav-link {{ ($title === 'Position') ? 'active disabled' : '' }}">
                     <i class="nav-icon fas fa-list ml-3"></i>
                     <p>Jabatan</p>
                   </a>

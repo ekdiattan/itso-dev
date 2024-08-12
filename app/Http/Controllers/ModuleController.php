@@ -15,6 +15,12 @@ class ModuleController extends Controller
     }
     public function create()
     {
-        return view('home.master.bidang.create', ['title' => 'Bidang']);
+        return view('home.master.bidang.create', ['title' => 'Module']);
+    }
+
+    public function edit(int $id)
+    {
+        $module = Module::find($id);
+        return view('home.master.module.edit', ['title' => 'Module', 'module' => $module]);
     }
 }
