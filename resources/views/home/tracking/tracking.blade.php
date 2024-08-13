@@ -8,13 +8,10 @@
   <marquee><img src="{{ asset('assets/images/logo_diskom.svg') }}" alt="Diskominfo" class="brand-image" style="height: 50px; width: 150px; margin-left: 35px;">Selamat datang di website IT Solution Dinas Komunikasi & Informatika Provinsi Jawa Barat <img src="{{ asset('assets/images/logo_diskom.svg') }}" alt="Diskominfo" class="brand-image" style="height: 50px; width: 150px; margin-left: 0px;"></marquee>
   </div>
 </nav>
-
 @section('container')
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h5>Periksa Status Tiket Anda</h5>
 </div> 
-
-<br>
 <div class="row">
 <div class="card mx-auto my-auto">
   @if(session('notFound'))
@@ -46,8 +43,7 @@
   </div>
   </div>
   </div>
-  <br><br>
-
+  <br><br
 <!-- UNTUK BOOKING -->
 @if($booking != null)
 <div class="card mb-4">

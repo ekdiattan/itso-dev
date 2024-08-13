@@ -56,10 +56,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/aset/{id}', [AsetController::class, 'edit']);
     Route::post('/aset/{id}', [AsetController::class, 'update']);
     Route::get('/aset/delete/{id}', [AsetController::class, 'delete']);
-    // Module
 
     // Position
     Route::get('/position', [PositionController::class, 'index']);
+
     // Account Setting
     Route::get('/account', [UserController::class, 'editByUser']);
     Route::post('/account/{id}', [UserController::class, 'updateByUser']);
@@ -83,7 +83,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/unit/delete/{id}', [UnitController::class, 'delete']);
 });
 
-// PUBLIC ROUTE
 Route::get('/public', [TrackingController::class, 'index']);
 Route::get('/tracking', [TrackingController::class, 'track']);
 Route::post('/tracking', [TrackingController::class, 'find']);
