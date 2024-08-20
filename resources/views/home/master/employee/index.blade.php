@@ -81,7 +81,13 @@
                             <td>{{ $key->EmployeeNumber }}</td>
                             <td>{{ $key->EmployeePhone }}</td>
                             <td>
-                              <a href="/employee/edit/{{ $key->EmployeeId }}" class="badge bg-warning"><span class="menu-icon"><i class="far fa-edit"></i></span></a>
+                              <form action="/employee/edit" method="POST" style="display:inline;">
+                                @csrf
+                                <input type="hidden" name="id" value="{{ $key->EmployeeId }}">
+                                <button type="submit" class="badge bg-warning" style="border: none">
+                                    <span class="menu-icon"><i class="far fa-edit"></i></span>
+                                </button>
+                              </form>
                               <form action="/employee/delete/{{$key->EmployeeId}}" method="get" class="d-inline">
                               @method('delete')
                               @csrf

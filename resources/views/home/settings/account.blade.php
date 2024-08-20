@@ -3,9 +3,10 @@
   <div class="profile-desc mt-2">
         <div class="profile-pic">
           <div class="count-indicator">
-            <img class="rounded-circle mx-auto d-block " src="{{ $user->image ?? asset('assets/images/faces/face15.jpg') }}" alt="image">
-            <span class="count bg-success"></span>
+            <img class="rounded-circle mx-auto d-block" src="{{ $user->image ?? asset('assets/images/faces/face15.jpg') }}" alt="image">
+            <input type="file" id="image-input" name="image" style="display:none;">
           </div>
+        </div>
          <div class="profile-name text-center">
             <h5 class="mt-4 font-weight-normal">{{$user->employee->EmployeeName}}</h5>
             <span>{{ auth()->user()->hak_akses }}</span>

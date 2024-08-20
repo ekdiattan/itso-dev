@@ -11,6 +11,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rules\In;
 
 class EmployeeController extends Controller
 {
@@ -26,7 +27,7 @@ class EmployeeController extends Controller
         $employee = Employee::all();
         $position = Position::all();
         $unit = Unit::all();
-
+        
         return view('home.master.employee.index', ['title' => 'Employee', 'employee' => $employee, 'position' => $position, 'unit' => $unit]);
     }
 
@@ -72,11 +73,31 @@ class EmployeeController extends Controller
         return redirect('/employee');
     }
 
-    public function edit(int $id)
+    public function edit(Request $request)
     {
+        $id = $request->input('id');
+
         $employee = Employee::find($id);
         $position = Position::all();
 
-        return view('home.master.employee.edit', ['title' => 'Employee', 'employee' => $employee, 'position' => $position]);
+        return view('home.master.employee.edit', [
+            'title' => 'Employee', 
+            'employee' => $employee, 
+            'position' => $position
+        ]);
+    }
+
+    public function update(int $id, Request $request)
+    {
+        try{
+
+            $employee = Employee::find($id);
+            $employee->update($request->all());
+
+        }catch(\Exception $e){
+            return redirect('/employee')->with('error', $e->getMessage());
+        }
+
+        return redirect('/employee')->with('success', 'Berhasil Mengupdate Data');
     }
 }

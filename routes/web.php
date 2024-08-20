@@ -8,6 +8,7 @@ use App\Http\Controllers\PositionController;
 use App\Http\Controllers\TrackingController;
 use App\Http\Controllers\UnitController;
 use App\Http\Controllers\UserController;
+
 use Illuminate\Support\Facades\Route;
 
 Route::get('/admin', function () {
@@ -23,8 +24,9 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/employee', [EmployeeController::class, 'index']);
     Route::get('/employee/delete/{id}', [EmployeeController::class, 'delete']);
-    Route::get('/employee/edit/{id}', [EmployeeController::class, 'edit']);
+    Route::post('/employee/edit', [EmployeeController::class, 'edit']);
     Route::post('/employee/create', [EmployeeController::class, 'store']);
+    Route::post('/employee/update/{id}', [EmployeeController::class, 'update']);
 
     Route::get('/index', [UserController::class, 'index']);
     Route::get('/register', [UserController::class, 'register']);
@@ -64,20 +66,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/account', [UserController::class, 'editByUser']);
     Route::post('/account/{id}', [UserController::class, 'updateByUser']);
     Route::post('/change-password', [UserController::class, 'changePassword']);
-    Route::get('/maintenance', [UserController::class, 'maintenance']);
-    Route::get('/fiturmaintenance', [UserController::class, 'fiturmaintenance']);
-
-    // libur
-    Route::get('/change', function () {
-        return view('home/settings/change');
-    });
-    Route::get('/settings', function () {
-        return view('home/settings/settings');
-    });
-    Route::get('/light', function () {
-        return view('home/settings/light');
-    });
-
     // Unit
     Route::get('/unit', [UnitController::class, 'index']);
     Route::get('/unit/delete/{id}', [UnitController::class, 'delete']);

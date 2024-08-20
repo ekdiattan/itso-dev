@@ -1,7 +1,8 @@
-var passwordField = document.getElementById("password");
-var showPasswordButton = document.getElementById("show-password");
+var passwordField = document.getElementById("password")
+var showPasswordButton = document.getElementById("show-password")
 
-showPasswordButton.addEventListener("click", function () {
+showPasswordButton.addEventListener("click", function () 
+{
     if (passwordField.type === "password") {
         passwordField.type = "text";
 
