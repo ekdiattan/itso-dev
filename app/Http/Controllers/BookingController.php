@@ -36,9 +36,16 @@ class BookingController extends Controller
 
     public function reject()
     {
-        $ditolak = Booking::where('BookingStatus', 3)->orderBy('BookingCreatedAt', 'desc')->get();
+        $ditolak = Booking::where('BookingStatus', 2)->orderBy('BookingCreatedAt', 'desc')->get();
 
         return view('home.aset.booking.reject', ['ditolak' => $ditolak,  'title' => 'Booking']);
+    }
+
+    public function done()
+    {
+        $selesai = Booking::where('BookingStatus', 3)->orderBy('BookingCreatedAt', 'desc')->get();
+        
+        return view('home.aset.booking.done', ['selesai' => $selesai, 'title' => 'Booking']);
     }
 
     public function permohonan()

@@ -48,8 +48,10 @@ Route::group(['middleware' => ['auth']], function ()
     Route::get('/booking/delete/{id}', [BookingController::class, 'delete']);
 
     Route::get('/booking', [BookingController::class, 'index']);
-    Route::get('/booking-reject', [BookingController::class, 'reject']);
+    
     Route::get('/booking-acc', [BookingController::class, 'acc']);
+    Route::get('/booking-reject', [BookingController::class, 'reject']);
+
     Route::get('/booking-done', [BookingController::class, 'done']);
 
     // Aset

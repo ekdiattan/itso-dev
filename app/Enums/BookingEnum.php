@@ -8,7 +8,7 @@ class BookingEnum
 
     const BOOKING = 1;
 
-    const REJECT = 3;
+    const REJECT = 2;
 
-    const COMPLETED = 4;
+    const COMPLETED = 3;
 }

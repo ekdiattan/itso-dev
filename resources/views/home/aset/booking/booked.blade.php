@@ -29,23 +29,26 @@
       <table id="dataTable" class="table table-hover table-bordered table-striped">
           <thead class="bg-gray disabled color-palette">
               <tr>
-                  <th>No</th>
-                  <th>Tiket</th>
-                  <th>Nama Peminjam</th>
-                  <th>Mulai</th>
-                  <th>Selesai</th>
-                  <th>Perihal</th>
+                <th>No</th>
+                <th>Tiket</th>
+                <th>Nama Aset</th>
+                <th>Nama Pemohon</th>
+                <th>Tanggal Pinjam</th>
+                <th>Selesai Pinjam</th>
+                <th>Catatan</th>
+                <th>Action</th>
               </tr>
           </thead>
           <tbody>
             @foreach($bookeds as $booked)
               <tr>
-                  <td>{{ $loop->iteration }}</td>
-                  <td>{{ $booked->tiket }}</td>
-                  <td>{{ $booked->namaPemohon }}</td>
-                  <td>{{ $booked->mulai }}</td>
-                  <td>{{ $booked->selesai }}</td>
-                  <td>{{ $booked->perihal }}</td>
+                <td>{{ $loop->iteration }}</td>
+                <td>{{ $post->BookingCode}}</td>
+                <td>{{ $post->aset->MasterAsetName}}</td>
+                <td>{{ $post->user->employee->EmployeeName}}</td>
+                <td>{{ $post->BookingStart}}</td>
+                <td>{{ $post->BookingEnd}}</td>
+                <td>{{ $post->BookingRemark }}</td>
               </tr>
             @endforeach
           </tbody>

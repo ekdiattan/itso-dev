@@ -56,7 +56,6 @@
                               <th>Tanggal Pinjam</th>
                               <th>Selesai Pinjam</th>
                               <th>Catatan</th>
-                              <th>Status</th>
                               <th>Action</th>
                           </tr>
                         </thead>
@@ -71,13 +70,9 @@
                                 <td>{{ $post->BookingStart}}</td>
                                 <td>{{ $post->BookingEnd}}</td>
                                 <td>{{ $post->BookingRemark }}</td>
-                                <td>{{ $post->BookingStatus }}</td>
                                 <td>
                                     <a href="/booking/{{$post->BookingId}}" class="badge bg-info"><span class="menu-icon"><i class="far fa-eye"></i></span></a>
-                                    <a href="/booking-edit/{{$post->BookingId}}" class="badge bg-warning"><span class="menu-icon"><i class="far fa-edit"></i></span></a>
-                                    <form action="/booking/delete/{{$post->BookingId}}" method="get" class="d-inline">
-                                        <button class="badge bg-danger border-0"onclick="return confirm('Are you sure?')"><span class="menu-icon"><iclass="fas fa-trash"></i></span></button>
-                                    </form>
+                                    <a href="/booking-edit/{{$post->BookingId}}" class="badge bg-primary"><span class="menu-icon"><i class="fas fa-tools"></i></span></a>
                                 </td>
                               </tr>
                             @endforeach
