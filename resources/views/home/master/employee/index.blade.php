@@ -88,11 +88,6 @@
                                     <span class="menu-icon"><i class="far fa-edit"></i></span>
                                 </button>
                               </form>
-                              <form action="/employee/delete/{{$key->EmployeeId}}" method="get" class="d-inline">
-                              @method('delete')
-                              @csrf
-                              <button class="badge bg-danger border-0"onclick="return confirm('Are you sure?')"><span class="menu-icon"><i class="fas fa-trash"></i></span></button>
-                            </form>
                           </tr>
                         @endforeach
                       </tbody>

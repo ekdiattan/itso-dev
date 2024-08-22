@@ -90,6 +90,7 @@
     }).buttons().container().appendTo($('#dataTable2_wrapper .col-md-6:eq(0)'));
   });
 </script>
+@include('home.general.alert')
 </body>
 </html>
 

@@ -70,7 +70,7 @@ class EmployeeController extends Controller
             throw new \Exception($e->getMessage());
         }
 
-        return redirect('/employee');
+        return redirect('/employee')->with('success', 'Berhasil Menginput Data');
     }
 
     public function edit(Request $request)

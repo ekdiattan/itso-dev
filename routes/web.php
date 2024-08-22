@@ -55,13 +55,13 @@ Route::group(['middleware' => ['auth']], function () {
     // aset
     Route::get('/aset', [AsetController::class, 'index']);
     Route::post('/aset/create', [AsetController::class, 'store']);
-    Route::get('/aset/{id}', [AsetController::class, 'edit']);
+    Route::post('/aset', [AsetController::class, 'edit']);
     Route::post('/aset/{id}', [AsetController::class, 'update']);
     Route::get('/aset/delete/{id}', [AsetController::class, 'delete']);
 
     // Position
     Route::get('/position', [PositionController::class, 'index']);
-
+    
     // Account Setting
     Route::get('/account', [UserController::class, 'editByUser']);
     Route::post('/account/{id}', [UserController::class, 'updateByUser']);

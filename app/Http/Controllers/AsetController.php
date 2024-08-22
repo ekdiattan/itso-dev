@@ -33,8 +33,10 @@ class AsetController extends Controller
         return redirect('/aset');
     }
 
-    public function edit($id)
+    public function edit(Request $request)
     {
+        $id = $request->input('id');
+
         $aset = Aset::find($id);
 
         return view('home.master.aset.edit', ['aset' => $aset, 'title' => 'Aset']);
