@@ -13,20 +13,31 @@ class UserController extends Controller
 {
     public function index()
     {
-        $user = User::all();
+        try{
+
+            $user = User::all();
+
+        }catch(\Exception $e){
+            throw new \Exception($e->getMessage());
+        }
 
         return view('register.index', ['users' => $user, 'title' => 'Pengguna']);
     }
 
     public function register()
     {
-        $users = User::all();
-        $unit = Unit::all();
 
-        $getId = $users->pluck('UserEmployeeId');
+        try{
 
-        $data = Employee::whereNotIn('EmployeeId', $getId)->get();
+            $users = User::all();
+            $unit = Unit::all();
+            $getId = $users->pluck('UserEmployeeId');
+            $data = Employee::whereNotIn('EmployeeId', $getId)->get();
 
+        }catch(\Exception $e){
+            throw new \Exception($e->getMessage());
+        }
+        
         return view('register.register', ['title' => 'Pengguna', 'user' => $data]);
     }
 

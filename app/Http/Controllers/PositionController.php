@@ -23,25 +23,45 @@ class PositionController extends Controller
     
     public function viewEdit(Request $request)
     {
-        $id = $request->input('id');
-        $position = Position::find($id);
-        
+        try{
+
+            $id = $request->input('id');
+            $position = Position::find($id);
+
+        }catch(\Exception $e){
+
+            throw new \Exception($e->getMessage());
+        }
+
         return view('home.master.position.edit', ['title' => 'Position', 'position' => $position]);
     }
 
     public function update(Request $request, $id)
     {
-        $position = Position::find($id);
-        $position->update($request->all());
-        
+        try{
+
+            $position = Position::find($id);
+            $position->update($request->all());
+
+        }catch(\Exception $e){
+            throw new \Exception($e->getMessage());
+        }
+
         return redirect('/position')->with('success', 'Berhasil Mengupdate Data');
     }
 
     public function delete(int $id)
     {
-        $position = Position::find($id);
-        $position->delete();
+        try{
 
+            $position = Position::find($id);
+            $position->delete();
+
+        }catch(\Exception $e){
+
+            throw new \Exception($e->getMessage());
+        }
+        
         return redirect('/position')->with('success', 'Berhasil Menghapus Data');
     }
 }

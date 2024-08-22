@@ -38,7 +38,7 @@ class TrackingController extends Controller
 
         return view('home.tracking.tracking', ['title' => 'Tracking', 'booking' => $booking]);
     }
-
+    
     public function found(Request $request)
     {
         $explodePath = explode('/', $request->path());
