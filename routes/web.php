@@ -16,6 +16,8 @@ Route::get('/admin', function () {
 });
 
 Route::get('/', [TrackingController::class, 'index']);
+
+Route::get('/login', [UserController::class, 'login']);
 Route::post('/login', [UserController::class, 'authenticate']);
 
 Route::group(['middleware' => ['auth']], function () 
