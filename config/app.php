@@ -196,7 +196,6 @@ return [
         /*
         * Dompdf
         * */
-        Barryvdh\DomPDF\ServiceProvider::class,
     ],
 
     /*
