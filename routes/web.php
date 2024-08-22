@@ -63,7 +63,8 @@ Route::group(['middleware' => ['auth']], function ()
 
     // Position
     Route::get('/position', [PositionController::class, 'index']);
-    Route::post('/position/edit', [PositionController::class, 'edit']);
+    Route::post('/position/edit', [PositionController::class, 'viewEdit']);
+    Route::post('/position/update/{id}', [PositionController::class, 'update']);
 
     // Account Setting
     Route::get('/account', [UserController::class, 'editByUser']);

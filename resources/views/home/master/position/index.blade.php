@@ -1,10 +1,5 @@
 @extends('home.partials.main')
 @section('container')
-@if(session('success'))
-<div class="alert alert-success" role="alert">
-  {{ session('success') }}
-</div>
-@endif
 <div class="row">
     <div class="col-md-4 grid-margin">
       <div class="card">
@@ -36,7 +31,7 @@
                       <thead  class="bg-gray disabled color-palette">
                         <tr>
                           <th>No</th>
-                          <th>Nama Bidang</th>
+                          <th>Nama Jabatan</th>
                           <th>Action</th>
                         </tr>
                       </thead>
@@ -46,12 +41,13 @@
                           <td>{{ $loop->iteration }}</td>
                           <td>{{ $position->MasterPositionName}}</td>
                           <td>
-                              <a href="/position/{{ $position->MasterModuleId }}" class="badge bg-warning"><span class="menu-icon"><i class="far fa-edit"></i></span></a>
-                              <form action="/bidang/{{ $position->MasterModuleId }}" method="post" class="d-inline">
-                                @method('delete')
-                                @csrf
-                                <button class="badge bg-danger border-0"onclick="return confirm('Are you sure?')"><span class="menu-icon"><i class="fas fa-trash"></i></span></button>
-                              </form>
+                            <form action="/position/edit" method="POST" style="display:inline;">
+                              @csrf
+                              <input type="hidden" name="id" value="{{ $position->MasterPositionId }}">
+                              <button type="submit" class="badge bg-warning" style="border: none">
+                                  <span class="menu-icon"><i class="far fa-edit"></i></span>
+                              </button>
+                            </form>                          
                           </td>
                         </tr>
                         @endforeach
