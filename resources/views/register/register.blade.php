@@ -63,22 +63,16 @@
                 </form>
               </div>
             </div>
-          <!-- content-wrapper ends -->
         </div>
-        <!-- row ends -->
       </div>
-      <!-- page-body-wrapper ends -->
     </div>
-    
   <script>
-       // Mendapatkan elemen <select> dan <div> form alasan
+
    var roleSelect = document.getElementById('hak_akses');
    var reasonForm = document.getElementById('emaill');
 
-   // Menambahkan event listener untuk perubahan pada opsi yang dipilih
    roleSelect.addEventListener('change', function () {
        var selectedValue = roleSelect.value;
-
        // Menampilkan/sembunyikan form alasan berdasarkan kondisi
        if (selectedValue === 'Aset') {
            reasonForm.style.display = 'block'; // Merubah 'block' menjadi 'none'

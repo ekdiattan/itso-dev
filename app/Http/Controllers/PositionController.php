@@ -56,7 +56,7 @@ class PositionController extends Controller
 
             $position = Position::find($id);
             $position->delete();
-
+            
         }catch(\Exception $e){
 
             throw new \Exception($e->getMessage());

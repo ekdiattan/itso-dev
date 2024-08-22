@@ -6,7 +6,7 @@
             </div>
                 <div class="card">
                   <div class="card-body">  
-                    <a class="btn btn-success" href="/register">+ Pengguna</a>
+                    <a class="btn btn-success" href="/user">+ Pengguna</a>
                     <div id="dataTable_wrapper" class="table-responsive">
                       <table id="dataTable" class="table table-hover">
                         <br>
@@ -31,16 +31,14 @@
                             <td>{{ $post->role->MasterRoleCode}}</td>
                             <td>{{ $post->employee->EmployeePhone}}</td>
                             <td>
-                              <form action="/register/edit" method="POST" style="display:inline;">
+                              <form action="/user/edit" method="POST" style="display:inline;">
                                 @csrf
                                 <input type="hidden" name="id" value="{{ $post->UserId }}">
-                                <button type="submit" class="badge bg-success" style="border: none">
-                                    <span class="menu-icon"><i class="far fa-eye"></i></span>
+                                <button type="submit" class="badge bg-warning" style="border: none">
+                                    <span class="menu-icon"><i class="far fa-edit"></i></span>
                                 </button>
                               </form>
-                                <a href="/register/edit/{{$post->UserId}}" class="badge bg-warning"><span
-                                                class="menu-icon"><i class="far fa-edit"></i></span></a>
-                              <form action="/register/delete/{{ $post->UserId }}" method="get" class="d-inline">
+                              <form action="/user/delete/{{ $post->UserId }}" method="get" class="d-inline">
                               @csrf
                               <button class="badge bg-danger border-0" onclick="return confirm('Are you sure?')"><span class="menu-icon"><i class="fas fa-trash"></i></span></button>
                               </form>

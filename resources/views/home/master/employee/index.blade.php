@@ -1,10 +1,5 @@
 @extends('home.partials.main')
 @section('container')
-@if(session('success'))
-<div class="alert alert-success" role="alert">
-  {{ session('success') }}
-</div>
-@endif
 <div class="row">
     <div class="col-md-4 grid-margin">
       <div class="card">

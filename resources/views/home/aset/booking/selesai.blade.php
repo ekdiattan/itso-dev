@@ -39,11 +39,6 @@
     </div>
 </div>
 <br>
-@if(session('success'))
-<div class="alert alert-success" role="alert">
-  {{ session('success') }}
-</div>
-@endif
 <div class="col-lg-12 grid-margin stretch-card">
         <br>
         <div class="card">

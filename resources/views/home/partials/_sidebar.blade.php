@@ -33,7 +33,7 @@
         </ul>
               </li>
             <li class="nav-item">
-              <a href="/index" class="nav-link {{ ($title === 'Pengguna') ? 'active disabled' : '' }}">
+              <a href="/user" class="nav-link {{ ($title === 'Pengguna') ? 'active disabled' : '' }}">
                 <i class="nav-icon fas fa-user-plus"></i>
                 <p>Pengguna</p>
               </a>

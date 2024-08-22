@@ -13,13 +13,6 @@
   <marquee><img src="{{ asset('assets/images/logo_diskom.svg') }}" alt="Diskominfo" class="brand-image" style="height: 50px; width: 150px; margin-left: 35px;">Selamat datang di website IT Solution Dinas Komunikasi & Informatika Provinsi Jawa Barat <img src="{{ asset('assets/images/logo_diskom.svg') }}" alt="Diskominfo" class="brand-image" style="height: 50px; width: 150px; margin-left: 0px;"></marquee>
   </div>
 </nav>
-
-@section('container')
-@if(session('success'))
-<div class="alert alert-success" role="alert">
-  {{ session('success') }}
-</div>
-@endif
 <br><br>
 <div class="col-12 grid-margin">
     <div class="card">

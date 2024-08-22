@@ -47,7 +47,11 @@
                               <button type="submit" class="badge bg-warning" style="border: none">
                                   <span class="menu-icon"><i class="far fa-edit"></i></span>
                               </button>
-                            </form>                          
+                            </form>
+                            <form action="/position/delete/{{ $position->MasterPositionId }}" method="get" class="d-inline">
+                              @csrf
+                              <button class="badge bg-danger border-0" onclick="return confirm('Are you sure?')"><span class="menu-icon"><i class="fas fa-trash"></i></span></button>
+                              </form>                          
                           </td>
                         </tr>
                         @endforeach

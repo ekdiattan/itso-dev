@@ -1,11 +1,6 @@
 <link rel="icon" href="{{ asset('assets/images/jabar.png') }}">
 @extends('home.partials.main')
 @section('container')
-@if(session('success'))
-<div class="alert alert-success" role="alert">
-  {{ session('success') }}
-</div>
-@endif
 <ol class="breadcrumb">
     <li class="breadcrumb-item active" style="color:black;"><h2>Detail Data Peminjaman<h2></li>
   </ol>

@@ -44,7 +44,7 @@
         </ul>
       </div> 
       @endif
-      <form action="/register/update/{{ $user->UserId }}" method="post" enctype="multipart/form-data">
+      <form action="/user/update/{{ $user->UserId }}" method="post" enctype="multipart/form-data">
         @csrf
           <div class="form-group">
             <label for="password"> Ganti Password</label>

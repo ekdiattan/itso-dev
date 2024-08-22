@@ -3,7 +3,7 @@
 <div class="col-12 grid-margin">
   <div class="card">
     <div class="card-body">
-      <form action="/register/update/{{ $user->UserId }}" method="post">
+      <form action="/user/update/{{ $user->UserId }}" method="post">
         @csrf
         <p class="card-description">Edit Data Pengguna </p>
         <div class="row">
@@ -94,7 +94,7 @@
         </div>
           <div class="box">
             <div class="box-header with-border">
-                <a href="{{url('/index') }}" class="btn btn-danger mr-2 btn-flat"><i class="fa fa-file-excel-o"></i> Kembali</a>
+                <a href="{{url('/user') }}" class="btn btn-danger mr-2 btn-flat"><i class="fa fa-file-excel-o"></i> Kembali</a>
                 <button type="submit" class="btn btn-primary mr-2 btn-flat" id="submit-btn">Submit</button>
             </div>
         </div>

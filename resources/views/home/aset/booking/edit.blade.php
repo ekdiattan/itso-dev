@@ -1,11 +1,6 @@
 @extends('home.partials.main')
 <link rel="icon" href="{{ asset('assets/images/jabar.png') }}">
 @section('container')
-@if(session('success'))
-<div class="alert alert-success" role="alert">
-  {{ session('success') }}
-</div>
-@endif
 <form action="/booking-update/{{ $edit->id }}" method="post" enctype="multipart/form-data">
 @csrf
 <div class="row">

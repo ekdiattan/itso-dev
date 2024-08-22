@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Employee;
 use App\Models\Role;
-use App\Models\Unit;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,11 +12,10 @@ class UserController extends Controller
 {
     public function index()
     {
-        try{
+        try {
 
             $user = User::all();
-
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
             throw new \Exception($e->getMessage());
         }
 
@@ -26,36 +24,41 @@ class UserController extends Controller
 
     public function register()
     {
-
-        try{
-
+        try {
             $users = User::all();
-            $unit = Unit::all();
+
             $getId = $users->pluck('UserEmployeeId');
             $data = Employee::whereNotIn('EmployeeId', $getId)->get();
-
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
             throw new \Exception($e->getMessage());
         }
-        
+
         return view('register.register', ['title' => 'Pengguna', 'user' => $data]);
     }
 
     public function show(Request $request)
     {
-        $id = $request->input('id');
+        try {
 
-        $user = User::find($id);
+            $id = $request->input('id');
+            $user = User::find($id);
+        } catch (\Exception $e) {
+            throw new \Exception($e->getMessage());
+        }
 
         return view('register.show', ['user' => $user, 'title' => 'Pengguna']);
     }
 
     public function edit(Request $request)
     {
-        $id = $request->input('id');
-        
-        $edit = User::find($id);
-        $role = Role::all();
+        try {
+
+            $id = $request->input('id');
+            $edit = User::find($id);
+            $role = Role::all();
+        } catch (\Exception $e) {
+            throw new \Exception($e->getMessage());
+        }
 
         return view('register.edit', ['user' => $edit, 'title' => 'Pengguna', 'role' => $role]);
     }
@@ -67,16 +70,20 @@ class UserController extends Controller
 
     public function authenticate(Request $request)
     {
+        try {
 
-        $credentials = $request->validate([
-            'name' => ['required', 'max:255'],
-            'password' => ['required', 'max:100', 'min:6'],
-        ]);
+            $credentials = $request->validate([
+                'name' => ['required', 'max:255'],
+                'password' => ['required', 'max:100', 'min:6'],
+            ]);
 
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
+            if (Auth::attempt($credentials)) {
+                $request->session()->regenerate();
 
-            return redirect()->intended('/dashboard')->with('success', 'Login has been success!');
+                return redirect()->intended('/dashboard')->with('success', 'Login has been success!');
+            }
+        } catch (\Exception $e) {
+            throw new \Exception($e->getMessage());
         }
 
         return back()->with('error', 'Login failed!');
@@ -84,28 +91,40 @@ class UserController extends Controller
 
     public function logout(Request $request)
     {
-        Auth::logout();
+        try {
 
-        $request->session()->invalidate();
-
-        $request->session()->regenerateToken();
+            Auth::logout();
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+        } catch (\Exception $e) {
+            throw new \Exception($e->getMessage());
+        }
 
         return redirect('/login');
     }
 
     public function delete($id)
     {
-        $user = User::find($id);
-        $user->delete();
+        try {
 
-        session()->flash('success', 'Pengguna Berhasil dihapus');
+            $user = User::find($id);
+            $user->delete();
+            session()->flash('success', 'Pengguna Berhasil dihapus');
+        } catch (\Exception $e) {
+            throw new \Exception($e->getMessage());
+        }
 
         return redirect('/index')->with('success', 'Pengguna berhasil dihapus');
     }
 
     public function editByUser()
     {
-        $user = User::find(Auth::id());
+        try {
+
+            $user = User::find(Auth::id());
+        } catch (\Exception $e) {
+            throw new \Exception($e->getMessage());
+        }
 
         return view('home.settings.account', ['user' => $user, 'title' => 'Pengguna']);
     }
@@ -130,6 +149,32 @@ class UserController extends Controller
 
         $request->session()->flash('success', 'Berhasil mengupdate Data!');
 
-        return redirect('/index')->with('success', 'Berhasil Mengupdate Data');
+        return redirect('/user')->with('success', 'Berhasil Mengupdate Data');
+    }
+
+    public function update(Request $request, $id)
+    {
+        try {
+            $user = User::find($id);
+
+            $request->validate([
+                'name' => ['exists:user,name'],
+            ]);
+
+            if ($request->filled('password')) {
+                $password = bcrypt($request->password);
+            }
+            
+            $user->update([
+                'password' => $password ?? $user->password,
+                'name' => $request->name ?? $user->name,
+                'UserRoleId' => $request->UserRoleId ?? $user->UserRoleId
+            ]);
+
+        } catch (\Exception $e) {
+            throw new \Exception($e->getMessage());
+        }
+
+        return redirect('/user')->with('success', 'Berhasil Mengupdate Data');
     }
 }
