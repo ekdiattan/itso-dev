@@ -45,12 +45,6 @@
 
 <body>
 <div class="wrapper">
-  <!-- Preloade -->
-  <div class="preloader flex-column justify-content-center align-items-center">
-    <img class="animation__shake" src="{{ asset('assets/images/logo_diskom.svg') }}" alt="AdminLTELogo" height="100" width="300">
-  </div>
-  <!-- End Preloade -->
-
     <div class="container-fluid">
       <div class="container-scroller">
         <div class="container-fluid page-body-wrapper">
@@ -61,7 +55,6 @@
       </div>
   </div>
 </div>
-
 <!-- jQuery -->
 <script src="/AdminLTE-3.2.0/plugins/jquery/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->

@@ -31,10 +31,8 @@
           @csrf
           <div class="col-md-15">
               <div class="input-group">
-                <!-- <form class="d-flex" role="search"> -->
                   <input type="search" class="form-control rounded m-1" placeholder="Input Ticket" aria-label="Search" name="BookingCode" value="{{old('BookingCode')}}"/>
                   <button type="submit" class="btn btn-outline-primary m-1">search</button>
-               <!-- </form> -->
                   <a href="/tracking" type="button" class="btn btn-outline-danger m-1">reset</a>
               </div>   
           </div>

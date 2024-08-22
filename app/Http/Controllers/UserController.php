@@ -30,15 +30,19 @@ class UserController extends Controller
         return view('register.register', ['title' => 'Pengguna', 'user' => $data]);
     }
 
-    public function show($id)
+    public function show(Request $request)
     {
+        $id = $request->input('id');
+
         $user = User::find($id);
 
         return view('register.show', ['user' => $user, 'title' => 'Pengguna']);
     }
 
-    public function edit($id)
+    public function edit(Request $request)
     {
+        $id = $request->input('id');
+        
         $edit = User::find($id);
         $role = Role::all();
 
@@ -64,9 +68,7 @@ class UserController extends Controller
             return redirect()->intended('/dashboard')->with('success', 'Login has been success!');
         }
 
-        return back()->withErrors([
-            'name' => 'Login Failed, name or password may wrong',
-        ])->onlyInput('name');
+        return back()->with('error', 'Login failed!');
     }
 
     public function logout(Request $request)

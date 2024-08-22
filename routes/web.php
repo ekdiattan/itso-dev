@@ -16,12 +16,10 @@ Route::get('/admin', function () {
 });
 
 Route::get('/', [TrackingController::class, 'index']);
-
-Route::get('/login', [UserController::class, 'login']);
 Route::post('/login', [UserController::class, 'authenticate']);
 
-Route::group(['middleware' => ['auth']], function () {
-
+Route::group(['middleware' => ['auth']], function () 
+{
     Route::get('/employee', [EmployeeController::class, 'index']);
     Route::get('/employee/delete/{id}', [EmployeeController::class, 'delete']);
     Route::post('/employee/edit', [EmployeeController::class, 'edit']);
@@ -32,7 +30,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/register', [UserController::class, 'register']);
     Route::post('/register', [UserController::class, 'store_register']);
     Route::get('/register/{id}', [UserController::class, 'show']);
-    Route::get('/register/edit/{id}', [UserController::class, 'edit']);
+    Route::post('/register/edit', [UserController::class, 'edit']);
     Route::post('/register/update/{id}', [UserController::class, 'updateByUser']);
     Route::get('/register/delete/{id}', [UserController::class, 'delete']);
     Route::get('/logout', [UserController::class, 'logout']);
@@ -52,7 +50,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/booking-acc', [BookingController::class, 'acc']);
     Route::get('/booking-done', [BookingController::class, 'done']);
 
-    // aset
+    // Aset
     Route::get('/aset', [AsetController::class, 'index']);
     Route::post('/aset/create', [AsetController::class, 'store']);
     Route::post('/aset', [AsetController::class, 'edit']);
@@ -61,11 +59,13 @@ Route::group(['middleware' => ['auth']], function () {
 
     // Position
     Route::get('/position', [PositionController::class, 'index']);
-    
+    Route::post('/position/edit', [PositionController::class, 'edit']);
+
     // Account Setting
     Route::get('/account', [UserController::class, 'editByUser']);
     Route::post('/account/{id}', [UserController::class, 'updateByUser']);
     Route::post('/change-password', [UserController::class, 'changePassword']);
+
     // Unit
     Route::get('/unit', [UnitController::class, 'index']);
     Route::get('/unit/delete/{id}', [UnitController::class, 'delete']);

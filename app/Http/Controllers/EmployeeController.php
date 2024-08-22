@@ -76,7 +76,7 @@ class EmployeeController extends Controller
     public function edit(Request $request)
     {
         $id = $request->input('id');
-
+        
         $employee = Employee::find($id);
         $position = Position::all();
 

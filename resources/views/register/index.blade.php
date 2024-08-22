@@ -31,8 +31,13 @@
                             <td>{{ $post->role->MasterRoleCode}}</td>
                             <td>{{ $post->employee->EmployeePhone}}</td>
                             <td>
-                              <a href="/register/{{ $post->UserId}}" class="badge bg-info">
-                                <span class="menu-icon"><i class="far fa-eye"></i></span></a>
+                              <form action="/register/edit" method="POST" style="display:inline;">
+                                @csrf
+                                <input type="hidden" name="id" value="{{ $post->UserId }}">
+                                <button type="submit" class="badge bg-success" style="border: none">
+                                    <span class="menu-icon"><i class="far fa-eye"></i></span>
+                                </button>
+                              </form>
                                 <a href="/register/edit/{{$post->UserId}}" class="badge bg-warning"><span
                                                 class="menu-icon"><i class="far fa-edit"></i></span></a>
                               <form action="/register/delete/{{ $post->UserId }}" method="get" class="d-inline">
