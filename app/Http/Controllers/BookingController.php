@@ -49,31 +49,8 @@ class BookingController extends Controller
         return view('home.aset.booking.permohonan', [
             'title' => 'Permohonan Peminjaman',
             'employee' => $employee,
-            'asset' => $asset,
+            'asset' => $asset
         ]);
-    }
-
-    public function booked(Request $request, $id)
-    {
-        $aset = Aset::find($id);
-        $booked = Aset::find($id)->booked->where('status', '=', 'Disetujui');
-
-        foreach ($booked as $book) {
-            $book->mulai = Carbon::parse($book->mulai)->format('H:i:s, d/m/Y');
-            $book->selesai = Carbon::parse($book->selesai)->format('H:i:s, d/m/Y');
-        }
-
-        return view('home.aset.booking.booked', ['title' => 'Jadwal', 'aset' => $aset, 'bookeds' => $booked]);
-    }
-
-    public function result($id)
-    {
-        $booking = Booking::find($id);
-        $booking->tanggalPermohonan = Carbon::parse($booking->tanggalPermohonan)->translatedFormat('d F Y');
-        $booking->mulai = Carbon::parse($booking->mulai)->translatedFormat('H:i:s, d F Y');
-        $booking->selesai = Carbon::parse($booking->selesai)->translatedFormat('H:i:s, d F Y');
-
-        return view('home.aset.booking.result', ['title' => 'Permohonan', 'data' => $booking]); // bakalan bisa di pisahin
     }
 
     public function create()
@@ -83,17 +60,6 @@ class BookingController extends Controller
         return view('home.aset.booking.create', ['title' => 'Peminjaman', 'aset' => $aset]);
     }
 
-    public function show($id)
-    {
-        $booking = Booking::find($id);
-        $booking->mulai = Carbon::parse($booking->mulai)->translatedFormat('H:i, d F Y');
-        $booking->selesai = Carbon::parse($booking->selesai)->translatedFormat('H:i, d F Y');
-        $booking->tanggalPermohonan = Carbon::parse($booking->tanggalPermohonan)->translatedFormat('d F Y');
-        $aset = $booking->aset->first();
-
-        return view('home.aset.booking.show', ['booking' => $booking, 'title' => 'Booking', 'aset' => $aset]);
-    }
-
     public function edit($id)
     {
         $booking = Booking::find($id);
@@ -101,7 +67,7 @@ class BookingController extends Controller
         $booking->update([
             'BookingApprovalStatus' => BookingEnum::BOOKING,
             'BookingUpdatedBy' => Auth::id(),
-            'BookingUpdatedAt' => Carbon::now(),
+            'BookingUpdatedAt' => Carbon::now()
         ]);
 
         return view('home.aset.booking.edit', ['edit' => $booking, 'title' => 'Booking']);
@@ -119,13 +85,6 @@ class BookingController extends Controller
         return redirect('/booking')->with('success', 'Peminjaman berhasil dihapus');
     }
 
-    public function done()
-    {
-        $done = Booking::where('BookingStatus', 2)->orderBy('BookingCreatedAt', 'desc')->get();
-
-        return view('home.aset.booking.selesai', ['title' => 'Booking', 'done' => $done]);
-    }
-
     public function store(Request $request)
     {
         $bookingCode = $this->bookingHelper->createrandobooking(5);
@@ -140,7 +99,7 @@ class BookingController extends Controller
             'BookingStatus' => BookingEnum::WAITING,
             'BookingRemark' => $request->BookingRemark ?? null,
             'BookingCreatedBy' => Auth::id(),
-            'BookingUpdatedBy' => Auth::id(),
+            'BookingUpdatedBy' => Auth::id()
         ]);
 
         return view('home.aset.booking.result', ['title' => 'Permohonan', 'booking' => $booking]);

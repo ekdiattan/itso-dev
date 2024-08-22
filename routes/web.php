@@ -75,7 +75,8 @@ Route::get('/public', [TrackingController::class, 'index']);
 Route::get('/tracking', [TrackingController::class, 'track']);
 Route::post('/tracking', [TrackingController::class, 'find']);
 Route::get('/tracking/{ticket}', [TrackingController::class, 'found']);
-Route::get('/pinjam', [TrackingController::class, 'pinjam']);
+
+Route::get('/bookings', [TrackingController::class, 'pinjam']);
 
 //permohonan publik
 Route::get('/peminjaman', [BookingController::class, 'permohonan']);

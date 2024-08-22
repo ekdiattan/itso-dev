@@ -19,7 +19,7 @@
           <h5 class="card-body text-center">Menu Booking</h5>
           <p class="card-text">Menu yang memungkinkan Anda untuk permohonan peminjaman barang kepada Tim Aset atau melihat status dari permohonan yang dilakukan sebelumnya</p>
       </div>
-      <a href="/pinjam" class="btn btn-primary">Pinjam Barang?</a>
+      <a href="/bookings" class="btn btn-primary">Pinjam Barang?</a>
     </div>
   </div>
 </div>
