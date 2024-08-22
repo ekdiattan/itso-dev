@@ -51,12 +51,6 @@
                 <h4 class="card-title"><b>Selesai</b></h4>
                 <div class="table-responsive">
                  <nav class="navbar bg-body-tertiary">
-                    <!-- <form action="#" method="GET">
-                        <form class="d-flex" role="search">
-                            <input class="form-control me-2" type="search" placeholder="Masukan Nama Pemohon" aria-label="Search" name="search" value="">
-                        </form>
-                    <a href="#" class="btn btn-danger" role="button">Reset</a> -->
-                    </form>
                  </nav>
                  <table id="dataTable" class="table table-hover table-bordered table-striped">
                     <thead class="bg-gray disabled color-palette">
@@ -69,7 +63,6 @@
                             <th>Selesai Pinjam</th>
                             <th>Catatan</th>
                             <th>Status</th>
-                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>

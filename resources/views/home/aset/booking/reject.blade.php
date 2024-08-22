@@ -67,7 +67,6 @@
                               <th>Tanggal Pinjam</th>
                               <th>Selesai Pinjam</th>
                               <th>Catatan</th>
-                              <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
