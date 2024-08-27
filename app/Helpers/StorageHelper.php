@@ -21,15 +21,13 @@ class StorageHelper extends GeneralHelper
 
             Storage::put($path . '/' . $newFileName, file_get_contents($image->getRealPath()));
             
-            $arrData = [
-                "file_original_path" => $path . '/' . $newFileName,
-            ];
+            $paths = $path . '/' . $newFileName;
             
         } catch (\Throwable $th) {
             throw new Exception($th->getMessage(), 500);
         }
 
-        return json_encode($arrData);
+        return $paths;
     }
 
     public static function generatePathImage($resource)

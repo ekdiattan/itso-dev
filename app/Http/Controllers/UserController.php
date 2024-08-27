@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Employee;
+use App\Enums\ResourceEnum;
 use App\Models\Role;
 use App\Models\User;
+use App\Models\Employee;
 use Illuminate\Http\Request;
+use App\Helpers\StorageHelper;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -120,19 +123,23 @@ class UserController extends Controller
     public function editByUser()
     {
         try {
-
             $user = User::find(Auth::id());
+
+            $employee = $user->employee->EmployeeImagePath;
+
+            $image = Storage::temporaryUrl($employee, now()->addMinutes(5));
+
         } catch (\Exception $e) {
             throw new \Exception($e->getMessage());
         }
 
-        return view('home.settings.account', ['user' => $user, 'title' => 'Pengguna']);
+        return view('home.settings.account', ['user' => $user, 'image' => $image, 'title' => 'Pengguna']);
     }
 
     public function updateByUser(Request $request, $id)
     {
         $user = User::find($id);
-
+        
         $email = $request->name;
 
         if ($request->filled('password')) {
@@ -153,8 +160,8 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         try {
-            $user = User::find($id);
 
+            $user = User::find($id);
             $request->validate([
                 'name' => ['exists:user,name'],
             ]);
@@ -162,17 +169,26 @@ class UserController extends Controller
             if ($request->filled('password')) {
                 $password = bcrypt($request->password);
             }
-            
+
+            if($request->hasFile('EmployeeImage'))
+            {
+                $path = StorageHelper::storeFileImage($request->EmployeeImage, ResourceEnum::USER);
+
+                $user->employee->update([
+                    'EmployeeImagePath' => $path
+                ]);
+            }
+
             $user->update([
                 'password' => $password ?? $user->password,
                 'name' => $request->name ?? $user->name,
-                'UserRoleId' => $request->UserRoleId ?? $user->UserRoleId
+                'UserRoleId' => $request->UserRoleId ?? $user->UserRoleId,
             ]);
 
         } catch (\Exception $e) {
             throw new \Exception($e->getMessage());
         }
 
-        return redirect('/user')->with('success', 'Berhasil Mengupdate Data');
+        return back()->with('success', 'Berhasil Mengupdate Data');
     }
 }

@@ -16,7 +16,8 @@
   <ul class="navbar-nav ml-auto">
     <div class="container">
       <a href="#" class="navbar-brand" id="profileDropdown" data-toggle="dropdown">
-      <img src="" alt="Avatar" class="brand-image img-circle" style="height: 50px;width:50px;">
+        <i class="fas fa-user"></i>
+      {{-- <img src="{{ auth()- }}" alt="Avatar" class="brand-image img-circle" style="height: 50px;width:50px;"> --}}
         <span class="brand-text font-weight-light"></span>
         <i class="fas fa-caret-down"></i>
       </a>
