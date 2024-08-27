@@ -146,9 +146,7 @@ class UserController extends Controller
             'name' => $email ?? $user->name,
             'UserRoleId' => $request->UserRoleId ?? $user->UserRoleId,
         ]);
-
-        $request->session()->flash('success', 'Berhasil mengupdate Data!');
-
+        
         return redirect('/user')->with('success', 'Berhasil Mengupdate Data');
     }
 

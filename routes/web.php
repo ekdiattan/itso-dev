@@ -41,7 +41,7 @@ Route::group(['middleware' => ['auth']], function ()
 
     Route::get('/booking/create', [BookingController::class, 'create']);
     Route::post('/booking-check', [BookingController::class, 'bookingCheck']);
-    Route::get('/booking/{id}', [BookingController::class, 'show']);
+    Route::post('/booking/detail', [BookingController::class, 'show']);
     Route::get('/booking-edit/{id}', [BookingController::class, 'edit']);
     Route::get('/booking-reject', [BookingController::class, 'reject']);
     Route::get('/booking/delete/{id}', [BookingController::class, 'delete']);

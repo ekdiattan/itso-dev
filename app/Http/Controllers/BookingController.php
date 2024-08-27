@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Enums\BookingEnum;
+use App\Helpers\BookingChangeHelper;
 use App\Helpers\BookingHelper;
 use App\Models\Aset;
 use App\Models\Booking;
@@ -110,5 +111,20 @@ class BookingController extends Controller
         ]);
 
         return view('home.aset.booking.result', ['title' => 'Permohonan', 'booking' => $booking]);
+    }
+
+    public function show(Request $request)
+    {
+        try{
+            $id = $request->input('id');
+
+            $booking = Booking::find($id);
+            $booking->BookingStatus = BookingChangeHelper::changeStatus($booking->BookingStatus);
+            
+        }catch(\Exception $e){
+            return redirect('/booking')->with('error', 'Permohonan tidak ditemukan');
+        }
+
+        return view('home.aset.booking.show', ['title' => 'Permohonan', 'booking' => $booking]);
     }
 }
