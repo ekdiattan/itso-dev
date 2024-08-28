@@ -18,13 +18,18 @@ class AsetController extends Controller
     public function index()
     {
         try {
+            $asets = Aset::all();
 
-            $aset = Aset::all();
+            foreach ($asets as $aset) 
+            {
+                $aset->MasterAsetType = $this->asetHelper->type($aset->MasterAsetType);
+            }
+            
         } catch (\Exception $e) {
             throw new \Exception($e->getMessage());
         }
 
-        return view('home.master.aset.index', ['title' => 'Aset', 'asets' => $aset]);
+        return view('home.master.aset.index', ['title' => 'Aset', 'asets' => $asets]);
     }
 
     public function store(Request $request)

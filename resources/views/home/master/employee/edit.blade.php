@@ -32,8 +32,8 @@
               <label class="col-sm-3 col-form-label">Jabatan</label>
               <div class="col-sm-9">
                 <select class="form-control" aria-label="Default select example" id="position_id" name="EmployeePositionId" required>
-                  @foreach ($position as $positions)    
-                    <option value="{{$positions->MasterPositionId}}">{{$positions->MasterPositionName}}</option>
+                  @foreach ($position as $positions)
+                    <option value="{{$positions->MasterPositionId}}" {{ $positions->MasterPositionId == $employee->EmployeePositionId ? 'selected' : '' }}>{{$positions->MasterPositionName}}</option>
                   @endforeach
                 </select>       
               </div>
