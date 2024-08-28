@@ -24,12 +24,7 @@ class Booking extends Model
     protected $attributes = [
         'BookingStatus' => 0,
     ];
-
-    public function approval()
-    {
-        return $this->hasMany(Approval::class, 'ApprovalSourceId', 'BookingId');
-    }
-
+    
     public function aset()
     {
         return $this->belongsTo(Aset::class, 'BookingAsetId', 'MasterAsetId');
@@ -37,7 +32,7 @@ class Booking extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'BookingCreatedBy', 'UserId');
+        return $this->belongsTo(User::class, 'BookingEmployeeId', 'UserId');
     }
 
     public function employee()

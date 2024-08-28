@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Enums\BookingEnum;
 use App\Helpers\BookingChangeHelper;
 use App\Helpers\BookingHelper;
 use App\Models\Aset;
 use App\Models\Booking;
 use App\Models\Employee;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -95,8 +95,13 @@ class BookingController extends Controller
 
     public function store(Request $request)
     {
-        $bookingCode = $this->bookingHelper->createrandobooking(5);
+        $booking = Booking ::where('BookingAsetId', $request->BookingAsetId)->whereBetween('BookingStart', [$request->BookingStart, $request->BookingEnd])->first();
+        
+        if($booking){
+            return back()->with('error', 'Aset sedang dipinjam!');
+        }
 
+        $bookingCode = $this->bookingHelper->createrandobooking(5);   
         $booking = Booking::create([
             'BookingCode' => $bookingCode,
             'BookingEmployeeId' => $request->BookingEmployeeId,

@@ -103,7 +103,7 @@ class UserController extends Controller
             throw new \Exception($e->getMessage());
         }
 
-        return redirect('/login');
+        return redirect('/admin');
     }
 
     public function delete($id)
@@ -119,12 +119,12 @@ class UserController extends Controller
 
         return redirect('/index')->with('success', 'Pengguna berhasil dihapus');
     }
-
+    
     public function editByUser()
     {
         try {
-            $user = User::find(Auth::id());
 
+            $user = User::find(Auth::id());
             $employee = $user->employee->EmployeeImagePath;
 
             $image = Storage::temporaryUrl($employee, now()->addMinutes(5));
@@ -135,28 +135,6 @@ class UserController extends Controller
 
         return view('home.settings.account', ['user' => $user, 'image' => $image, 'title' => 'Pengguna']);
     }
-
-    public function updateByUser(Request $request, $id)
-    {
-        $user = User::find($id);
-        
-        $email = $request->name;
-
-        if ($request->filled('password')) {
-            $password = bcrypt($request->password);
-        } else {
-            $password = $user->password;
-        }
-
-        $user->update([
-            'password' => $password,
-            'name' => $email ?? $user->name,
-            'UserRoleId' => $request->UserRoleId ?? $user->UserRoleId,
-        ]);
-        
-        return redirect('/user')->with('success', 'Berhasil Mengupdate Data');
-    }
-
     public function update(Request $request, $id)
     {
         try {

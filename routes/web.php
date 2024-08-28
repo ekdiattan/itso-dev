@@ -17,7 +17,6 @@ Route::get('/admin', function () {
 
 Route::get('/', [TrackingController::class, 'index']);
 
-Route::get('/login', [UserController::class, 'login']);
 Route::post('/login', [UserController::class, 'authenticate']);
 
 Route::group(['middleware' => ['auth']], function () 
@@ -39,20 +38,16 @@ Route::group(['middleware' => ['auth']], function ()
 
     Route::get('/dashboard', [DashboardController::class, 'index']);
 
+    Route::get('/booking', [BookingController::class, 'index']);
     Route::get('/booking/create', [BookingController::class, 'create']);
     Route::post('/booking-check', [BookingController::class, 'bookingCheck']);
+    Route::get('/booking-done', [BookingController::class, 'done']);
     Route::post('/booking/detail', [BookingController::class, 'show']);
     Route::get('/booking-edit/{id}', [BookingController::class, 'edit']);
-    Route::get('/booking-reject', [BookingController::class, 'reject']);
     Route::get('/booking/delete/{id}', [BookingController::class, 'delete']);
-
-    Route::get('/booking', [BookingController::class, 'index']);
-    
     Route::get('/booking-acc', [BookingController::class, 'acc']);
     Route::get('/booking-reject', [BookingController::class, 'reject']);
-
-    Route::get('/booking-done', [BookingController::class, 'done']);
-
+    
     // Aset
     Route::get('/aset', [AsetController::class, 'index']);
     Route::post('/aset/create', [AsetController::class, 'store']);
@@ -68,7 +63,6 @@ Route::group(['middleware' => ['auth']], function ()
 
     // Account Setting
     Route::get('/account', [UserController::class, 'editByUser']);
-    Route::post('/account/{id}', [UserController::class, 'updateByUser']);
 
     // Unit
     Route::get('/unit', [UnitController::class, 'index']);

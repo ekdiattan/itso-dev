@@ -1,19 +1,14 @@
 <link rel="icon" href="{{ asset('assets/images/jabar.png') }}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/css/bootstrap-timepicker.min.css">
 @extends('home.partials.public')
-<div class="preloader flex-column justify-content-center align-items-center">
-<div class="spinner-border text-primary" role="status">
-  <span class="visually-hidden"></span>
-</div>
-  </div>
 <nav class="navbar bg-info">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">
-    </a>
   <marquee><img src="{{ asset('assets/images/logo_diskom.svg') }}" alt="Diskominfo" class="brand-image" style="height: 50px; width: 150px; margin-left: 35px;">Selamat datang di website IT Solution Dinas Komunikasi & Informatika Provinsi Jawa Barat <img src="{{ asset('assets/images/logo_diskom.svg') }}" alt="Diskominfo" class="brand-image" style="height: 50px; width: 150px; margin-left: 0px;"></marquee>
   </div>
 </nav>
-<br><br>
+<br>
+<br>
+@section('container')
 <div class="col-12 grid-margin">
     <div class="card">
       <div class="card-body">
@@ -40,9 +35,9 @@
                 <label class="col-sm-3 col-form-label" for="jenisAset">Jenis Aset</label>
                 <div class="col-sm-9">
                   <select class="form-control selectpicker" id="namaPemohon" name="BookingAsetId">
-                  @foreach($asset as $asset)
-                    <option value="{{ $asset->MasterAsetId}}">{{$asset->MasterAsetName}}</option>
-                  @endforeach
+                    @foreach($asset as $asset)
+                      <option value="{{ $asset->MasterAsetId}}">{{$asset->MasterAsetName}}</option>
+                    @endforeach
                   </select>
                 </div>
               </div>
@@ -92,7 +87,7 @@
                 </div>
               </div>
             </div>
-            <a class="btn btn-danger" href="/pinjam" role="button">Kembali</a>
+            <a class="btn btn-danger" href="/bookings" role="button">Kembali</a>
             <button type="submit" class="btn btn-primary mr-2" id="btnSubmit" onclick="hideButton()">Submit</button> 
             <button class="btn btn-primary" type="button" id="btn2" style="display:none;">
               <span class="spinner-grow spinner-grow-sm text-danger" role="status" aria-hidden="true"></span>
@@ -100,9 +95,10 @@
               <span class="spinner-grow spinner-grow-sm text-success" role="status" aria-hidden="true"></span>
             </button>
           </div>
-          </form>
+        </form>
         </div>
       </div>
     </div>
+@include('home.general.alert')
 @endsection
     
