@@ -19,8 +19,7 @@ Route::get('/', [TrackingController::class, 'index']);
 
 Route::post('/login', [UserController::class, 'authenticate']);
 
-Route::group(['middleware' => ['auth']], function () 
-{
+Route::group(['middleware' => ['auth']], function () {
     Route::get('/logout', [UserController::class, 'logout']);
 
     Route::get('/employee', [EmployeeController::class, 'index']);
@@ -47,7 +46,7 @@ Route::group(['middleware' => ['auth']], function ()
     Route::get('/booking/delete/{id}', [BookingController::class, 'delete']);
     Route::get('/booking-acc', [BookingController::class, 'acc']);
     Route::get('/booking-reject', [BookingController::class, 'reject']);
-    
+
     // Aset
     Route::get('/aset', [AsetController::class, 'index']);
     Route::post('/aset/create', [AsetController::class, 'store']);

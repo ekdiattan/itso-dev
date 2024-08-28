@@ -11,7 +11,6 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Validation\Rules\In;
 
 class EmployeeController extends Controller
 {
@@ -24,9 +23,15 @@ class EmployeeController extends Controller
 
     public function index()
     {
-        $employee = Employee::all();
-        $position = Position::all();
-        $unit = Unit::all();
+        try{
+
+            $employee = Employee::all();
+            $position = Position::all();
+            $unit = Unit::all();
+
+        }catch(\Exception $e){
+            throw new \Exception($e->getMessage(), 500);
+        }
         
         return view('home.master.employee.index', ['title' => 'Employee', 'employee' => $employee, 'position' => $position, 'unit' => $unit]);
     }
@@ -75,10 +80,15 @@ class EmployeeController extends Controller
 
     public function edit(Request $request)
     {
-        $id = $request->input('id');
-        
-        $employee = Employee::find($id);
-        $position = Position::all();
+        try{
+
+            $id = $request->input('id');
+            $employee = Employee::find($id);
+            $position = Position::all();
+
+        }catch(\Exception $e){
+            throw new \Exception($e->getMessage());
+        }
 
         return view('home.master.employee.edit', [
             'title' => 'Employee', 

@@ -23,36 +23,58 @@ class BookingController extends Controller
 
     public function index()
     {
-        $dalamPengajuan = Booking::where('BookingStatus', 0)->orderBy('BookingCreatedAt', 'desc')->get();
+        try {
+
+            $dalamPengajuan = Booking::where('BookingStatus', 0)->orderBy('BookingCreatedAt', 'desc')->get();
+        } catch (\Exception $e) {
+            throw new \Exception($e->getMessage());
+        }
 
         return view('home.aset.booking.index', ['dalamPengajuan' => $dalamPengajuan, 'title' => 'Booking']);
     }
 
     public function acc()
     {
-        $disetujui = Booking::where('BookingStatus', 1)->orderBy('BookingCreatedAt', 'desc')->get();
+        try {
+            $disetujui = Booking::where('BookingStatus', 1)->orderBy('BookingCreatedAt', 'desc')->get();
+        } catch (\Exception $e) {
+            throw new \Exception($e->getMessage());
+        }
 
         return view('home.aset.booking.acc', ['disetujui' => $disetujui, 'title' => 'Booking']);
     }
 
     public function reject()
     {
-        $ditolak = Booking::where('BookingStatus', 2)->orderBy('BookingCreatedAt', 'desc')->get();
-
+        try {
+            $ditolak = Booking::where('BookingStatus', 2)->orderBy('BookingCreatedAt', 'desc')->get();
+        } catch (\Exception $e) {
+            throw new \Exception($e->getMessage());
+        }
         return view('home.aset.booking.reject', ['ditolak' => $ditolak,  'title' => 'Booking']);
     }
 
     public function done()
     {
-        $selesai = Booking::where('BookingStatus', 3)->orderBy('BookingCreatedAt', 'desc')->get();
-        
+        try {
+
+            $selesai = Booking::where('BookingStatus', 3)->orderBy('BookingCreatedAt', 'desc')->get();
+        } catch (\Exception $e) {
+            throw new \Exception($e->getMessage());
+        }
+
         return view('home.aset.booking.done', ['selesai' => $selesai, 'title' => 'Booking']);
     }
 
     public function permohonan()
     {
-        $employee = Employee::all();
-        $asset = Aset::all();
+        try {
+
+            $employee = Employee::all();
+            $asset = Aset::all();
+        } catch (\Exception $e) {
+            throw new \Exception($e->getMessage());
+        }
 
         return view('home.aset.booking.permohonan', [
             'title' => 'Permohonan Peminjaman',
@@ -63,70 +85,86 @@ class BookingController extends Controller
 
     public function create()
     {
-        $aset = Aset::all();
+        try {
+
+            $aset = Aset::all();
+        } catch (\Exception $e) {
+            throw new \Exception($e->getMessage());
+        }
 
         return view('home.aset.booking.create', ['title' => 'Peminjaman', 'aset' => $aset]);
     }
 
     public function edit($id)
     {
-        $booking = Booking::find($id);
+        try {
 
-        $booking->update([
-            'BookingApprovalStatus' => BookingEnum::BOOKING,
-            'BookingUpdatedBy' => Auth::id(),
-            'BookingUpdatedAt' => Carbon::now()
-        ]);
+            $booking = Booking::find($id);
+            $booking->update([
+                'BookingApprovalStatus' => BookingEnum::BOOKING,
+                'BookingUpdatedBy' => Auth::id(),
+                'BookingUpdatedAt' => Carbon::now()
+            ]);
+        } catch (\Exception $e) {
+            throw new \Exception($e->getMessage());
+        }
 
         return view('home.aset.booking.edit', ['edit' => $booking, 'title' => 'Booking']);
     }
 
     public function delete($id)
     {
-        $booking = Booking::find($id);
-        $user = Auth::id();
-        $booking->update(['BookingDeletedBy' => $user]);
-        $booking->delete();
+        try {
+            $booking = Booking::find($id);
+            $user = Auth::id();
+            $booking->update(['BookingDeletedBy' => $user]);
+            $booking->delete();
 
-        session()->flash('success', 'Peminjaman Berhasil dihapus');
+            session()->flash('success', 'Peminjaman Berhasil dihapus');
+        } catch (\Exception $e) {
+            throw new \Exception($e->getMessage());
+        }
 
         return redirect('/booking')->with('success', 'Peminjaman berhasil dihapus');
     }
 
     public function store(Request $request)
     {
-        $booking = Booking ::where('BookingAsetId', $request->BookingAsetId)->whereBetween('BookingStart', [$request->BookingStart, $request->BookingEnd])->first();
-        
-        if($booking){
-            return back()->with('error', 'Aset sedang dipinjam!');
-        }
+        try {
+            $booking = Booking::where('BookingAsetId', $request->BookingAsetId)->whereBetween('BookingStart', [$request->BookingStart, $request->BookingEnd])->first();
 
-        $bookingCode = $this->bookingHelper->createrandobooking(5);   
-        $booking = Booking::create([
-            'BookingCode' => $bookingCode,
-            'BookingEmployeeId' => $request->BookingEmployeeId,
-            'BookingAsetId' => $request->BookingAsetId,
-            'BookingStart' => $request->BookingStart,
-            'BookingEnd' => $request->BookingEnd,
-            'BookingUsed' => $request->BookingUsed,
-            'BookingStatus' => BookingEnum::WAITING,
-            'BookingRemark' => $request->BookingRemark ?? null,
-            'BookingCreatedBy' => Auth::id(),
-            'BookingUpdatedBy' => Auth::id()
-        ]);
+            if ($booking) {
+                return back()->with('error', 'Aset sedang dipinjam!');
+            }
+
+            $bookingCode = $this->bookingHelper->createrandobooking(5);
+            $booking = Booking::create([
+                'BookingCode' => $bookingCode,
+                'BookingEmployeeId' => $request->BookingEmployeeId,
+                'BookingAsetId' => $request->BookingAsetId,
+                'BookingStart' => $request->BookingStart,
+                'BookingEnd' => $request->BookingEnd,
+                'BookingUsed' => $request->BookingUsed,
+                'BookingStatus' => BookingEnum::WAITING,
+                'BookingRemark' => $request->BookingRemark ?? null,
+                'BookingCreatedBy' => Auth::id(),
+                'BookingUpdatedBy' => Auth::id()
+            ]);
+        } catch (\Exception $e) {
+            throw new \Exception($e->getMessage());
+        }
 
         return view('home.aset.booking.result', ['title' => 'Permohonan', 'booking' => $booking]);
     }
 
     public function show(Request $request)
     {
-        try{
+        try {
             $id = $request->input('id');
 
             $booking = Booking::find($id);
             $booking->BookingStatus = BookingChangeHelper::changeStatus($booking->BookingStatus);
-            
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
             return redirect('/booking')->with('error', 'Permohonan tidak ditemukan');
         }
 

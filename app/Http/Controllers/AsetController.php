@@ -17,56 +17,81 @@ class AsetController extends Controller
 
     public function index()
     {
-        $aset = Aset::all();
+        try {
+
+            $aset = Aset::all();
+        } catch (\Exception $e) {
+            throw new \Exception($e->getMessage());
+        }
 
         return view('home.master.aset.index', ['title' => 'Aset', 'asets' => $aset]);
     }
 
     public function store(Request $request)
     {
-        $asetCodes = $this->asetHelper->generateasetcode($request->MasterAsetBoughtDate, 5);
-        Aset::create(['MasterAsetCode' => $asetCodes, $request->all()]);
+        try {
 
-        $request->accepts('session');
-        session()->flash('success', 'Berhasil menambahkan data!');
+            $asetCodes = $this->asetHelper->generateasetcode($request->MasterAsetBoughtDate, 5);
+            Aset::create(['MasterAsetCode' => $asetCodes, $request->all()]);
+
+            $request->accepts('session');
+            session()->flash('success', 'Berhasil menambahkan data!');
+        } catch (\Exception $e) {
+            throw new \Exception($e->getMessage());
+        }
 
         return redirect('/aset');
     }
 
     public function edit(Request $request)
     {
-        $id = $request->input('id');
+        try {
 
-        $aset = Aset::find($id);
+            $id = $request->input('id');
+            $aset = Aset::find($id);
+        } catch (\Exception $e) {
+            throw new \Exception($e->getMessage());
+        }
 
         return view('home.master.aset.edit', ['aset' => $aset, 'title' => 'Aset']);
     }
 
     public function update(Request $request, $id)
     {
-        $aset = Aset::find($id);
-        $aset->update($request->all());
+        try {
 
-        $request->accepts('session');
-        session()->flash('success', 'Berhasil menambahkan data!');
+            $aset = Aset::find($id);
+            $aset->update($request->all());
+            $request->accepts('session');
+            session()->flash('success', 'Berhasil menambahkan data!');
+        } catch (\Exception $e) {
+            throw new \Exception($e->getMessage());
+        }
 
         return redirect('/aset')->with('success', 'Berhasil Mengupdate Data');
     }
 
     public function destroy(Aset $aset)
     {
-        Aset::destroy($aset->id);
+        try {
+
+            Aset::destroy($aset->id);
+        } catch (\Exception $e) {
+            throw new \Exception($e->getMessage());
+        }
 
         return redirect('/aset')->with('succes', 'Aset has been deleted');
     }
-
-    // delete
     public function delete($id)
     {
-        $aset = Aset::find($id);
-        $aset->delete();
-        session()->flash('success', 'Aset Berhasil dihapus');
+        try {
 
+            $aset = Aset::find($id);
+            $aset->delete();
+            session()->flash('success', 'Aset Berhasil dihapus');
+        } catch (\Exception $e) {
+            throw new \Exception($e->getMessage());
+        }
         return redirect('/aset')->with('success', 'Aset berhasil dihapus');
     }
 }
