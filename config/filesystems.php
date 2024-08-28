@@ -2,7 +2,7 @@
 
 return [
 
-    'default' => env('FILESYSTEM_DISK', 'minio'),
+    'default' => env('FILESYSTEM_DISK'),
     
     'disks' => [
 
