@@ -19,23 +19,16 @@ Route::get('/', [TrackingController::class, 'index']);
 
 Route::post('/login', [UserController::class, 'authenticate']);
 
-Route::group(['middleware' => ['auth']], function () {
-    Route::get('/logout', [UserController::class, 'logout']);
+Route::group(['middleware' => ['auth']], function () 
+{
+
+    Route::get('/dashboard', [DashboardController::class, 'index']);
 
     Route::get('/employee', [EmployeeController::class, 'index']);
     Route::get('/employee/delete/{id}', [EmployeeController::class, 'delete']);
     Route::post('/employee/edit', [EmployeeController::class, 'edit']);
     Route::post('/employee/create', [EmployeeController::class, 'store']);
     Route::post('/employee/update/{id}', [EmployeeController::class, 'update']);
-
-    Route::get('/user', [UserController::class, 'index']);
-    Route::get('/user/register', [UserController::class, 'register']);
-    Route::get('/user/{id}', [UserController::class, 'show']);
-    Route::post('/user/edit', [UserController::class, 'edit']);
-    Route::post('/user/update/{id}', [UserController::class, 'update']);
-    Route::get('/user/delete/{id}', [UserController::class, 'delete']);
-
-    Route::get('/dashboard', [DashboardController::class, 'index']);
 
     Route::get('/booking', [BookingController::class, 'index']);
     Route::get('/booking/create', [BookingController::class, 'create']);
@@ -59,9 +52,16 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/position/edit', [PositionController::class, 'viewEdit']);
     Route::post('/position/update/{id}', [PositionController::class, 'update']);
     Route::get('/position/delete/{id}', [PositionController::class, 'delete']);
-
-    // Account Setting
+    
+    // User
     Route::get('/account', [UserController::class, 'editByUser']);
+    Route::get('/logout', [UserController::class, 'logout']);
+    Route::get('/user', [UserController::class, 'index']);
+    Route::get('/user/register', [UserController::class, 'register']);
+    Route::get('/user/{id}', [UserController::class, 'show']);
+    Route::post('/user/edit', [UserController::class, 'edit']);
+    Route::post('/user/update/{id}', [UserController::class, 'update']);
+    Route::get('/user/delete/{id}', [UserController::class, 'delete']);
 
     // Unit
     Route::get('/unit', [UnitController::class, 'index']);

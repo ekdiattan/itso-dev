@@ -31,7 +31,11 @@
             <div class="form-group row">
               <label class="col-sm-3 col-form-label">Jabatan</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" id="umurEkonomis" name="MasterPositionName" value="{{$employee->position->MasterPositionName}}" maxlength="255" required/>
+                <select class="form-control" aria-label="Default select example" id="position_id" name="EmployeePositionId" required>
+                  @foreach ($position as $positions)    
+                    <option value="{{$positions->MasterPositionId}}">{{$positions->MasterPositionName}}</option>
+                  @endforeach
+                </select>       
               </div>
             </div>
           </div>

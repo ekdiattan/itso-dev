@@ -100,7 +100,7 @@ class EmployeeController extends Controller
     public function update(int $id, Request $request)
     {
         try{
-
+            
             $employee = Employee::find($id);
             $employee->update($request->all());
 
