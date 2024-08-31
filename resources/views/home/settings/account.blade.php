@@ -4,7 +4,7 @@
   <div class="profile-desc mt-2">
     <div class="profile-pic">
       <div class="count-indicator">
-        <img class="rounded-circle mx-auto d-block" src="{{ $image ?? asset('assets/images/faces/face15.jpg') }}" alt="image" style="height: 100px; width: 100px;">
+        <img class="rounded-circle mx-auto d-block" src="{{ $image }}" alt="image" style="height: 100px; width: 100px;">
         <input type="file" id="image-input" name="image" style="display:none;">
       </div>
     </div>

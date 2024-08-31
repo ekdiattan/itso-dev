@@ -123,11 +123,16 @@ class UserController extends Controller
     public function editByUser()
     {
         try {
-
+            
             $user = User::find(Auth::id());
+
             $employee = $user->employee->EmployeeImagePath;
 
-            $image = Storage::temporaryUrl($employee, now()->addMinutes(5));
+            if($employee != null){
+                $image = Storage::temporaryUrl($employee, now()->addMinutes(5));
+            }else{
+                $image = asset('assets/images/PNS.jpg');
+            }
 
         } catch (\Exception $e) {
             throw new \Exception($e->getMessage());

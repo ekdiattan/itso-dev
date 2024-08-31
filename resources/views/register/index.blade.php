@@ -23,27 +23,27 @@
                         </thead>
                         <tbody>
                           @foreach ($users as $key => $post )  
-                          <tr>
-                            <td>{{ $loop->iteration }}</td>
-                            <td>{{ $post->name}}</td>
-                            <td>{{ $post->employee->EmployeeName}}</td>
-                            <td>{{ $post->employee->position->MasterPositionName}}</td>
-                            <td>{{ $post->role->MasterRoleCode}}</td>
-                            <td>{{ $post->employee->EmployeePhone}}</td>
-                            <td>
-                              <form action="/user/edit" method="POST" style="display:inline;">
-                                @csrf
-                                <input type="hidden" name="id" value="{{ $post->UserId }}">
-                                <button type="submit" class="badge bg-warning" style="border: none">
-                                    <span class="menu-icon"><i class="far fa-edit"></i></span>
-                                </button>
-                              </form>
-                              <form action="/user/delete/{{ $post->UserId }}" method="get" class="d-inline">
-                              @csrf
-                              <button class="badge bg-danger border-0" onclick="return confirm('Are you sure?')"><span class="menu-icon"><i class="fas fa-trash"></i></span></button>
-                              </form>
-                            </td>
-                          </tr>
+                            <tr>
+                              <td>{{ $loop->iteration }}</td>
+                              <td>{{ $post->name}}</td>
+                              <td>{{ $post->employee->EmployeeName}}</td>
+                              <td>{{ $post->employee->position->MasterPositionName}}</td>
+                              <td>{{ $post->role->MasterRoleCode}}</td>
+                              <td>{{ $post->employee->EmployeePhone}}</td>
+                              <td>
+                                <form action="/user/edit" method="POST" style="display:inline;">
+                                  @csrf
+                                  <input type="hidden" name="id" value="{{ $post->UserId }}">
+                                  <button type="submit" class="badge bg-warning" style="border: none">
+                                      <span class="menu-icon"><i class="far fa-edit"></i></span>
+                                  </button>
+                                </form>
+                                <form action="/user/delete/{{ $post->UserId }}" method="get" class="d-inline">
+                                  @csrf
+                                  <button class="badge bg-danger border-0" onclick="return confirm('Are you sure?')"><span class="menu-icon"><i class="fas fa-trash"></i></span></button>
+                                </form>
+                              </td>
+                            </tr>
                           @endforeach
                         </tbody>
                       </table>
