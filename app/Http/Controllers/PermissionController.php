@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Module;
+use App\Models\Position;
 use App\Models\Permission;
+use App\Models\Role;
 use Illuminate\Http\Request;
 
 class PermissionController extends Controller
@@ -12,20 +15,26 @@ class PermissionController extends Controller
         try{
 
             $permission = Permission::all();
-            
+            $module = Module::all();
+            $role = Role::all();
+
         }catch(\Exception $e){
             throw new \Exception($e->getMessage());
         }
 
-        return view('home.master.permission.index', ['title' => 'Hak Akses', 'permission' => $permission]);
+        return view('home.master.permission.index', ['title' => 'Hak Akses', 'permission' => $permission, 'module' => $module, 'role' => $role]);
     }
-    public function store()
+    public function store(Request $request)
     {
         try{
 
+            Permission::create($request->all());
+
         }catch(\Exception $e){
             throw new \Exception($e->getMessage());
         }
+
+        return back()->with('success', 'Data Berhasil Ditambahkan');
     }
     public function show()
     {

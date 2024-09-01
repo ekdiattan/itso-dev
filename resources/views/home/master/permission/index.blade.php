@@ -6,23 +6,23 @@
       <div class="card">
         <div class="card-body">
           <h4 class="card-title">Tambahkan Hak Akses</h4>
-          <form action="/merk/create" method="post" >
+          <form action="/permission/create" method="post" >
             @csrf
             <br>
             <div class="form-group">
               <label for="exampleInputUsername1">Modul</label>
               <select class="form-control" aria-label="Default select example" id="status" name="PermissionModuleId">
-                <option value="1">Kendaraan</option>
-                <option value="2">Aset</option>
-                <option value="3">Ruangan</option>
+                @foreach ($module as $module)
+                  <option value="{{ $module->MasterModuleId }}">{{ $module->MasterModuleName }}</option>
+                @endforeach
               </select>            
             </div>
             <div class="form-group">
               <label for="exampleInputUsername1">Posisi</label>
               <select class="form-control" aria-label="Default select example" id="status" name="PermissionRoleId">
-                <option value="1">Kendaraan</option>
-                <option value="2">Aset</option>
-                <option value="3">Ruangan</option>
+                @foreach ($role as $role)
+                  <option value="{{ $role->MasterRoleId }}">{{ $role->MasterRoleCode }}</option>
+                @endforeach
               </select>            
             </div>
             <button type="submit" class="btn btn-primary mr-2">Submit</button>

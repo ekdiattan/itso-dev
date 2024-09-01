@@ -72,6 +72,7 @@ Route::group(['middleware' => ['auth']], function ()
     
     // Permission
     Route::get('/permission', [PermissionController::class, 'index']);
+    Route::post('/permission/create', [PermissionController::class, 'store']);
     Route::post('/permission/delete', [PermissionController::class, 'delete']);
 
     // Module

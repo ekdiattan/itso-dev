@@ -19,7 +19,7 @@ class ModuleController extends Controller
         try{
 
             $module = Module::all();
-
+            
         }catch(\Exception $e){
             throw new \Exception($e->getMessage());
         }
@@ -40,7 +40,7 @@ class ModuleController extends Controller
             }
 
             $createCode = $this->moduleHelper->generateCode($request->MasterModuleName);
-            
+
             Module::create([
                 'MasterModuleCode' => $createCode,
                 'MasterModuleName' => $request->MasterModuleName
