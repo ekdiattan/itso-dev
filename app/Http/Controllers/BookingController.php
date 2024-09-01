@@ -95,21 +95,18 @@ class BookingController extends Controller
         return view('home.aset.booking.create', ['title' => 'Peminjaman', 'aset' => $aset]);
     }
 
-    public function edit($id)
+    public function edit(Request $request)
     {
         try {
 
-            $booking = Booking::find($id);
-            $booking->update([
-                'BookingApprovalStatus' => BookingEnum::BOOKING,
-                'BookingUpdatedBy' => Auth::id(),
-                'BookingUpdatedAt' => Carbon::now()
-            ]);
+            $id = $request->input('id');
+            $edit = Booking::find($id);
+
         } catch (\Exception $e) {
             throw new \Exception($e->getMessage());
         }
 
-        return view('home.aset.booking.edit', ['edit' => $booking, 'title' => 'Booking']);
+        return view('home.aset.booking.edit', ['edit' => $edit, 'title' => 'Booking']);
     }
 
     public function delete($id)
@@ -169,5 +166,19 @@ class BookingController extends Controller
         }
 
         return view('home.aset.booking.show', ['title' => 'Permohonan', 'booking' => $booking]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        try {
+
+            $booking = Booking::find($id);
+            $booking->update($request->all());
+
+        }catch (\Exception $e) {
+            throw new \Exception($e->getMessage());
+        }
+
+        return redirect('/booking')->with('success', 'Permohonan Berhasil diupdate');
     }
 }

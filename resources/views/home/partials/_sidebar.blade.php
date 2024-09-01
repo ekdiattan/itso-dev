@@ -38,7 +38,7 @@
                 <p>Pengguna</p>
               </a>
             </li>
-            <li class="nav-item {{ $title === 'Employee' || $title === 'Aset' || $title === 'Position' ? 'menu-open menu-is-open' : '' }}">
+            <li class="nav-item {{ $title === 'Employee' || $title === 'Aset' || $title === 'Jabatan' || $title === 'Modul' || $title === 'Hak Akses' ? 'menu-open menu-is-open' : '' }}">
               <a class="nav-link">
                 <i class="nav-icon fas fa-cog "></i>
                 <p>
@@ -54,19 +54,25 @@
                   </a>
                 </li>
                 <li class="nav-item">
+                  <a href="/module"class="nav-link {{ ($title === 'Modul') ? 'active disabled' : '' }}">
+                    <i class="nav-icon fas fa-folder ml-3"></i>
+                    <p>Modul</p>
+                  </a>
+                </li>
+                <li class="nav-item">
                   <a href="/aset" class="nav-link {{ ($title === 'Aset') ? 'active disabled' : '' }}">
                     <i class="nav-icon fas fa-weight ml-3"></i>
                     <p>Aset</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="/position" class="nav-link {{ ($title === 'Position') ? 'active disabled' : '' }}">
+                  <a href="/position" class="nav-link {{ ($title === 'Jabatan') ? 'active disabled' : '' }}">
                     <i class="nav-icon fas fa-list ml-3"></i>
                     <p>Jabatan</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="/merk/" class="nav-link 'active disabled' : '' }}">
+                  <a href="/permission" class="nav-link {{ ($title === 'Hak Akses') ? 'active disabled' : '' }}">
                   <i class="nav-icon fas fa-window-restore ml-3"></i>
                     <p>Pengaturan Hak Akses</p>
                   </a>

@@ -18,7 +18,7 @@ class PositionController extends Controller
             throw new \Exception($e->getMessage());
         }
 
-        return view('home.master.position.index', ['title' => 'Position', 'position' => $position]);
+        return view('home.master.position.index', ['title' => 'Jabatan', 'position' => $position]);
     }
     
     public function viewEdit(Request $request)
@@ -33,7 +33,7 @@ class PositionController extends Controller
             throw new \Exception($e->getMessage());
         }
 
-        return view('home.master.position.edit', ['title' => 'Position', 'position' => $position]);
+        return view('home.master.position.edit', ['title' => 'Jabatan', 'position' => $position]);
     }
 
     public function update(Request $request, $id)

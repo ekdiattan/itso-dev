@@ -73,11 +73,11 @@
                                         <span class="menu-icon"><i class="far fa-eye"></i></span>
                                     </button>
                                   </form>                                    
-                                  <form action="/booking/detail" method="POST" style="display:inline;">
+                                  <form action="/booking/edit" method="POST" style="display:inline;">
                                     @csrf
                                     <input type="hidden" name="id" value="{{ $post->BookingId }}">
-                                    <button type="submit" class="badge bg-primary" style="border: none">
-                                        <span class="menu-icon"><i class="far fa-eye"></i></span>
+                                    <button type="submit" class="badge bg-warning" style="border: none">
+                                        <span class="menu-icon"><i class="far fa-edit"></i></span>
                                     </button>
                                   </form>                                        
                                 </td>

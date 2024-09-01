@@ -4,6 +4,8 @@ use App\Http\Controllers\AsetController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\ModuleController;
+use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\PositionController;
 use App\Http\Controllers\TrackingController;
 use App\Http\Controllers\UnitController;
@@ -35,8 +37,9 @@ Route::group(['middleware' => ['auth']], function ()
     Route::post('/booking-check', [BookingController::class, 'bookingCheck']);
     Route::get('/booking-done', [BookingController::class, 'done']);
     Route::post('/booking/detail', [BookingController::class, 'show']);
-    Route::get('/booking-edit/{id}', [BookingController::class, 'edit']);
+    Route::post('/booking/edit', [BookingController::class, 'edit']);
     Route::get('/booking/delete/{id}', [BookingController::class, 'delete']);
+    Route::post('/booking/update/{id}', [BookingController::class, 'update']);
     Route::get('/booking-acc', [BookingController::class, 'acc']);
     Route::get('/booking-reject', [BookingController::class, 'reject']);
 
@@ -66,6 +69,15 @@ Route::group(['middleware' => ['auth']], function ()
     // Unit
     Route::get('/unit', [UnitController::class, 'index']);
     Route::get('/unit/delete/{id}', [UnitController::class, 'delete']);
+    
+    // Permission
+    Route::get('/permission', [PermissionController::class, 'index']);
+    Route::post('/permission/delete', [PermissionController::class, 'delete']);
+
+    // Module
+    Route::get('/module', [ModuleController::class, 'index']);
+    Route::post('/module/create', [ModuleController::class, 'store']);
+    Route::post('/module/delete', [ModuleController::class, 'delete']);
 });
 
 Route::get('/public', [TrackingController::class, 'index']);

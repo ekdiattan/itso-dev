@@ -20,7 +20,7 @@ class UnitController extends Controller
         $unit = Unit::find($request->id);
 
         $unit->update([
-            'MasterUnitDeletedBy' => Auth::id(),
+            'MasterUnitDeletedBy' => Auth::id()
         ]);
 
         $unit->delete();

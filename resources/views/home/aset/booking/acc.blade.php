@@ -4,11 +4,8 @@
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h2>Peminjaman Aset</h2>
 </div>
-<!-- double navbar -->
 <div class="nav navbar navbar-expand navbar-white navbar-light border-bottom p-0">
-    <!-- Container wrapper -->
     <div class="container justify-content-center justify-content-md-between">
-      <!-- Left links -->
       <ul class="navbar-nav flex-row">
         <li class="nav-item me-auto">
         </li>
@@ -74,8 +71,20 @@
                                     <td>{{ $post->BookingEnd}}</td>
                                     <td>{{ $post->BookingRemark }}</td>
                                     <td>
-                                        <a href="/booking/{{ $post->id }}" class="badge bg-info"><span class="menu-icon"><i class="far fa-eye"></i></span></a>
-                                        <a href="/booking-edit/{{ $post->id }}" class="badge bg-primary"><span class="menu-icon"><i class="fas fa-tools"></i></span></a>
+                                      <form action="/booking/detail" method="POST" style="display:inline;">
+                                        @csrf
+                                        <input type="hidden" name="id" value="{{ $post->BookingId }}">
+                                        <button type="submit" class="badge bg-primary" style="border: none">
+                                            <span class="menu-icon"><i class="far fa-eye"></i></span>
+                                        </button>
+                                      </form>                                    
+                                      <form action="/booking/edit" method="POST" style="display:inline;">
+                                        @csrf
+                                        <input type="hidden" name="id" value="{{ $post->BookingId }}">
+                                        <button type="submit" class="badge bg-warning" style="border: none">
+                                            <span class="menu-icon"><i class="far fa-edit"></i></span>
+                                        </button>
+                                      </form>       
                                     </td>
                                 </tr>
                             @endforeach
