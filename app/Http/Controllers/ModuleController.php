@@ -2,12 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\ModuleHelper;
 use App\Models\Module;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 class ModuleController extends Controller
 {
+    protected $moduleHelper;
+    public function __construct(ModuleHelper $moduleHelper){
+        $this->moduleHelper = $moduleHelper;
+    }
+
     public function index()
     {
         try{
@@ -33,7 +39,12 @@ class ModuleController extends Controller
                 return back()->with('badRequest', 'Module sudah ada !');
             }
 
-            Module::create($request->all());
+            $createCode = $this->moduleHelper->generateCode($request->MasterModuleName);
+            
+            Module::create([
+                'MasterModuleCode' => $createCode,
+                'MasterModuleName' => $request->MasterModuleName
+            ], $request->all());
 
         }catch(\Exception $e){
             throw new \Exception($e->getMessage());
