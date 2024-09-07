@@ -1,3 +1,8 @@
+@if (session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+@endif
 <aside class="main-sidebar sidebar-light-primary">
     <div class="sidebar">
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">

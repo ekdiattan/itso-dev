@@ -31,8 +31,10 @@ Route::group(['middleware' => ['auth']], function ()
     Route::post('/employee/edit', [EmployeeController::class, 'edit']);
     Route::post('/employee/create', [EmployeeController::class, 'store']);
     Route::post('/employee/update/{id}', [EmployeeController::class, 'update']);
-
-    Route::get('/booking', [BookingController::class, 'index']);
+    
+    Route::middleware(['check.permission:TIMASET'])->group(function () {
+        Route::get('/booking', [BookingController::class, 'index']);
+    });
     Route::get('/booking/create', [BookingController::class, 'create']);
     Route::post('/booking-check', [BookingController::class, 'bookingCheck']);
     Route::get('/booking-done', [BookingController::class, 'done']);
@@ -44,14 +46,20 @@ Route::group(['middleware' => ['auth']], function ()
     Route::get('/booking-reject', [BookingController::class, 'reject']);
 
     // Aset
-    Route::get('/aset', [AsetController::class, 'index']);
+    Route::middleware(['check.permission:ASET'])->group(function () {
+        Route::get('/aset', [AsetController::class, 'index']);
+    });
+
     Route::post('/aset/create', [AsetController::class, 'store']);
     Route::post('/aset', [AsetController::class, 'edit']);
     Route::post('/aset/{id}', [AsetController::class, 'update']);
     Route::get('/aset/delete/{id}', [AsetController::class, 'delete']);
-
+    
     // Position
-    Route::get('/position', [PositionController::class, 'index']);
+    Route::middleware(['check.permission:JABATAN'])->group(function () {
+        Route::get('/position', [PositionController::class, 'index']);
+    });
+
     Route::post('/position/edit', [PositionController::class, 'viewEdit']);
     Route::post('/position/update/{id}', [PositionController::class, 'update']);
     Route::get('/position/delete/{id}', [PositionController::class, 'delete']);
@@ -71,12 +79,16 @@ Route::group(['middleware' => ['auth']], function ()
     Route::get('/unit/delete/{id}', [UnitController::class, 'delete']);
     
     // Permission
-    Route::get('/permission', [PermissionController::class, 'index']);
+    Route::middleware(['check.permission:HAKAKSES'])->group(function () {
+        Route::get('/permission', [PermissionController::class, 'index']);
+    });
     Route::post('/permission/create', [PermissionController::class, 'store']);
     Route::post('/permission/delete', [PermissionController::class, 'delete']);
-
+    
     // Module
-    Route::get('/module', [ModuleController::class, 'index']);
+    Route::middleware(['check.permission:MODUL'])->group(function () {
+        Route::get('/module', [ModuleController::class, 'index']);
+    });
     Route::post('/module/create', [ModuleController::class, 'store']);
     Route::post('/module/delete', [ModuleController::class, 'delete']);
 });
