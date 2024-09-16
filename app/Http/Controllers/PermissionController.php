@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Module;
 use App\Models\Permission;
-use App\Models\Role;
 use App\Services\PermissionService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -61,7 +59,7 @@ class PermissionController extends Controller
     public function delete(Request $request)
     {
         try{
-            
+
             $id = $request->input('id');
             Permission::find($id)->delete();
 

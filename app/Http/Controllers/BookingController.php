@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Carbon\Carbon;
 use App\Enums\BookingEnum;
 use App\Helpers\BookingChangeHelper;
 use App\Helpers\BookingHelper;
@@ -108,7 +107,6 @@ class BookingController extends Controller
 
         return view('home.aset.booking.edit', ['edit' => $edit, 'title' => 'Booking']);
     }
-
     public function delete($id)
     {
         try {
@@ -124,7 +122,6 @@ class BookingController extends Controller
 
         return redirect('/booking')->with('success', 'Peminjaman berhasil dihapus');
     }
-
     public function store(Request $request)
     {
         try {
@@ -153,7 +150,6 @@ class BookingController extends Controller
 
         return view('home.aset.booking.result', ['title' => 'Permohonan', 'booking' => $booking]);
     }
-
     public function show(Request $request)
     {
         try {
@@ -167,7 +163,6 @@ class BookingController extends Controller
 
         return view('home.aset.booking.show', ['title' => 'Permohonan', 'booking' => $booking]);
     }
-
     public function update(Request $request, $id)
     {
         try {
