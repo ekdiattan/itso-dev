@@ -3,26 +3,32 @@
 namespace App\Http\Controllers;
 
 use App\Models\Module;
-use App\Models\Position;
 use App\Models\Permission;
 use App\Models\Role;
+use App\Services\PermissionService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PermissionController extends Controller
 {
+    protected $service;
+
+    public function __construct(PermissionService $service)
+    {
+        $this->service = $service;
+    }
     public function index()
     {
         try{
 
-            $permission = Permission::all();
-            $module = Module::all();
-            $role = Role::all();
+            $user = Auth::user();
+            $permissions = $this->service->index($user);
 
         }catch(\Exception $e){
             throw new \Exception($e->getMessage());
         }
 
-        return view('home.master.permission.index', ['title' => 'Hak Akses', 'permission' => $permission, 'module' => $module, 'role' => $role]);
+        return view('home.master.permission.index', ['title' => 'Hak Akses', 'permission' => $permissions['permission'], 'module' => $permissions['module'], 'role' => $permissions['role']]);
     }
     public function store(Request $request)
     {
@@ -55,7 +61,7 @@ class PermissionController extends Controller
     public function delete(Request $request)
     {
         try{
-
+            
             $id = $request->input('id');
             Permission::find($id)->delete();
 
