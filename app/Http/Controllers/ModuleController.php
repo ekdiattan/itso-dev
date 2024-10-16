@@ -53,19 +53,34 @@ class ModuleController extends Controller
         return back()->with('success', 'Data Berhasil Ditambahkan');
     }
 
-    public function update(Request $request)
+    public function edit(Request $request)
     {
         try{
-
+            
             $id = $request->input('id');
-            Module::find($id)->update($request->all());
+            $module = Module::find($id);
 
         }catch(\Exception $e){
             throw new \Exception($e->getMessage());
         }
 
-        return back()->with('success', 'Data Berhasil Diupdate');
+        return view('home.master.module.edit', ['module' => $module, 'title' => 'Module']);
     }
+
+    public function update(Request $request, $id)
+    {
+        try {
+
+            $aset = Module::find($id);
+            $aset->update($request->all());
+            
+        } catch (\Exception $e) {
+            throw new \Exception($e->getMessage());
+        }
+
+        return redirect('/module')->with('success', 'Berhasil Mengupdate Data');
+    }
+
     public function delete(Request $request)
     {
         try{

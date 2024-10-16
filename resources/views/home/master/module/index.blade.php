@@ -43,7 +43,7 @@
                           <td>{{ $post->MasterModuleName }}</td>
                           <td>{{ $post->MasterModuleCode }}</td>
                           <td>
-                            <form action="/module/create" method="POST" style="display:inline;">
+                            <form action="/module/edit" method="POST" style="display:inline;">
                               @csrf
                               <input type="hidden" name="id" value="{{ $post->MasterModuleId }}">
                               <button type="submit" class="badge bg-warning" style="border: none">

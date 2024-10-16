@@ -3,45 +3,15 @@
 <div class="col-12 grid-margin">
   <div class="card">
     <div class="card-body">
-      <form action="/aset/{{$aset->MasterAsetId}}" method="post">
+      <form action="/module/update/{{$module->MasterModuleId}}" method="post">
         @csrf
-        <p class="card-description">Edit Aset</p>
+        <p class="card-description">Edit Module</p>
         <div class="row">
           <div class="col-md-6">
             <div class="form-group row">
-              <label class="col-sm-3 col-form-label">Nama Aset</label>
+              <label class="col-sm-3 col-form-label">Nama Module</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" id="MasterAsetName" name="MasterAsetName" maxlength="255"  value="{{ $aset->MasterAsetName }}" />
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-6">
-            <div class="form-group row">
-              <label class="col-sm-3 col-form-label">Kode Aset</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" id="MasterAsetCode" name="MasterAsetCode" maxlength="255" value="{{ $aset->MasterAsetCode}}" readonly />
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-6">
-            <div class="form-group row">
-              <label class="col-sm-3 col-form-label">Tipe Aset</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" id="MasterAsetType" name="MasterAsetType" maxlength="255"  value="{{ $aset->MasterAsetType }}"/>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-6">
-            <div class="form-group row">
-              <label class="col-sm-3 col-form-label">Tanggal</label>
-              <div class="col-sm-9">
-                <input type="date" class="form-control" id="MasterAsetBoughtDate" name="MasterAsetBoughtDate" maxlength="255"  value="{{ $aset->MasterAsetBoughtDate }}" />
+                <input type="text" class="form-control" id="MasterModuleName" name="MasterModuleName" maxlength="255"  value="{{ $module->MasterModuleName}}" />
               </div>
             </div>
           </div>

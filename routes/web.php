@@ -32,7 +32,7 @@ Route::group(['middleware' => ['auth']], function ()
     Route::post('/employee/create', [EmployeeController::class, 'store']);
     Route::post('/employee/update/{id}', [EmployeeController::class, 'update']);
     
-    Route::middleware(['check.permission:TIMASET'])->group(function () {
+    Route::middleware(['check.permission:TA'])->group(function () {
         Route::get('/booking', [BookingController::class, 'index']);
     });
     Route::get('/booking/create', [BookingController::class, 'create']);
@@ -46,7 +46,7 @@ Route::group(['middleware' => ['auth']], function ()
     Route::get('/booking-reject', [BookingController::class, 'reject']);
 
     // Aset
-    Route::middleware(['check.permission:ASET'])->group(function () {
+    Route::middleware(['check.permission:AS'])->group(function () {
         Route::get('/aset', [AsetController::class, 'index']);
     });
 
@@ -56,7 +56,7 @@ Route::group(['middleware' => ['auth']], function ()
     Route::get('/aset/delete/{id}', [AsetController::class, 'delete']);
     
     // Position
-    Route::middleware(['check.permission:JABATAN'])->group(function () {
+    Route::middleware(['check.permission:JB'])->group(function () {
         Route::get('/position', [PositionController::class, 'index']);
     });
 
@@ -79,17 +79,19 @@ Route::group(['middleware' => ['auth']], function ()
     Route::get('/unit/delete/{id}', [UnitController::class, 'delete']);
     
     // Permission
-    Route::middleware(['check.permission:HAKAKSES'])->group(function () {
+    Route::middleware(['check.permission:HA'])->group(function () {
         Route::get('/permission', [PermissionController::class, 'index']);
     });
     Route::post('/permission/create', [PermissionController::class, 'store']);
     Route::post('/permission/delete', [PermissionController::class, 'delete']);
     
     // Module
-    Route::middleware(['check.permission:MODUL'])->group(function () {
+    Route::middleware(['check.permission:MD'])->group(function () {
         Route::get('/module', [ModuleController::class, 'index']);
     });
     Route::post('/module/create', [ModuleController::class, 'store']);
+    Route::post('/module/edit', [ModuleController::class, 'edit']);
+    Route::post('/module/update/{id}', [ModuleController::class, 'update']);
     Route::post('/module/delete', [ModuleController::class, 'delete']);
 });
 

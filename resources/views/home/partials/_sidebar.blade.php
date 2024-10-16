@@ -20,7 +20,7 @@
                         <p>Dashboard</p>
                     </a>
                 </li>
-                @if (hasPermission(auth()->user()->role->MasterRoleId, 'TIMASET'))
+                @if (hasPermission(auth()->user()->role->MasterRoleId, 'TA'))
                 <li class="nav-item {{ ($title === 'Inventaris' || $title === 'Booking') ? 'menu-open menu-is-open' : '' }}">
                     <a class="nav-link">
                         <i class="nav-icon fas fa-users"></i>
@@ -37,7 +37,7 @@
                     </ul>
                 </li>
                 @endif
-                @if (hasPermission(auth()->user()->role->MasterRoleId, 'JABATAN'))
+                @if (hasPermission(auth()->user()->role->MasterRoleId, 'JB'))
                 <li class="nav-item">
                     <a href="/position" class="nav-link {{ ($title === 'Jabatan') ? 'active disabled' : '' }}">
                         <i class="nav-icon fas fa-list ml-3"></i>
@@ -45,7 +45,7 @@
                     </a>
                 </li>
                 @endif
-                @if (hasPermission(auth()->user()->role->MasterRoleId, 'MODUL'))
+                @if (hasPermission(auth()->user()->role->MasterRoleId, 'MD'))
                 <li class="nav-item">
                     <a href="/module" class="nav-link {{ ($title === 'Modul') ? 'active disabled' : '' }}">
                         <i class="nav-icon fas fa-folder ml-3"></i>
@@ -53,7 +53,7 @@
                     </a>
                 </li>
                 @endif
-                @if (hasPermission(auth()->user()->role->MasterRoleId, 'ASET'))
+                @if (hasPermission(auth()->user()->role->MasterRoleId, 'AS'))
                 <li class="nav-item">
                     <a href="/aset" class="nav-link {{ ($title === 'Aset') ? 'active disabled' : '' }}">
                         <i class="nav-icon fas fa-weight ml-3"></i>
@@ -61,7 +61,7 @@
                     </a>
                 </li>
                 @endif
-                @if (hasPermission(auth()->user()->role->MasterRoleId, 'HAKAKSES'))
+                @if (hasPermission(auth()->user()->role->MasterRoleId, 'HA'))
                 <li class="nav-item">
                     <a href="/permission" class="nav-link {{ ($title === 'Hak Akses') ? 'active disabled' : '' }}">
                         <i class="nav-icon fas fa-window-restore ml-3"></i>

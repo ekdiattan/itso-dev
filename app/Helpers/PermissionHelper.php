@@ -13,9 +13,9 @@ if (!function_exists('hasPermission'))
      * @return bool
      */
 
-    function hasPermission($roleId, $moduleName)
+    function hasPermission($roleId, $modulecode)
     {
-        $masterModule = Module::where('MasterModuleName', $moduleName)->first();
+        $masterModule = Module::where('MasterModuleCode', $modulecode)->first();
         
         return Permission::
             where('PermissionRoleId', $roleId)
