@@ -10,7 +10,6 @@ use App\Http\Controllers\PositionController;
 use App\Http\Controllers\TrackingController;
 use App\Http\Controllers\UnitController;
 use App\Http\Controllers\UserController;
-
 use Illuminate\Support\Facades\Route;
 
 Route::get('/admin', function () {
@@ -21,8 +20,7 @@ Route::get('/', [TrackingController::class, 'index']);
 
 Route::post('/login', [UserController::class, 'authenticate']);
 
-Route::group(['middleware' => ['auth']], function () 
-{
+Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/dashboard', [DashboardController::class, 'index']);
 
@@ -31,11 +29,11 @@ Route::group(['middleware' => ['auth']], function ()
     Route::post('/employee/edit', [EmployeeController::class, 'edit']);
     Route::post('/employee/create', [EmployeeController::class, 'store']);
     Route::post('/employee/update/{id}', [EmployeeController::class, 'update']);
-    
+
     Route::middleware(['check.permission:TA'])->group(function () {
         Route::get('/booking', [BookingController::class, 'index']);
     });
-    
+
     Route::get('/booking/create', [BookingController::class, 'create']);
     Route::post('/booking-check', [BookingController::class, 'bookingCheck']);
     Route::get('/booking-done', [BookingController::class, 'done']);
@@ -55,7 +53,7 @@ Route::group(['middleware' => ['auth']], function ()
     Route::post('/aset', [AsetController::class, 'edit']);
     Route::post('/aset/{id}', [AsetController::class, 'update']);
     Route::get('/aset/delete/{id}', [AsetController::class, 'delete']);
-    
+
     // Position
     Route::middleware(['check.permission:JB'])->group(function () {
         Route::get('/position', [PositionController::class, 'index']);
@@ -64,7 +62,7 @@ Route::group(['middleware' => ['auth']], function ()
     Route::post('/position/edit', [PositionController::class, 'viewEdit']);
     Route::post('/position/update/{id}', [PositionController::class, 'update']);
     Route::get('/position/delete/{id}', [PositionController::class, 'delete']);
-    
+
     // User
     Route::get('/account', [UserController::class, 'editByUser']);
     Route::get('/logout', [UserController::class, 'logout']);
@@ -78,14 +76,14 @@ Route::group(['middleware' => ['auth']], function ()
     // Unit
     Route::get('/unit', [UnitController::class, 'index']);
     Route::get('/unit/delete/{id}', [UnitController::class, 'delete']);
-    
+
     // Permission
     Route::middleware(['check.permission:HA'])->group(function () {
         Route::get('/permission', [PermissionController::class, 'index']);
     });
     Route::post('/permission/create', [PermissionController::class, 'store']);
     Route::post('/permission/delete', [PermissionController::class, 'delete']);
-    
+
     // Module
     Route::middleware(['check.permission:MD'])->group(function () {
         Route::get('/module', [ModuleController::class, 'index']);

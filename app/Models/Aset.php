@@ -15,11 +15,11 @@ class Aset extends Model
     protected $primaryKey = 'MasterAsetId';
 
     public $guarded =
-    [
-        'MasterAsetCreatedAt',
-        'MasterAsetUpdatedAt',
-        'MasterAsetDeletedAt',
-    ];
+        [
+            'MasterAsetCreatedAt',
+            'MasterAsetUpdatedAt',
+            'MasterAsetDeletedAt',
+        ];
 
     const CREATED_AT = 'MasterAsetCreatedAt';
 

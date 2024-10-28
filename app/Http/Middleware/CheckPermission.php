@@ -11,8 +11,6 @@ class CheckPermission
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
      * @param  string  $moduleName
      * @return mixed
      */
@@ -20,10 +18,10 @@ class CheckPermission
     {
         $user = Auth::user();
 
-        if (!hasPermission($user->role->MasterRoleId, $moduleName)) {
+        if (! hasPermission($user->role->MasterRoleId, $moduleName)) {
             return redirect()->back();
         }
-        
+
         return $next($request);
     }
 }

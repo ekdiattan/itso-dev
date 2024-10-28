@@ -8,6 +8,7 @@ use Illuminate\Filesystem\Filesystem;
 class MakeServiceCommand extends Command
 {
     protected $signature = 'make:service {name : The name of the service}';
+
     protected $description = 'Create a new service file by Hadyan Yuma Ekdiattan!';
 
     protected $files;
@@ -25,10 +26,11 @@ class MakeServiceCommand extends Command
 
         if ($this->files->exists($path)) {
             $this->error("Service file {$name}.php already exists!");
+
             return;
         }
 
-        if (!$this->files->isDirectory(base_path('app/Services'))) {
+        if (! $this->files->isDirectory(base_path('app/Services'))) {
             $this->files->makeDirectory(base_path('app/Services'), 0755, true);
         }
 

@@ -3,7 +3,7 @@
 return [
 
     'default' => env('FILESYSTEM_DISK'),
-    
+
     'disks' => [
 
         'local' => [
@@ -19,7 +19,7 @@ return [
             'visibility' => 'public',
             'throw' => false,
         ],
-        
+
         'minio' => [
             'driver' => 's3',
             'key' => env('MINIO_ACCESS_KEY_ID'),

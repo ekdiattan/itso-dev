@@ -15,55 +15,60 @@ class PermissionController extends Controller
     {
         $this->service = $service;
     }
+
     public function index()
     {
-        try{
+        try {
 
             $user = Auth::user();
             $permissions = $this->service->index($user);
 
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
             throw new \Exception($e->getMessage());
         }
 
         return view('home.master.permission.index', ['title' => 'Hak Akses', 'permission' => $permissions['permission'], 'module' => $permissions['module'], 'role' => $permissions['role']]);
     }
+
     public function store(Request $request)
     {
-        try{
+        try {
 
             Permission::create($request->all());
 
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
             throw new \Exception($e->getMessage());
         }
 
         return back()->with('success', 'Data Berhasil Ditambahkan');
     }
+
     public function show()
     {
-        try{
+        try {
 
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
             throw new \Exception($e->getMessage());
         }
     }
+
     public function update()
     {
-        try{
+        try {
 
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
             throw new \Exception($e->getMessage());
         }
     }
+
     public function delete(Request $request)
     {
-        try{
+        try {
 
             $id = $request->input('id');
             Permission::find($id)->delete();
 
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
             throw new \Exception($e->getMessage());
         }
 

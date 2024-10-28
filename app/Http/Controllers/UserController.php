@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Enums\ResourceEnum;
+use App\Helpers\StorageHelper;
+use App\Models\Employee;
 use App\Models\Role;
 use App\Models\User;
-use App\Models\Employee;
 use Illuminate\Http\Request;
-use App\Helpers\StorageHelper;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -99,7 +99,7 @@ class UserController extends Controller
             Auth::logout();
             $request->session()->invalidate();
             $request->session()->regenerateToken();
-            
+
         } catch (\Exception $e) {
             throw new \Exception($e->getMessage());
         }
@@ -122,18 +122,18 @@ class UserController extends Controller
 
         return redirect('/index')->with('success', 'Pengguna berhasil dihapus');
     }
-    
+
     public function editByUser()
     {
         try {
-            
+
             $user = User::find(Auth::id());
 
             $employee = $user->employee->EmployeeImagePath;
 
-            if($employee != null){
+            if ($employee != null) {
                 $image = Storage::temporaryUrl($employee, now()->addMinutes(5));
-            }else{
+            } else {
                 $image = asset('assets/images/PNS.jpg');
             }
 
@@ -143,6 +143,7 @@ class UserController extends Controller
 
         return view('home.settings.account', ['user' => $user, 'image' => $image, 'title' => 'Pengguna']);
     }
+
     public function update(Request $request, $id)
     {
         try {
@@ -156,12 +157,11 @@ class UserController extends Controller
                 $password = bcrypt($request->password);
             }
 
-            if($request->hasFile('EmployeeImage'))
-            {
+            if ($request->hasFile('EmployeeImage')) {
                 $path = StorageHelper::storeFileImage($request->EmployeeImage, ResourceEnum::USER);
 
                 $user->employee->update([
-                    'EmployeeImagePath' => $path
+                    'EmployeeImagePath' => $path,
                 ]);
             }
 

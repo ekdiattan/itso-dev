@@ -10,15 +10,14 @@ class AsetHelper extends GeneralHelper
 
         $generalHelper = $this->generateRandomCodeCharacterPlusNumber($length);
 
-        $code = 'DKS' . '-' . $date . '-' . $generalHelper;
+        $code = 'DKS'.'-'.$date.'-'.$generalHelper;
 
         return $code;
     }
-    
+
     public function type($aset)
     {
-        switch ($aset) 
-        {
+        switch ($aset) {
             case 1:
                 return 'Aset Kendaraan';
             case 2:

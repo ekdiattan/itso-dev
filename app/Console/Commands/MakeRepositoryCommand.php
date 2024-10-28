@@ -8,6 +8,7 @@ use Illuminate\Filesystem\Filesystem;
 class MakeRepositoryCommand extends Command
 {
     protected $signature = 'make:repository {name : The name of the service}';
+
     protected $description = 'Create a new repository file by Hadyan Yuma Ekdiattan!';
 
     protected $files;
@@ -25,10 +26,11 @@ class MakeRepositoryCommand extends Command
 
         if ($this->files->exists($path)) {
             $this->error("Repository file {$name}.php already exists!");
+
             return;
         }
 
-        if (!$this->files->isDirectory(base_path('app/Repsositories'))) {
+        if (! $this->files->isDirectory(base_path('app/Repsositories'))) {
             $this->files->makeDirectory(base_path('app/Repsositories'), 0755, true);
         }
 

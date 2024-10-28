@@ -24,7 +24,7 @@ class Booking extends Model
     protected $attributes = [
         'BookingStatus' => 0,
     ];
-    
+
     public function aset()
     {
         return $this->belongsTo(Aset::class, 'BookingAsetId', 'MasterAsetId');

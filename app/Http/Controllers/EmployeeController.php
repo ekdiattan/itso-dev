@@ -23,16 +23,16 @@ class EmployeeController extends Controller
 
     public function index()
     {
-        try{
+        try {
 
             $employee = Employee::all();
             $position = Position::all();
             $unit = Unit::all();
 
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
             throw new \Exception($e->getMessage(), 500);
         }
-        
+
         return view('home.master.employee.index', ['title' => 'Employee', 'employee' => $employee, 'position' => $position, 'unit' => $unit]);
     }
 
@@ -80,31 +80,31 @@ class EmployeeController extends Controller
 
     public function edit(Request $request)
     {
-        try{
+        try {
 
             $id = $request->input('id');
             $employee = Employee::find($id);
             $position = Position::all();
 
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
             throw new \Exception($e->getMessage());
         }
 
         return view('home.master.employee.edit', [
-            'title' => 'Employee', 
-            'employee' => $employee, 
-            'position' => $position
+            'title' => 'Employee',
+            'employee' => $employee,
+            'position' => $position,
         ]);
     }
 
     public function update(int $id, Request $request)
     {
-        try{
+        try {
 
             $employee = Employee::find($id);
             $employee->update($request->all());
-            
-        }catch(\Exception $e){
+
+        } catch (\Exception $e) {
             return redirect('/employee')->with('error', $e->getMessage());
         }
 

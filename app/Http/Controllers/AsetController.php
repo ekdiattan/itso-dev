@@ -21,11 +21,10 @@ class AsetController extends Controller
         try {
             $asets = Aset::all();
 
-            foreach ($asets as $aset) 
-            {
+            foreach ($asets as $aset) {
                 $aset->MasterAsetType = $this->asetHelper->type($aset->MasterAsetType);
             }
-            
+
         } catch (\Exception $e) {
             throw new \Exception($e->getMessage());
         }
@@ -91,7 +90,7 @@ class AsetController extends Controller
         try {
 
             $aset = Aset::find($id);
-            
+
             $aset->update(['MasterAsetDeletedBy' => Auth::id()]);
 
             $aset->delete();
@@ -101,6 +100,7 @@ class AsetController extends Controller
         } catch (\Exception $e) {
             throw new \Exception($e->getMessage());
         }
+
         return redirect('/aset')->with('success', 'Aset berhasil dihapus');
     }
 }

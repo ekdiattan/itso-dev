@@ -8,6 +8,7 @@ use Illuminate\Filesystem\Filesystem;
 class MakeHelperCommand extends Command
 {
     protected $signature = 'make:helper {name : The name of the helper}';
+
     protected $description = 'Create a new helper file by Hadyan Yuma Ekdiattan!';
 
     protected $files;
@@ -25,10 +26,11 @@ class MakeHelperCommand extends Command
 
         if ($this->files->exists($path)) {
             $this->error("Helper file {$name}.php already exists!");
+
             return;
         }
 
-        if (!$this->files->isDirectory(base_path('app/Helpers'))) {
+        if (! $this->files->isDirectory(base_path('app/Helpers'))) {
             $this->files->makeDirectory(base_path('app/Helpers'), 0755, true);
         }
 

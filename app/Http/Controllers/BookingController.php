@@ -51,6 +51,7 @@ class BookingController extends Controller
         } catch (\Exception $e) {
             throw new \Exception($e->getMessage());
         }
+
         return view('home.aset.booking.reject', ['ditolak' => $ditolak,  'title' => 'Booking']);
     }
 
@@ -72,7 +73,7 @@ class BookingController extends Controller
 
             $employee = Employee::all();
             $asset = Aset::where('MasterAsetStatus', AsetStatusEnum::ACTIVE)->get();
-            
+
         } catch (\Exception $e) {
             throw new \Exception($e->getMessage());
         }
@@ -80,7 +81,7 @@ class BookingController extends Controller
         return view('home.aset.booking.permohonan', [
             'title' => 'Permohonan Peminjaman',
             'employee' => $employee,
-            'asset' => $asset
+            'asset' => $asset,
         ]);
     }
 
@@ -109,6 +110,7 @@ class BookingController extends Controller
 
         return view('home.aset.booking.edit', ['edit' => $edit, 'title' => 'Booking']);
     }
+
     public function delete($id)
     {
         try {
@@ -124,6 +126,7 @@ class BookingController extends Controller
 
         return redirect('/booking')->with('success', 'Peminjaman berhasil dihapus');
     }
+
     public function store(Request $request)
     {
         try {
@@ -133,9 +136,10 @@ class BookingController extends Controller
             if ($booking) {
 
                 if ($booking->BookingStatus == BookingEnum::WAITING) {
-                    return back()->with('error', 'Aset'. ' ' . $booking->aset->MasterAsetName . ' sedang menunggu di konfirmasi oleh Tim Aset');
+                    return back()->with('error', 'Aset'.' '.$booking->aset->MasterAsetName.' sedang menunggu di konfirmasi oleh Tim Aset');
                 }
-                return back()->with('error', 'Aset'. ' ' . $booking->aset->MasterAsetName . ' sedang dalam peminjaman hingga mulai'. $booking->BookingStart . ' sampai ' . $booking->BookingEnd);
+
+                return back()->with('error', 'Aset'.' '.$booking->aset->MasterAsetName.' sedang dalam peminjaman hingga mulai'.$booking->BookingStart.' sampai '.$booking->BookingEnd);
             }
 
             $bookingCode = $this->bookingHelper->createrandobooking(5);
@@ -157,6 +161,7 @@ class BookingController extends Controller
 
         return view('home.aset.booking.result', ['title' => 'Permohonan', 'booking' => $booking]);
     }
+
     public function show(Request $request)
     {
         try {
@@ -170,6 +175,7 @@ class BookingController extends Controller
 
         return view('home.aset.booking.show', ['title' => 'Permohonan', 'booking' => $booking]);
     }
+
     public function update(Request $request, $id)
     {
         try {
@@ -177,7 +183,7 @@ class BookingController extends Controller
             $booking = Booking::find($id);
             $booking->update($request->all());
 
-        }catch (\Exception $e) {
+        } catch (\Exception $e) {
             throw new \Exception($e->getMessage());
         }
 

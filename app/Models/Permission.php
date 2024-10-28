@@ -15,11 +15,11 @@ class Permission extends Model
     protected $primaryKey = 'PermissionId';
 
     protected $guarded =
-    [
-        'PermissionCreatedAt',
-        'PermissionUpdatedAt',
-        'PermissionDeletedAt'
-    ];
+        [
+            'PermissionCreatedAt',
+            'PermissionUpdatedAt',
+            'PermissionDeletedAt',
+        ];
 
     public function module()
     {
