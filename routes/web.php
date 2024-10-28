@@ -23,8 +23,11 @@ Route::post('/login', [UserController::class, 'authenticate']);
 Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/dashboard', [DashboardController::class, 'index']);
+    
+    Route::middleware(['check.permission:EM'])->group(function () {
+        Route::get('/employee', [EmployeeController::class, 'index']);
+    });
 
-    Route::get('/employee', [EmployeeController::class, 'index']);
     Route::get('/employee/delete/{id}', [EmployeeController::class, 'delete']);
     Route::post('/employee/edit', [EmployeeController::class, 'edit']);
     Route::post('/employee/create', [EmployeeController::class, 'store']);

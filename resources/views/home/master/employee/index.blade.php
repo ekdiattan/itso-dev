@@ -22,14 +22,14 @@
             </div>
             <div class="form-group">
               <label for="exampleInputUsername1">Jenis Kelamin</label>
-              <select class="form-control" aria-label="Default select example" id="position_id" name="EmployeeGender" required>
+              <select class="form-control" aria-label="Default select example" name="EmployeeGender" required>
                 <option value="1">Laki - Laki</option>
                 <option value="2">Perempuan</option>
               </select>
             </div>
             <div class="form-group">
               <label for="exampleInputUsername1">Jabatan</label>
-              <select class="form-control" aria-label="Default select example" id="position_id" name="EmployeePositionId" required>
+              <select class="form-control" aria-label="Default select example" name="EmployeePositionId" required>
                 @foreach ($position as $position)
                   <option value="{{ $position->MasterPositionId }}">{{ $position->MasterPositionName }}</option>
                 @endforeach
@@ -37,10 +37,17 @@
             </div>
             <div class="form-group">
               <label for="exampleInputUsername1">Bidang</label>
-              <select class="form-control" aria-label="Default select example" id="position_id" name="EmployeePositionId" required>
+              <select class="form-control" aria-label="Default select example" name="EmployeePositionId" required>
                 @foreach ($unit as $unit)
                   <option value="{{ $unit->MasterUnitId }}">{{ $unit->MasterUnitName }}</option>
                 @endforeach
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputUsername1">Status Pegawai</label>
+              <select class="form-control" aria-label="Default select example" name="EmployeeStatus" required>
+                <option value="1">Aktif</option>
+                <option value="0">Tidak Aktif</option>
               </select>
             </div>
             <button type="submit" class="btn btn-primary mr-2">Submit</button>

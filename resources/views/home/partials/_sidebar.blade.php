@@ -45,6 +45,14 @@
                     </a>
                 </li>
                 @endif
+                @if (hasPermission(auth()->user()->role->MasterRoleId, 'EM'))
+                <li class="nav-item">
+                    <a href="/employee" class="nav-link {{ ($title === 'Employee') ? 'active disabled' : '' }}">
+                        <i class="nav-icon fas fa-user-tie ml-3"></i>
+                        <p>Pegawai</p>
+                    </a>
+                </li>
+                @endif
                 @if (hasPermission(auth()->user()->role->MasterRoleId, 'MD'))
                 <li class="nav-item">
                     <a href="/module" class="nav-link {{ ($title === 'Modul') ? 'active disabled' : '' }}">
