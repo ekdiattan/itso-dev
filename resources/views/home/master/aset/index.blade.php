@@ -10,18 +10,25 @@
             <br>
             <div class="form-group">
               <label for="exampleInputUsername1">Nama Aset</label>
-              <input type="text" class="form-control" id="nama" name="MasterAsetName" maxlength="255">
+              <input type="text" class="form-control" id="nama" name="MasterAsetName" maxlength="255" required>
             </div>
             <div class="form-group">
               <label for="exampleInputUsername1">Tanggal Beli</label>
-              <input type="date" class="form-control" id="jumlah" name="MasterAsetBoughtDate">
+              <input type="date" class="form-control" id="jumlah" name="MasterAsetBoughtDate" required>
             </div>
             <div class="form-group">
               <label for="exampleInputUsername1">Tipe Aset</label>
-              <select class="form-control" aria-label="Default select example" id="status" name="MasterAsetType">
-                <option value="1">Kendaraan</option>
-                <option value="2">Aset</option>
-                <option value="3">Ruangan</option>
+              <select class="form-control" aria-label="Default select example" id="status" name="MasterAsetType" required>
+                <option value="1">Aset Kendaraan</option>
+                <option value="2">Aset Barang</option>
+                <option value="3">Aser Ruangan</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputUsername1">Status Aset</label>
+              <select class="form-control" aria-label="Default select example" id="status" name="MasterAsetStatus" required>
+                <option value="1">Aktif</option>
+                <option value="0">Tidak Aktif</option>
               </select>
             </div>
             <button type="submit" class="btn btn-primary mr-2">Submit</button>
@@ -66,7 +73,7 @@
                                   <span class="menu-icon"><i class="far fa-edit"></i></span>
                               </button>
                             </form>                            
-                            <form action="/aset/delete/{{$post->id}}" method="get" class="d-inline">
+                            <form action="/aset/delete/{{$post->MasterAsetId}}" method="GET" class="d-inline">
                             @method('delete')
                             @csrf
                             <button class="badge bg-danger border-0"onclick="return confirm('Are you sure?')"><span class="menu-icon"><i class="fas fa-trash"></i></span></button>

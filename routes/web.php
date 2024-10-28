@@ -35,6 +35,7 @@ Route::group(['middleware' => ['auth']], function ()
     Route::middleware(['check.permission:TA'])->group(function () {
         Route::get('/booking', [BookingController::class, 'index']);
     });
+    
     Route::get('/booking/create', [BookingController::class, 'create']);
     Route::post('/booking-check', [BookingController::class, 'bookingCheck']);
     Route::get('/booking-done', [BookingController::class, 'done']);

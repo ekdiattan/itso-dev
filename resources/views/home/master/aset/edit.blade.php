@@ -31,7 +31,11 @@
             <div class="form-group row">
               <label class="col-sm-3 col-form-label">Tipe Aset</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" id="MasterAsetType" name="MasterAsetType" maxlength="255"  value="{{ $aset->MasterAsetType }}"/>
+                <select class="form-control" id="MasterAsetType" name="MasterAsetType" required>
+                  <option value="1" {{ $aset->MasterAsetType == "1" ? 'selected' : '' }}>Aset Kendaraan</option>
+                  <option value="2" {{ $aset->MasterAsetType == "2" ? 'selected' : '' }}>Aset Barang</option>
+                  <option value="3" {{ $aset->MasterAsetType == "3" ? 'selected' : '' }}>Aset Ruangan</option>
+                </select>
               </div>
             </div>
           </div>

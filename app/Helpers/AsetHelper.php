@@ -20,11 +20,11 @@ class AsetHelper extends GeneralHelper
         switch ($aset) 
         {
             case 1:
-                return 'Aset Barang';
-            case 2:
-                return 'Aset Ruangan';
-            case 3:
                 return 'Aset Kendaraan';
+            case 2:
+                return 'Aset Barang';
+            case 3:
+                return 'Aset Ruangan';
             default:
                 return 'Tidak Terdefinisi';
         }

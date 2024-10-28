@@ -99,6 +99,7 @@ class UserController extends Controller
             Auth::logout();
             $request->session()->invalidate();
             $request->session()->regenerateToken();
+            
         } catch (\Exception $e) {
             throw new \Exception($e->getMessage());
         }
@@ -112,7 +113,9 @@ class UserController extends Controller
 
             $user = User::find($id);
             $user->delete();
+
             session()->flash('success', 'Pengguna Berhasil dihapus');
+
         } catch (\Exception $e) {
             throw new \Exception($e->getMessage());
         }

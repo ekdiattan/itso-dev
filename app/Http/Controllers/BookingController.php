@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\AsetStatusEnum;
 use App\Enums\BookingEnum;
 use App\Helpers\BookingChangeHelper;
 use App\Helpers\BookingHelper;
@@ -70,7 +71,8 @@ class BookingController extends Controller
         try {
 
             $employee = Employee::all();
-            $asset = Aset::all();
+            $asset = Aset::where('MasterAsetStatus', AsetStatusEnum::ACTIVE)->get();
+            
         } catch (\Exception $e) {
             throw new \Exception($e->getMessage());
         }
@@ -125,13 +127,19 @@ class BookingController extends Controller
     public function store(Request $request)
     {
         try {
+
             $booking = Booking::where('BookingAsetId', $request->BookingAsetId)->whereBetween('BookingStart', [$request->BookingStart, $request->BookingEnd])->first();
 
             if ($booking) {
-                return back()->with('error', 'Aset sedang dipinjam!');
+
+                if ($booking->BookingStatus == BookingEnum::WAITING) {
+                    return back()->with('error', 'Aset'. ' ' . $booking->aset->MasterAsetName . ' sedang menunggu di konfirmasi oleh Tim Aset');
+                }
+                return back()->with('error', 'Aset'. ' ' . $booking->aset->MasterAsetName . ' sedang dalam peminjaman hingga mulai'. $booking->BookingStart . ' sampai ' . $booking->BookingEnd);
             }
 
             $bookingCode = $this->bookingHelper->createrandobooking(5);
+
             $booking = Booking::create([
                 'BookingCode' => $bookingCode,
                 'BookingEmployeeId' => $request->BookingEmployeeId,
@@ -141,9 +149,8 @@ class BookingController extends Controller
                 'BookingUsed' => $request->BookingUsed,
                 'BookingStatus' => BookingEnum::WAITING,
                 'BookingRemark' => $request->BookingRemark ?? null,
-                'BookingCreatedBy' => Auth::id(),
-                'BookingUpdatedBy' => Auth::id()
             ]);
+
         } catch (\Exception $e) {
             throw new \Exception($e->getMessage());
         }
