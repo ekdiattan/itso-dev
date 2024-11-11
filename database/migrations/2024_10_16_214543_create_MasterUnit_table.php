@@ -17,7 +17,7 @@ return new class extends Migration
             $table->bigIncrements('MasterUnitId');
             $table->string('MasterUnitName', 50)->nullable();
             $table->string('MasterUnitCode', 4)->nullable();
-            $table->timestamp('MasterUnitCreatedAt', 6)->nullable();
+            $table->timestamp('MasterUnitCreatedAt')->nullable();
             $table->timestamp('MasterUnitUpdatedAt')->nullable();
             $table->timestamp('MasterUnitDeletedAt', 6)->nullable();
             $table->bigInteger('MasterUnitCreatedBy')->nullable();

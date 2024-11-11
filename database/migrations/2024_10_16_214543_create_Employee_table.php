@@ -29,6 +29,7 @@ return new class extends Migration
             $table->text('EmployeePhone')->nullable();
             $table->smallInteger('EmployeeGender')->nullable()->comment('1. MALE; 2. FEMALE');
             $table->text('EmployeeImagePath')->nullable();
+            $table->integer('EmployeeStatus')->nullable();
         });
     }
 

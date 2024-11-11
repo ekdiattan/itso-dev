@@ -41,7 +41,7 @@
             <td>Mulai</td>
             <td>{{ $booking->BookingStart }}</td>
           </tr>
-          <tr>
+          <tr>c
             <td>Selesai</td>
             <td>{{ $booking->BookingEnd }}</td>
           </tr>
