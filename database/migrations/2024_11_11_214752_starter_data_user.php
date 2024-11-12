@@ -14,7 +14,6 @@ return new class extends Migration
     public function up()
     {
         User::create([
-            'UserId' => 1,
             'name' => 'tfuprpifqj',
             'password' => bcrypt('123456'),
             'UserEmployeeId' => 1,

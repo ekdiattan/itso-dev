@@ -48,15 +48,15 @@ class EmployeeController extends Controller
                 'EmployeeAddress' => $request->EmployeeAddress ?? null,
                 'EmployeeName' => $request->EmployeeName,
                 'EmployeeNumber' => $employeeHelper,
-                'EmployeeEmail' => $request->EmployeeEmail,
+                'EmployeeEmail' => $request->EmployeeEmail ?? null,
                 'EmployeePhone' => $request->EmployeePhone,
                 'EmployeePositionId' => $request->EmployeePositionId,
                 'EmployeeGender' => $request->EmployeeGender,
                 'EmployeeStatus' => $request->EmployeeStatus,
             ]);
-            
-            $roleDefault = Role::where('MasterRoleName', 'US')->first();
 
+            $roleDefault = Role::where('MasterRoleName', 'US')->first();
+            
             User::create([
                 'UserEmployeeId' => $dataEmployee['EmployeeId'],
                 'UserRoleId' => $roleDefault->MasterRoleId,
