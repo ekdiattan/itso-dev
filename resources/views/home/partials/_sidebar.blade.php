@@ -69,6 +69,14 @@
                     </a>
                 </li>
                 @endif
+                @if (hasPermission(auth()->user()->role->MasterRoleId, 'US'))
+                <li class="nav-item">
+                    <a href="/user" class="nav-link {{ ($title === 'User') ? 'active disabled' : '' }}">
+                        <i class="nav-icon fas fa-user ml-3"></i>
+                        <p>Pengguna</p>
+                    </a>
+                </li>
+                @endif
                 @if (hasPermission(auth()->user()->role->MasterRoleId, 'HA'))
                 <li class="nav-item">
                     <a href="/permission" class="nav-link {{ ($title === 'Hak Akses') ? 'active disabled' : '' }}">

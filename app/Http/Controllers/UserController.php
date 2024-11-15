@@ -18,11 +18,13 @@ class UserController extends Controller
         try {
 
             $user = User::all();
+            $employee = Employee::whereDoesntHave('user')->get();
+            
         } catch (\Exception $e) {
             throw new \Exception($e->getMessage());
         }
 
-        return view('register.index', ['users' => $user, 'title' => 'Pengguna']);
+        return view('register.index', ['users' => $user, 'employee' => $employee, 'title' => 'User']);
     }
 
     public function register()
@@ -36,7 +38,7 @@ class UserController extends Controller
             throw new \Exception($e->getMessage());
         }
 
-        return view('register.register', ['title' => 'Pengguna', 'user' => $data]);
+        return view('register.register', ['title' => 'User', 'user' => $data]);
     }
 
     public function show(Request $request)
@@ -49,7 +51,7 @@ class UserController extends Controller
             throw new \Exception($e->getMessage());
         }
 
-        return view('register.show', ['user' => $user, 'title' => 'Pengguna']);
+        return view('register.show', ['user' => $user, 'title' => 'User']);
     }
 
     public function edit(Request $request)
@@ -63,7 +65,7 @@ class UserController extends Controller
             throw new \Exception($e->getMessage());
         }
 
-        return view('register.edit', ['user' => $edit, 'title' => 'Pengguna', 'role' => $role]);
+        return view('register.edit', ['user' => $edit, 'title' => 'User', 'role' => $role]);
     }
 
     public function login()
@@ -114,13 +116,13 @@ class UserController extends Controller
             $user = User::find($id);
             $user->delete();
 
-            session()->flash('success', 'Pengguna Berhasil dihapus');
+            session()->flash('success', 'User Berhasil dihapus');
 
         } catch (\Exception $e) {
             throw new \Exception($e->getMessage());
         }
 
-        return redirect('/index')->with('success', 'Pengguna berhasil dihapus');
+        return redirect('/index')->with('success', 'User berhasil dihapus');
     }
 
     public function editByUser()
@@ -141,7 +143,7 @@ class UserController extends Controller
             throw new \Exception($e->getMessage());
         }
 
-        return view('home.settings.account', ['user' => $user, 'image' => $image, 'title' => 'Pengguna']);
+        return view('home.settings.account', ['user' => $user, 'image' => $image, 'title' => 'Data Pribadi']);
     }
 
     public function update(Request $request, $id)

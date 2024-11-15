@@ -15,21 +15,20 @@ class Employee extends Model
     protected $primaryKey = 'EmployeeId';
 
     protected $guarded =
-        [
-            'EmployeeCreatedAt',
-            'EmployeeUpdatedAt',
-            'EmployeeDeletedAt',
-        ];
+    [
+        'EmployeeCreatedAt',
+        'EmployeeUpdatedAt',
+        'EmployeeDeletedAt',
+    ];
 
     protected $casts = [
         'EmployeeImage' => 'array',
     ];
-
+    
     public function user()
     {
         return $this->belongsTo(User::class, 'EmployeeId', 'UserEmployeeId');
     }
-
     public function position()
     {
         return $this->belongsTo(Position::class, 'EmployeePositionId', 'MasterPositionId');
