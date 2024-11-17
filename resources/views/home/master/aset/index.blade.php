@@ -54,6 +54,7 @@
                           <th>Kode Aset</th>
                           <th>Tipe Aset</th>
                           <th>Tanggal Aset</th>
+                          <th>Status Aset</th>
                           <th>Action</th>
                         </tr>
                       </thead>
@@ -65,6 +66,7 @@
                           <td>{{ $post->MasterAsetCode }}</td>
                           <td>{{ $post->MasterAsetType }}</td>
                           <td>{{ $post->MasterAsetBoughtDate }}</td>
+                          <td>{{ $post->MasterAsetStatus }}</td>
                           <td>
                             <form action="/aset" method="POST" style="display:inline;">
                               @csrf

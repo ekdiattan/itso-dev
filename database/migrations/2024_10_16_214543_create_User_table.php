@@ -17,14 +17,14 @@ return new class extends Migration
             $table->bigIncrements('UserId');
             $table->text('name')->nullable();
             $table->text('password')->nullable();
+            $table->bigInteger('UserRoleId')->nullable();
+            $table->bigInteger('UserEmployeeId')->nullable();
             $table->timestamp('UserCreatedAt')->nullable();
             $table->timestamp('UserUpdatedAt')->nullable();
             $table->timestamp('UserDeletedAt')->nullable();
             $table->bigInteger('UserCreatedBy')->nullable();
             $table->bigInteger('UserUpdatedBy')->nullable();
             $table->bigInteger('UserDeletedBy')->nullable();
-            $table->bigInteger('UserEmployeeId')->nullable();
-            $table->bigInteger('UserRoleId')->nullable();
         });
     }
 

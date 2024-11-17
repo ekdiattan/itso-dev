@@ -14,12 +14,12 @@ return new class extends Migration
     public function up()
     {
         Schema::create('MasterAset', function (Blueprint $table) {
-            $table->bigInteger('MasterAsetId')->default(0)->primary();
+            $table->bigIncrements('MasterAsetId');
             $table->string('MasterAsetName')->nullable();
             $table->string('MasterAsetCode')->nullable();
             $table->smallInteger('MasterAsetType')->nullable()->comment('1.Vehicle;2.Asset;Room');
             $table->date('MasterAsetBoughtDate')->nullable();
-            $table->bigInteger('MasterAsetIsActive')->nullable();
+            $table->smallInteger('MasterAsetIsActive')->nullable();
             $table->timestamp('MasterAsetCreatedAt', 6)->nullable();
             $table->timestamp('MasterAsetUpdatedAt')->nullable();
             $table->timestamp('MasterAsetDeletedAt', 6)->nullable();

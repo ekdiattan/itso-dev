@@ -13,6 +13,7 @@ class UserSeeder extends Seeder
      *
      * @return void
      */
+    
     public function run()
     {
         User::create([

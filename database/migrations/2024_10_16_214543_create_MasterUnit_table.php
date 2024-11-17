@@ -17,13 +17,13 @@ return new class extends Migration
             $table->bigIncrements('MasterUnitId');
             $table->string('MasterUnitName', 50)->nullable();
             $table->string('MasterUnitCode', 4)->nullable();
+            $table->string('MasterUnitInitial', 25)->nullable();
             $table->timestamp('MasterUnitCreatedAt')->nullable();
             $table->timestamp('MasterUnitUpdatedAt')->nullable();
             $table->timestamp('MasterUnitDeletedAt', 6)->nullable();
             $table->bigInteger('MasterUnitCreatedBy')->nullable();
             $table->bigInteger('MasterUnitUpdatedBy')->nullable();
             $table->bigInteger('MasterUnitDeletedBy')->nullable();
-            $table->string('MasterUnitInitial', 25)->nullable();
         });
     }
 

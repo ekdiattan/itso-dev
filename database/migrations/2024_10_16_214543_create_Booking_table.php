@@ -14,16 +14,16 @@ return new class extends Migration
     public function up()
     {
         Schema::create('Booking', function (Blueprint $table) {
-            $table->increments('BookingId');
+            $table->bigIncrements('BookingId');
             $table->smallInteger('BookingStatus')->nullable();
             $table->bigInteger('BookingAsetId')->nullable();
             $table->text('BookingRemark')->nullable();
             $table->timestamp('BookingCreatedAt', 6)->nullable();
             $table->timestamp('BookingUpdatedAt')->nullable();
             $table->timestamp('BookingDeletedAt', 6)->nullable();
-            $table->smallInteger('BookingCreatedBy')->nullable();
-            $table->smallInteger('BookingDeletedBy')->nullable();
-            $table->smallInteger('BookingUpdatedBy')->nullable();
+            $table->bigInteger('BookingCreatedBy')->nullable();
+            $table->bigInteger('BookingDeletedBy')->nullable();
+            $table->bigInteger('BookingUpdatedBy')->nullable();
             $table->string('BookingCode', 15)->nullable();
             $table->date('BookingStart')->nullable();
             $table->date('BookingEnd')->nullable();

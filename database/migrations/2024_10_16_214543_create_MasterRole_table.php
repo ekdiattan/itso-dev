@@ -17,9 +17,9 @@ return new class extends Migration
             $table->bigIncrements('MasterRoleId');
             $table->text('MasterRoleName')->nullable();
             $table->text('MasterRoleCode')->nullable();
-            $table->timestamp('MasterRoleCreatedAt', 6)->nullable();
+            $table->timestamp('MasterRoleCreatedAt')->nullable();
             $table->timestamp('MasterRoleUpdatedAt')->nullable();
-            $table->timestamp('MasterRoleDeletedAt', 6)->nullable();
+            $table->timestamp('MasterRoleDeletedAt')->nullable();
             $table->bigInteger('MasterRoleCreatedBy')->nullable();
             $table->bigInteger('MasterRoleUpdatedBy')->nullable();
             $table->bigInteger('MasterRoleDeletedBy')->nullable();

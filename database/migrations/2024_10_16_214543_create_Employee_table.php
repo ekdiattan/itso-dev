@@ -15,21 +15,21 @@ return new class extends Migration
     {
         Schema::create('Employee', function (Blueprint $table) {
             $table->bigIncrements('EmployeeId');
+            $table->bigInteger('EmployeePositionId')->nullable();
             $table->string('EmployeeName', 25)->nullable();
-            $table->string('EmployeeAddress', 100)->nullable();
-            $table->timestamp('EmployeeCreatedAt', 6)->nullable();
+            $table->text('EmployeeAddress')->nullable();
+            $table->integer('EmployeeNumber')->nullable();
+            $table->smallInteger('EmployeeGender')->nullable()->comment('1. MALE; 2. FEMALE');
+            $table->string('EmployeePhone', 20)->nullable();
+            $table->string('EmployeeEmail', 30)->nullable();
+            $table->smallInteger('EmployeeStatus')->nullable();
+            $table->text('EmployeeImagePath')->nullable();
+            $table->timestamp('EmployeeCreatedAt')->nullable();
             $table->timestamp('EmployeeUpdatedAt')->nullable();
-            $table->timestamp('EmployeeDeletedAt', 6)->nullable();
+            $table->timestamp('EmployeeDeletedAt')->nullable();
             $table->bigInteger('EmployeeCreatedBy')->nullable();
             $table->bigInteger('EmployeeUpdatedBy')->nullable();
             $table->bigInteger('EmployeeDeletedBy')->nullable();
-            $table->bigInteger('EmployeePositionId')->nullable();
-            $table->integer('EmployeeNumber')->nullable();
-            $table->string('EmployeeEmail', 30)->nullable();
-            $table->text('EmployeePhone')->nullable();
-            $table->smallInteger('EmployeeGender')->nullable()->comment('1. MALE; 2. FEMALE');
-            $table->text('EmployeeImagePath')->nullable();
-            $table->integer('EmployeeStatus')->nullable();
         });
     }
 

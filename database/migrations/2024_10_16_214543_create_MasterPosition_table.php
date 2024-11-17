@@ -15,15 +15,15 @@ return new class extends Migration
     {
         Schema::create('MasterPosition', function (Blueprint $table) {
             $table->bigIncrements('MasterPositionId');
+            $table->bigInteger('MasterPositionUnitId')->nullable();
             $table->string('MasterPositionName', 50)->nullable();
             $table->string('MasterPositionCode', 3)->nullable();
-            $table->timestamp('MasterPositionCreatedAt', 6)->nullable();
+            $table->timestamp('MasterPositionCreatedAt')->nullable();
             $table->timestamp('MasterPositionUpdatedAt')->nullable();
-            $table->timestamp('MasterPositionDeletedAt', 6)->nullable();
+            $table->timestamp('MasterPositionDeletedAt')->nullable();
             $table->bigInteger('MasterPositionCreatedBy')->nullable();
             $table->bigInteger('MasterPositionUpdatedBy')->nullable();
             $table->bigInteger('MasterPositionDeletedBy')->nullable();
-            $table->bigInteger('MasterPositionUnitId')->nullable();
         });
     }
 

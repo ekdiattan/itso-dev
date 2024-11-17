@@ -1,3 +1,3 @@
-INSERT INTO "Employee" ("EmployeeName", "EmployeeAddress", "EmployeeCreatedAt", "EmployeeUpdatedAt", "EmployeeDeletedAt", "EmployeeCreatedBy", "EmployeeUpdatedBy", "EmployeeDeletedBy", "EmployeePositionId", "EmployeeNumber", "EmployeeEmail", "EmployeePhone", "EmployeeGender", "EmployeeImagePath", "EmployeeStatus") 
+INSERT INTO "Employee" ("EmployeePositionId","EmployeeName","EmployeeAddress","EmployeeNumber","EmployeeGender","EmployeePhone","EmployeeEmail","EmployeeStatus","EmployeeImagePath","EmployeeCreatedAt","EmployeeUpdatedAt","EmployeeDeletedAt","EmployeeCreatedBy","EmployeeUpdatedBy","EmployeeDeletedBy") 
 VALUES 
-('Muhammad Kaka', 'K', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, NULL, NULL, NULL, NULL, 1, 202478069, '77777@gmail.com', '0895704106273', 1, NULL, 1);
+(1,'Muhammad Kaka','K', 202478069, 1 ,'+62895704106273','77777@gmail.com',1,NULL,CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, NULL, 1, 1, NULL);

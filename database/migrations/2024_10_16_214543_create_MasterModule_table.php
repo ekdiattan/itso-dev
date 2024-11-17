@@ -17,13 +17,12 @@ return new class extends Migration
             $table->bigIncrements('MasterModuleId');
             $table->string('MasterModuleCode')->nullable();
             $table->string('MasterModuleName')->nullable();
-            $table->timestamp('MasterModuleCreatedAt', 6)->nullable();
+            $table->timestamp('MasterModuleCreatedAt')->nullable();
             $table->timestamp('MasterModuleUpdatedAt')->nullable();
-            $table->timestamp('MasterModuleDeletedAt', 6)->nullable();
+            $table->timestamp('MasterModuleDeletedAt')->nullable();
             $table->bigInteger('MasterModuleCreatedBy')->nullable();
             $table->bigInteger('MasterModuleUpdatedBy')->nullable();
             $table->bigInteger('MasterModuleDeletedBy')->nullable();
-            $table->text('MasterModuleType')->nullable();
         });
     }
 

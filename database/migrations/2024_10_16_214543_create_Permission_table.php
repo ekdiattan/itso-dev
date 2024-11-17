@@ -14,15 +14,15 @@ return new class extends Migration
     public function up()
     {
         Schema::create('Permission', function (Blueprint $table) {
-            $table->increments('PermissionId');
-            $table->integer('PermissionModuleId')->nullable();
-            $table->integer('PermissionRoleId')->nullable();
+            $table->bigIncrements('PermissionId');
+            $table->bigInteger('PermissionModuleId')->nullable();
+            $table->bigInteger('PermissionRoleId')->nullable();
             $table->timestamp('PermissionCreatedAt')->nullable();
             $table->timestamp('PermissionUpdatedAt')->nullable();
             $table->timestamp('PermissionDeletedAt')->nullable();
-            $table->integer('PermissionCreatedBy')->nullable();
-            $table->integer('PermissionUpdatedBy')->nullable();
-            $table->integer('PermissionDeletedBy')->nullable();
+            $table->bigInteger('PermissionCreatedBy')->nullable();
+            $table->bigInteger('PermissionUpdatedBy')->nullable();
+            $table->bigInteger('PermissionDeletedBy')->nullable();
         });
     }
 
