@@ -57,15 +57,15 @@
                         </tr>
                       </thead>
                       <tbody>
-                        @foreach ($users as $post )  
+                        @foreach ($users as $user )  
                         <tr>
                           <td>{{ $loop->iteration }}</td>
-                          <td>{{ $post->name }}</td>
-                          <td>{{ $post->employee->EmployeeName }}</td>
+                          <td>{{ $user->name }}</td>
+                          <td>{{ $user->employee->EmployeeName }}</td>
                           <td>
-                            <form action="/aset" method="POST" style="display:inline;">
+                            <form action="/user/edit" method="post" style="display:inline;">
                               @csrf
-                              <input type="hidden" name="id" value="{{ $post->UserId }}">
+                              <input type="hidden" name="id" value="{{ $user->UserId }}">
                               <button type="submit" class="badge bg-warning" style="border: none">
                                   <span class="menu-icon"><i class="far fa-edit"></i></span>
                               </button>

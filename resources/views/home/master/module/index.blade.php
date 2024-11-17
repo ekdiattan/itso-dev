@@ -33,7 +33,6 @@
                           <th>No</th>
                           <th>Nama Modul</th>
                           <th>Kode Modul</th>
-                          <th>Action</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -42,21 +41,6 @@
                           <td>{{ $loop->iteration }}</td>
                           <td>{{ $post->MasterModuleName }}</td>
                           <td>{{ $post->MasterModuleCode }}</td>
-                          <td>
-                            <form action="/module/edit" method="POST" style="display:inline;">
-                              @csrf
-                              <input type="hidden" name="id" value="{{ $post->MasterModuleId }}">
-                              <button type="submit" class="badge bg-warning" style="border: none">
-                                  <span class="menu-icon"><i class="far fa-edit"></i></span>
-                              </button>
-                            </form>                            
-                            <form action="/module/delete" method="POST" style="display:inline;">
-                              @csrf
-                              <input type="hidden" name="id" value="{{ $post->MasterModuleId }}">
-                              <button type="submit" class="badge bg-danger" style="border: none">
-                                  <span class="menu-icon"><i class="far fa-trash-alt"></i></span>
-                              </button>
-                            </form>
                         </tr>
                         @endforeach
                       </tbody>

@@ -48,6 +48,7 @@ class UserController extends Controller
 
             $id = $request->input('id');
             $user = User::find($id);
+
         } catch (\Exception $e) {
             throw new \Exception($e->getMessage());
         }
@@ -60,13 +61,18 @@ class UserController extends Controller
         try {
 
             $id = $request->input('id');
-            $edit = User::find($id);
+            $user = User::find($id);
             $role = Role::all();
+
         } catch (\Exception $e) {
             throw new \Exception($e->getMessage());
         }
 
-        return view('register.edit', ['user' => $edit, 'title' => 'User', 'role' => $role]);
+        return view('register.edit', [
+            'title' => 'User', 
+            'user' => $user, 
+            'role' => $role
+        ]);
     }
 
     public function login()
@@ -152,8 +158,10 @@ class UserController extends Controller
         try {
 
             $user = User::find($id);
+            $role = Role::all();
+
             $request->validate([
-                'name' => ['exists:user,name'],
+                'name' => ['exists:User,name'],
             ]);
 
             if ($request->filled('password')) {
@@ -175,10 +183,11 @@ class UserController extends Controller
             ]);
 
         } catch (\Exception $e) {
-            throw new \Exception($e->getMessage());
+
+            return redirect('/user')->with('error', $e->getMessage());
         }
 
-        return back()->with('success', 'Berhasil Mengupdate Data');
+        return view('register.edit', ['user' => $user, 'role' => $role,'title' => 'User'])->with('success', 'Data Berhasil Diupdate');
     }
 
     public function store(Request $request)

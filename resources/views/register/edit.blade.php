@@ -73,9 +73,9 @@
             <div class="form-group row">
               <label class="col-sm-3 col-form-label">Hak Akses</label>
               <div class="col-sm-9">
-                <select class="form-control" id="hak_akses" name="UserRoleId">
+                <select class="form-control" name="UserRoleId">
                   @foreach ($role as $roles)
-                    <option value={{$roles->MasterRoleId}}>{{$roles->MasterRoleCode}} - {{$roles->MasterRoleName}}</option>
+                    <option value="{{$roles->MasterRoleId}}" {{ $roles->MasterRoleId == $user->role->MasterRoleId ? 'selected' : '' }}>{{$roles->MasterRoleCode}} - {{$roles->MasterRoleName}}</option>
                   @endforeach
                 </select>
             </div>
@@ -100,7 +100,6 @@
         </div>
       </form>
       <div id="password-strength"></div>
-
     </div>
   </div>
 </div>

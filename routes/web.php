@@ -65,7 +65,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/position/edit', [PositionController::class, 'viewEdit']);
     Route::post('/position/update/{id}', [PositionController::class, 'update']);
     Route::get('/position/delete/{id}', [PositionController::class, 'delete']);
-
+    
     // User
     Route::get('/account', [UserController::class, 'editByUser']);
     Route::get('/logout', [UserController::class, 'logout']);
@@ -74,11 +74,10 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/user', [UserController::class, 'index']);
     });
     
-    Route::get('/user/register', [UserController::class, 'register']);
-    Route::post('/user/create', [UserController::class, 'store']);
-    Route::get('/user/{id}', [UserController::class, 'show']);
     Route::post('/user/edit', [UserController::class, 'edit']);
     Route::post('/user/update/{id}', [UserController::class, 'update']);
+    Route::get('/user/register', [UserController::class, 'register']);
+    Route::post('/user/create', [UserController::class, 'store']);
     Route::get('/user/delete/{id}', [UserController::class, 'delete']);
 
     // Unit
