@@ -69,8 +69,13 @@ Route::group(['middleware' => ['auth']], function () {
     // User
     Route::get('/account', [UserController::class, 'editByUser']);
     Route::get('/logout', [UserController::class, 'logout']);
-    Route::get('/user', [UserController::class, 'index']);
+    
+    Route::middleware(['check.permission:HA'])->group(function () {
+        Route::get('/user', [UserController::class, 'index']);
+    });
+    
     Route::get('/user/register', [UserController::class, 'register']);
+    Route::post('/user/create', [UserController::class, 'store']);
     Route::get('/user/{id}', [UserController::class, 'show']);
     Route::post('/user/edit', [UserController::class, 'edit']);
     Route::post('/user/update/{id}', [UserController::class, 'update']);

@@ -18,13 +18,14 @@ class UserController extends Controller
         try {
 
             $user = User::all();
-            $employee = Employee::whereDoesntHave('user')->get();
-            
+            $employee = Employee::whereDoesntHave('user')->get() ?? [];
+            $role = Role::all();
+
         } catch (\Exception $e) {
             throw new \Exception($e->getMessage());
         }
 
-        return view('register.index', ['users' => $user, 'employee' => $employee, 'title' => 'User']);
+        return view('register.index', ['users' => $user, 'employee' => $employee,'role' => $role, 'title' => 'User']);
     }
 
     public function register()
@@ -178,5 +179,17 @@ class UserController extends Controller
         }
 
         return back()->with('success', 'Berhasil Mengupdate Data');
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => ['required', 'exists:User,name'],
+            'password' => ['required', 'max:100', 'min:6'],
+        ]);
+        
+        User::create($request->all());
+
+        return back()->with('success', 'Data Berhasil Ditambahkan');
     }
 }
