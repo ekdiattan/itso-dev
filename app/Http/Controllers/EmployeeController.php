@@ -26,6 +26,10 @@ class EmployeeController extends Controller
         try {
 
             $employee = Employee::all();
+
+            foreach ($employee as $employees) {
+                $employees->EmployeeStatus = EmployeeHelper::status($employees->EmployeeStatus);
+            }
             $position = Position::all();
             $unit = Unit::all();
 

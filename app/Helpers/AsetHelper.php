@@ -28,4 +28,16 @@ class AsetHelper extends GeneralHelper
                 return 'Tidak Terdefinisi';
         }
     }
+
+    public function status($aset)
+    {
+        switch ($aset) {
+            case 1:
+                return 'Aktif';
+            case 0:
+                return 'Tidak Aktif';
+            default:
+                return 'Tidak Terdefinisi';
+        }
+    }
 }

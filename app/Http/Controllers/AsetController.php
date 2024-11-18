@@ -19,10 +19,12 @@ class AsetController extends Controller
     public function index()
     {
         try {
-            $asets = Aset::all();
+
+            $asets = Aset::orderBy('MasterAsetIsActive', 'desc')->get();
 
             foreach ($asets as $aset) {
                 $aset->MasterAsetType = $this->asetHelper->type($aset->MasterAsetType);
+                $aset->MasterAsetIsActive = $this->asetHelper->status($aset->MasterAsetIsActive);
             }
 
         } catch (\Exception $e) {
@@ -40,6 +42,7 @@ class AsetController extends Controller
 
             $data = [
                 'MasterAsetCode' => $asetCodes,
+                'MasterAsetIsActive' => $request->MasterAsetIsActive,
                 'MasterAsetCreatedBy' => Auth::id(),
                 'MasterAsetUpdatedBy' => Auth::id(),
             ];

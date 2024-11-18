@@ -36,4 +36,16 @@ class EmployeeHelper extends GeneralHelper
 
         return $password;
     }
+
+    public static function status($status)
+    {
+        switch ($status) {
+            case 1:
+                return 'Aktif';
+            case 0:
+                return 'Tidak Aktif';
+            default:
+                return 'Tidak Terdefinisi';
+        }
+    }
 }

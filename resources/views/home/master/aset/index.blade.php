@@ -26,7 +26,7 @@
             </div>
             <div class="form-group">
               <label for="exampleInputUsername1">Status Aset</label>
-              <select class="form-control" aria-label="Default select example" id="status" name="MasterAsetStatus" required>
+              <select class="form-control" aria-label="Default select example" id="status" name="MasterAsetIsActive" required>
                 <option value="1">Aktif</option>
                 <option value="0">Tidak Aktif</option>
               </select>
@@ -66,7 +66,7 @@
                           <td>{{ $post->MasterAsetCode }}</td>
                           <td>{{ $post->MasterAsetType }}</td>
                           <td>{{ $post->MasterAsetBoughtDate }}</td>
-                          <td>{{ $post->MasterAsetStatus }}</td>
+                          <td>{{ $post->MasterAsetIsActive }}</td>
                           <td>
                             <form action="/aset" method="POST" style="display:inline;">
                               @csrf

@@ -72,7 +72,7 @@ class BookingController extends Controller
         try {
 
             $employee = Employee::all();
-            $asset = Aset::where('MasterAsetStatus', AsetStatusEnum::ACTIVE)->get();
+            $asset = Aset::where('MasterAsetIsActive', AsetStatusEnum::ACTIVE)->get();
 
         } catch (\Exception $e) {
             throw new \Exception($e->getMessage());
@@ -133,6 +133,10 @@ class BookingController extends Controller
 
             $booking = Booking::where('BookingAsetId', $request->BookingAsetId)->whereBetween('BookingStart', [$request->BookingStart, $request->BookingEnd])->first();
 
+            if($request->BookingStart > $request->BookingEnd) {
+                return back()->with('error', 'Tanggal mulai tidak boleh lebih besar dari tanggal akhir');
+            }
+
             if ($booking) {
 
                 if ($booking->BookingStatus == BookingEnum::WAITING) {
@@ -154,6 +158,8 @@ class BookingController extends Controller
                 'BookingStatus' => BookingEnum::WAITING,
                 'BookingRemark' => $request->BookingRemark ?? null,
             ]);
+
+            $booking->BookingStatus = BookingHelper::status($booking->BookingStatus);
 
         } catch (\Exception $e) {
             throw new \Exception($e->getMessage());

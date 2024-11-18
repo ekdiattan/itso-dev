@@ -50,6 +50,19 @@
             </div>
           </div>
         </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group row">
+              <label class="col-sm-3 col-form-label">Status Aset</label>
+              <div class="col-sm-9">
+                <select class="form-control" id="MasterAsetIsActive" name="MasterAsetIsActive" required>
+                  <option value="1" {{ $aset->MasterAsetIsActive == "1" ? 'selected' : '' }}>Aktif</option>
+                  <option value="0" {{ $aset->MasterAsetIsActive == "0" ? 'selected' : '' }}>Tidak Aktif</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
         <div class="box">
             <div class="box-header with-border">
               <button type="submit" class="btn btn-primary mr-2 btn-flat">Submit</button>

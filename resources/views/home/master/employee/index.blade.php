@@ -72,6 +72,7 @@
                           <th>Nama Pegawai</th>
                           <th>Nomor Pegawai</th>
                           <th>Nomor Hp Pegawai</th>
+                          <th>Status Pegawai</th>
                           <th>Action</th>
                         </tr>
                       </thead>
@@ -82,6 +83,7 @@
                             <td>{{ $key->EmployeeName }}</td>
                             <td>{{ $key->EmployeeNumber }}</td>
                             <td>{{ $key->EmployeePhone }}</td>
+                            <td>{{ $key->EmployeeStatus }}</td>
                             <td>
                               <form action="/employee/edit" method="POST" style="display:inline;">
                                 @csrf
