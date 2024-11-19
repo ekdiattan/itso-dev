@@ -58,7 +58,7 @@ class EmployeeController extends Controller
                 'EmployeeGender' => $request->EmployeeGender,
                 'EmployeeStatus' => $request->EmployeeStatus,
             ]);
-
+            
             $roleDefault = Role::where('MasterRoleName', 'US')->first();
             
             User::create([

@@ -34,6 +34,12 @@ class PermissionController extends Controller
     {
         try {
 
+            $permission = Permission::where('PermissionModuleId', $request->input('PermissionModuleId'))->where('PermissionRoleId', $request->input('PermissionRoleId'))->first();
+
+            if ($permission) {
+                return back()->with('badRequest', 'Data Sudah Ada dalam hak akses!');
+            }
+
             Permission::create($request->all());
 
         } catch (\Exception $e) {

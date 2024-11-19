@@ -1,4 +1,3 @@
-<title>Diskominfo Jabar | Pengaturan</title>
 @extends('home.partials.main')
 @section('container')
 <div class="row">

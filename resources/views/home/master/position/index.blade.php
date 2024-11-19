@@ -32,6 +32,7 @@
                         <tr>
                           <th>No</th>
                           <th>Nama Jabatan</th>
+                          <th>Kode Jabatan</th>
                           <th>Action</th>
                         </tr>
                       </thead>
@@ -40,6 +41,7 @@
                         <tr>
                           <td>{{ $loop->iteration }}</td>
                           <td>{{ $position->MasterPositionName}}</td>
+                          <td>{{ $position->MasterPositionCode}}</td>
                           <td>
                             <form action="/position/edit" method="POST" style="display:inline;">
                               @csrf
