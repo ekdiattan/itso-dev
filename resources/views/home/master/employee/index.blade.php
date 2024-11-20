@@ -10,15 +10,15 @@
             <br>
             <div class="form-group">
               <label for="exampleInputUsername1">Nama Pegawai</label>
-              <input type="text" class="form-control" id="EmployeeAddress" name="EmployeeName" maxlength="255" required>
+              <input type="text" class="form-control" id="EmployeeAddress" name="EmployeeName" maxlength="25" required>
             </div>
             <div class="form-group">
               <label for="exampleInputUsername1">Alamat Pegawai</label>
-              <input type="text" class="form-control" id="EmployeeAddress" name="EmployeeAddress" maxlength="255" required>
+              <input type="text" class="form-control" id="EmployeeAddress" name="EmployeeAddress" required>
             </div>
             <div class="form-group">
               <label for="exampleInputUsername1">Nomor Telepon Pegawai</label>
-              <input type="number" class="form-control" id="EmployeePhone" name="EmployeePhone" maxlength="255" required>
+              <input type="number" class="form-control" id="EmployeePhone" name="EmployeePhone" maxlength="20" required>
             </div>
             <div class="form-group">
               <label for="exampleInputUsername1">Jenis Kelamin</label>

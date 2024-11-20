@@ -25,7 +25,7 @@ class EmployeeController extends Controller
     {
         try {
 
-            $employee = Employee::all();
+            $employee = Employee::orderBy('EmployeeStatus', 'desc')->get();
 
             foreach ($employee as $employees) {
                 $employees->EmployeeStatus = EmployeeHelper::status($employees->EmployeeStatus);
@@ -58,7 +58,7 @@ class EmployeeController extends Controller
                 'EmployeeGender' => $request->EmployeeGender,
                 'EmployeeStatus' => $request->EmployeeStatus,
             ]);
-            
+
             $roleDefault = Role::where('MasterRoleName', 'US')->first();
             
             User::create([

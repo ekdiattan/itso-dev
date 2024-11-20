@@ -11,7 +11,7 @@
             <div class="form-group row">
               <label class="col-sm-3 col-form-label">Nama Pegawai</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" id="kodeBarang" name="EmployeeName" value="{{$employee->EmployeeName}}" maxlength="255" required/>
+                <input type="text" class="form-control" id="kodeBarang" name="EmployeeName" value="{{$employee->EmployeeName}}" maxlength="25" required/>
               </div>
             </div>
           </div>
@@ -21,7 +21,7 @@
             <div class="form-group row">
               <label class="col-sm-3 col-form-label">Alamat Pegawai</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" id="jenisAset" name="EmployeeAddress" value="{{$employee->EmployeeAddress}}" maxlength="255" required/>
+                <input type="text" class="form-control" id="jenisAset" name="EmployeeAddress" value="{{$employee->EmployeeAddress}}" required/>
               </div>
             </div>
           </div>
@@ -55,7 +55,7 @@
             <div class="form-group row">
               <label class="col-sm-3 col-form-label">Email</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" id="umurEkonomis" name="EmployeeEmail" value="{{$employee->EmployeeEmail}}" maxlength="255" required/>
+                <input type="email" class="form-control" id="umurEkonomis" name="EmployeeEmail" value="{{$employee->EmployeeEmail}}" required/>
               </div>
             </div>
           </div>
