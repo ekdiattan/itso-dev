@@ -5,7 +5,7 @@
       <div class="card">
         <div class="card-body">
           <h4 class="card-title">Tambahkan Pegawai</h4>
-          <form action="/employee/create" method="post" >
+          <form action="/employee/create" method="post">
             @csrf
             <br>
             <div class="form-group">
