@@ -104,11 +104,22 @@ class BookingController extends Controller
             $id = $request->input('id');
             $edit = Booking::find($id);
 
+            if($edit->BookingStatus == 0){
+                $status = [
+                     1 => 'Setujui',
+                     2 => 'Tolak',
+                ];
+            }elseif($edit->BookingStatus = 1){
+                $status = [
+                    3 => 'Selesai',
+               ];
+            }
+
         } catch (\Exception $e) {
             throw new \Exception($e->getMessage());
         }
 
-        return view('home.aset.booking.edit', ['edit' => $edit, 'title' => 'Booking']);
+        return view('home.aset.booking.edit', ['edit' => $edit, 'title' => 'Booking', 'status' => $status]);
     }
 
     public function delete($id)

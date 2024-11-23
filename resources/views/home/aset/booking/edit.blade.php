@@ -57,8 +57,11 @@
             <div class="form-group">
                 <label for="exampleInputUsername1">Status</label>
                 <select class="form-control" id="status" name="BookingStatus" required>
-                    <option value="1">Setujui</option>
-                    <option value="2">Tolak</option>
+                    @if (!empty($status))
+                        @foreach ($status as $key => $statuss)
+                            <option value="{{ $key }}">{{ $statuss }}</option>
+                        @endforeach
+                    @endif
                 </select>
             </div>
         </div>

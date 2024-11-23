@@ -53,7 +53,7 @@
                             <form action="/position/delete/{{ $position->MasterPositionId }}" method="get" class="d-inline">
                               @csrf
                               <button class="badge bg-danger border-0" onclick="return confirm('Are you sure?')"><span class="menu-icon"><i class="fas fa-trash"></i></span></button>
-                              </form>                          
+                            </form>
                           </td>
                         </tr>
                         @endforeach
@@ -67,5 +67,4 @@
       </div>
     </div>
   </div>
-  
 @endsection
