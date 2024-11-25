@@ -31,7 +31,7 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $post->BookingCode}}</td>
                                 <td>{{ $post->aset->MasterAsetName}}</td>
-                                <td>{{ $post->user->employee->EmployeeName}}</td>
+                                <td>{{ $post->employee->EmployeeName}}</td>
                                 <td>{{ $post->BookingStart}}</td>
                                 <td>{{ $post->BookingEnd}}</td>
                                 <td>{{ $post->BookingRemark }}</td>
