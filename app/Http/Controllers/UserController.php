@@ -153,10 +153,12 @@ class UserController extends Controller
         return view('home.settings.account', ['user' => $user, 'image' => $image, 'title' => 'Data Pribadi']);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         try {
 
+            $id = $request->input('id');
+            
             $user = User::find($id);
             $role = Role::all();
 

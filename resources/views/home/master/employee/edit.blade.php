@@ -3,8 +3,6 @@
 <div class="col-12 grid-margin">
   <div class="card">
     <div class="card-body">
-      <form action="/employee/update/{{ $employee->EmployeeId }}" method="post">
-        @csrf
         <p class="card-description">Edit Data Pegawai </p>
         <div class="row">
           <div class="col-md-6">
@@ -98,7 +96,11 @@
         </div>
           <div class="box">
             <div class="box-header with-border">
-              <button type="submit" class="btn btn-primary mr-2 btn-flat">Submit</button>
+              <form action="/employee/edit" method="post" style="display:inline;">
+                @csrf
+                <input type="hidden" name="id" value="{{ $employee->EmployeeId }}">
+                <button type="submit" class="btn btn-primary mr-2 btn-flat" id="submit-btn">Submit</button>
+              </form>
                 <a href="/employee" class="btn btn-danger mr-2 btn-flat"><i class="fa fa-file-excel-o"></i> Kembali</a>
             </div>
         </div>

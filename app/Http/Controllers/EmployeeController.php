@@ -102,17 +102,4 @@ class EmployeeController extends Controller
         ]);
     }
 
-    public function update(int $id, Request $request)
-    {
-        try {
-
-            $employee = Employee::find($id);
-            $employee->update($request->all());
-
-        } catch (\Exception $e) {
-            return redirect('/employee')->with('error', $e->getMessage());
-        }
-
-        return redirect('/employee')->with('success', 'Berhasil Mengupdate Data');
-    }
 }

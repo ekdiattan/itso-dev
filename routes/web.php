@@ -28,10 +28,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/employee', [EmployeeController::class, 'index']);
     });
 
-    Route::get('/employee/delete/{id}', [EmployeeController::class, 'delete']);
     Route::post('/employee/edit', [EmployeeController::class, 'edit']);
     Route::post('/employee/create', [EmployeeController::class, 'store']);
-    Route::post('/employee/update/{id}', [EmployeeController::class, 'update']);
 
     Route::middleware(['check.permission:TA'])->group(function () {
         Route::get('/booking', [BookingController::class, 'index']);
@@ -39,11 +37,9 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/booking/create', [BookingController::class, 'create']);
     Route::post('/booking-check', [BookingController::class, 'bookingCheck']);
-    Route::get('/booking-done', [BookingController::class, 'done']);
     Route::post('/booking/detail', [BookingController::class, 'show']);
     Route::post('/booking/edit', [BookingController::class, 'edit']);
-    Route::get('/booking/delete/{id}', [BookingController::class, 'delete']);
-    Route::post('/booking/update/{id}', [BookingController::class, 'update']);
+    Route::get('/booking-done', [BookingController::class, 'done']);
     Route::get('/booking-acc', [BookingController::class, 'acc']);
     Route::get('/booking-reject', [BookingController::class, 'reject']);
 
@@ -75,7 +71,7 @@ Route::group(['middleware' => ['auth']], function () {
     });
     
     Route::post('/user/edit', [UserController::class, 'edit']);
-    Route::post('/user/update/{id}', [UserController::class, 'update']);
+    Route::post('/user/update', [UserController::class, 'update']);
     Route::get('/user/register', [UserController::class, 'register']);
     Route::post('/user/create', [UserController::class, 'store']);
     Route::get('/user/delete/{id}', [UserController::class, 'delete']);
