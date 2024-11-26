@@ -36,6 +36,7 @@ Route::group(['middleware' => ['auth']], function () {
     });
 
     Route::get('/booking/create', [BookingController::class, 'create']);
+    Route::post('/booking/update/{id}', [BookingController::class, 'update']);
     Route::post('/booking-check', [BookingController::class, 'bookingCheck']);
     Route::post('/booking/detail', [BookingController::class, 'show']);
     Route::post('/booking/edit', [BookingController::class, 'edit']);

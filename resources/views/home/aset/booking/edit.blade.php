@@ -64,8 +64,32 @@
                     @endif
                 </select>
             </div>
+            
+            <div class="form-group" id="reason-container" style="display: none;">
+                <label for="reason">Alasan Penolakan</label>
+                <textarea class="form-control" id="reason" name="BookingReasonReject" rows="3" required></textarea>
+            </div>
         </div>
       </div>
 </form>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const statusDropdown = document.getElementById('status');
+        const reasonContainer = document.getElementById('reason-container');
+        const reasonField = document.getElementById('reason');
+
+        statusDropdown.addEventListener('change', function () {
+            if (this.value === '2') {
+                reasonContainer.style.display = 'block';
+                reasonField.setAttribute('required', 'required');
+            } else {
+                reasonContainer.style.display = 'none';
+                reasonField.removeAttribute('required');
+                reasonField.value = '';
+            }
+        });
+    });
+</script>
+
 
 @endsection

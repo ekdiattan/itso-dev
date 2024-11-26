@@ -22,6 +22,7 @@
                               <th>Nama Pemohon</th>
                               <th>Tanggal Pinjam</th>
                               <th>Selesai Pinjam</th>
+                              <th>Alasan Ditolak</th>
                               <th>Catatan</th>
                             </tr>
                         </thead>
@@ -35,6 +36,7 @@
                                   <td>{{ $post->employee->EmployeeName}}</td>
                                   <td>{{ $post->BookingStart}}</td>
                                   <td>{{ $post->BookingEnd}}</td>
+                                  <td>{{ $post->BookingReasonReject}}</td>
                                   <td>{{ $post->BookingRemark }}</td>
                                 </tr>
                             @endforeach

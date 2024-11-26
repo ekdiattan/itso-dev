@@ -23,6 +23,7 @@ return new class extends Migration
             $table->timestamp('BookingEnd')->nullable();
             $table->smallInteger('BookingStatus')->nullable();
             $table->text('BookingRemark')->nullable();
+            $table->text('BookingReasonReject')->nullable();
             $table->timestamp('BookingExpiredAt')->nullable();
             $table->timestamp('BookingCreatedAt')->nullable();
             $table->timestamp('BookingUpdatedAt')->nullable();
