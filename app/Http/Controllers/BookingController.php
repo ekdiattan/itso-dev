@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Enums\AsetStatusEnum;
-use App\Enums\BookingEnum;
-use App\Helpers\BookingChangeHelper;
-use App\Helpers\BookingHelper;
+use Carbon\Carbon;
 use App\Models\Aset;
 use App\Models\Booking;
 use App\Models\Employee;
+use App\Enums\BookingEnum;
 use Illuminate\Http\Request;
+use App\Enums\AsetStatusEnum;
+use App\Helpers\BookingHelper;
+use App\Helpers\BookingChangeHelper;
 use Illuminate\Support\Facades\Auth;
 
 class BookingController extends Controller
@@ -158,7 +159,7 @@ class BookingController extends Controller
             }
 
             $bookingCode = $this->bookingHelper->createrandobooking(5);
-
+            
             $booking = Booking::create([
                 'BookingCode' => $bookingCode,
                 'BookingEmployeeId' => $request->BookingEmployeeId,
@@ -168,6 +169,9 @@ class BookingController extends Controller
                 'BookingUsed' => $request->BookingUsed,
                 'BookingStatus' => BookingEnum::WAITING,
                 'BookingRemark' => $request->BookingRemark ?? null,
+                'BookingExpiredAt' => Carbon::parse($request->BookingEnd)->addDays(1),
+                'BookingCreatedBy' => Auth::id(),
+                'BookingUpdatedBy' => Auth::id()
             ]);
 
             $booking->BookingStatus = BookingHelper::status($booking->BookingStatus);

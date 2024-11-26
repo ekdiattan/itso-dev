@@ -17,7 +17,7 @@ class UserSeeder extends Seeder
     public function run()
     {
         User::create([
-            'name' => 'tfuprpifqj',
+            'name' => 'superadmin',
             'password' => bcrypt('123456'),
             'UserEmployeeId' => 1,
             'UserRoleId' => 1,

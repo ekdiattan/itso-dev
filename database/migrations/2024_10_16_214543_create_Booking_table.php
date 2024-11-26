@@ -15,23 +15,21 @@ return new class extends Migration
     {
         Schema::create('Booking', function (Blueprint $table) {
             $table->bigIncrements('BookingId');
-            $table->smallInteger('BookingStatus')->nullable();
             $table->bigInteger('BookingAsetId')->nullable();
+            $table->integer('BookingEmployeeId')->nullable();
+            $table->string('BookingCode', 15)->nullable();
+            $table->smallInteger('BookingUsed')->nullable();
+            $table->timestamp('BookingStart')->nullable();
+            $table->timestamp('BookingEnd')->nullable();
+            $table->smallInteger('BookingStatus')->nullable();
             $table->text('BookingRemark')->nullable();
-            $table->timestamp('BookingCreatedAt', 6)->nullable();
+            $table->timestamp('BookingExpiredAt')->nullable();
+            $table->timestamp('BookingCreatedAt')->nullable();
             $table->timestamp('BookingUpdatedAt')->nullable();
-            $table->timestamp('BookingDeletedAt', 6)->nullable();
+            $table->timestamp('BookingDeletedAt')->nullable();
             $table->bigInteger('BookingCreatedBy')->nullable();
             $table->bigInteger('BookingDeletedBy')->nullable();
             $table->bigInteger('BookingUpdatedBy')->nullable();
-            $table->string('BookingCode', 15)->nullable();
-            $table->date('BookingStart')->nullable();
-            $table->date('BookingEnd')->nullable();
-            $table->smallInteger('BookingApprovalStatus')->nullable();
-            $table->text('BookingApprovalRemark')->nullable();
-            $table->timestamp('BookingExpired', 6)->nullable();
-            $table->integer('BookingEmployeeId')->nullable();
-            $table->smallInteger('BookingUsed')->nullable();
         });
     }
 

@@ -49,7 +49,7 @@
                 <div class="form-group row">
                   <label class="col-sm-3 col-form-label">Mulai Pinjam</label>
                   <div class="col-sm-9">
-                    <input type="datetime-local" placeholder="dd-mm-yyyy" class="form-control" id="mulai" name="BookingStart" onChange="check()" value="" required/>
+                    <input type="datetime-local" class="form-control" name="BookingStart" required/>
                   </div>
                 </div>
               </div>
@@ -57,7 +57,7 @@
                 <div class="form-group row">
                   <label class="col-sm-3 col-form-label">Selesai Pinjam</label>
                   <div class="col-sm-9">
-                    <input type="datetime-local" class="form-control" id="selesai" name="BookingEnd" onChange="check()" value="" required/>
+                    <input type="datetime-local" class="form-control" name="BookingEnd" required/>
                   </div>
                 </div>
               </div>
