@@ -38,8 +38,6 @@
     <!-- Multiselect -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
     <!-- calendar -->
-    <link href='/fullcalendar-master/assets/css/fullcalendar.css' rel='stylesheet' />
-    <link href='/fullcalendar-master/assets/css/fullcalendar.print.css' rel='stylesheet' media='print' />
     @stack('css')
 </head>
 
@@ -100,13 +98,6 @@
 <script src="/AdminLTE-3.2.0/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 <!-- multiselect -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
-<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/i18n/defaults-*.min.js"></script> -->
-
-<!-- calendar -->
-<script src='/fullcalendar-master/assets/js/jquery-1.10.2.js' type="text/javascript"></script>
-<script src='/fullcalendar-master/assets/js/jquery-ui.custom.min.js' type="text/javascript"></script>
-<script src='/fullcalendar-master/assets/js/fullcalendar.js' type="text/javascript"></script>
-
 
 @stack('scripts')
 </body>

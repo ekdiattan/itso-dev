@@ -31,7 +31,7 @@
         <h4>No HP</h4>
         <h5>{{ $user->employee->EmployeePhone }}</h5>
       </div>
-    <form action="/user/update/{{ $user->UserId }}" method="post" enctype="multipart/form-data">
+    <form action="/user/update" method="post" enctype="multipart/form-data">
       @csrf
       <div class="form-group">
         <label for="password">Ganti Password</label>
@@ -44,6 +44,7 @@
       <div id="password-strength"></div>
       <br>
       <div class="input-group-append">
+        <input type="hidden" name="id" value="{{ $user->UserId }}">
         <button type="submit" class="btn btn-primary mr-2 btn-flat float-right" id="submit-btn">Change</button>
         <span class="input-group-text">
           <i class="far fa-eye" id="show-password" type="button"></i>
