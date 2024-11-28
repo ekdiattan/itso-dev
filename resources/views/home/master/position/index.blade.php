@@ -4,12 +4,12 @@
     <div class="col-md-4 grid-margin">
       <div class="card">
         <div class="card-body">
-          <h4 class="card-title">Tambahkan Posisi</h4>
+          <h4 class="card-title">Tambahkan Jabatan</h4>
           <form action="/bidang/create" method="post" >
             @csrf
             <br>
             <div class="form-group">
-              <label for="exampleInputUsername1">Nama Posisi</label>
+              <label for="exampleInputUsername1">Nama Jabatan</label>
               <input type="text" class="form-control" id="namabidang" name="namabidang" maxlength="255" required>
             </div>
             <button type="submit" class="btn btn-primary mr-2">Submit</button>
@@ -21,7 +21,7 @@
       <div class="card">
         <div class="card-body">
           <div class="d-flex flex-row justify-content-between">
-            <h4 class="card-title mb-1">Daftar Posisi</h4>
+            <h4 class="card-title mb-1">Daftar Jabatan</h4>
           </div>
           <div class="row">
             <div class="col-12">
