@@ -87,7 +87,7 @@
                 </div>
               </div>
             </div>
-            <a class="btn btn-danger" href="/bookings" role="button">Kembali</a>
+            <a class="btn btn-danger" href="/" role="button">Kembali</a>
             <button type="submit" class="btn btn-primary mr-2" id="btnSubmit" onclick="hideButton()">Submit</button> 
             <button class="btn btn-primary" type="button" id="btn2" style="display:none;">
               <span class="spinner-grow spinner-grow-sm text-danger" role="status" aria-hidden="true"></span>
