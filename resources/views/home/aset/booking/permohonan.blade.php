@@ -23,7 +23,7 @@
                   <select class="form-control selectpicker" id="namaPemohon" name="BookingEmployeeId" data-live-search="true" onchange="setBidang();">
                     @foreach($employee as $employee)
                       <option value="{{ $employee->EmployeeId }}">{{$employee->EmployeeName}} - {{$employee->position->unit->MasterUnitName}} - {{ $employee->position->MasterPositionName}}</option>
-                  @endforeach
+                    @endforeach
                   </select>
                 </div>
               </div>
