@@ -1,17 +1,14 @@
 <link rel="shortcut icon" href="{{ asset('assets/images/jabar.png') }}">
 @extends('home.partials.public')
-
 <nav class="navbar bg-info">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">
-  </a>
-  <marquee><img src="{{ asset('assets/images/logo_diskom.svg') }}" alt="Diskominfo" class="brand-image" style="height: 50px; width: 150px; margin-left: 35px;">Selamat datang di website IT Solution Dinas Komunikasi & Informatika Provinsi Jawa Barat <img src="{{ asset('assets/images/logo_diskom.svg') }}" alt="Diskominfo" class="brand-image" style="height: 50px; width: 150px; margin-left: 0px;"></marquee>
+    <marquee>
+      <img src="{{ asset('assets/images/logo_diskom.svg') }}" alt="Diskominfo" class="brand-image" style="height: 50px; width: 150px; margin-left: 35px;">Selamat datang di website IT Solution Dinas Komunikasi & Informatika Provinsi Jawa Barat <img src="{{ asset('assets/images/logo_diskom.svg') }}" alt="Diskominfo" class="brand-image" style="height: 50px; width: 150px; margin-left: 0px;">
+    </marquee>
   </div>
 </nav>
 @section('container')
-<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h5>Periksa Status Tiket Anda</h5>
-</div> 
+<br>
 <div class="row">
 <div class="card mx-auto my-auto">
   <div class="card-body p-4">
@@ -61,12 +58,13 @@
           <div class="row">
             <div class="col-md-6">
               <div class="form-group row">
-                <label class="col-sm-3 col-form-label">Bidang</label>
+                <label class="col-sm-3 col-form-label">Jabatan</label>
                 <div class="col-sm-9">
                   <input type="text" class="form-control" id="bidang" name="bidang" value="{{$booking->employee->position->MasterPositionName}}"  readonly/>
                 </div>
               </div>
             </div>
+            <br>
             <div class="col-md-6">
               <div class="form-group row">
                 <label class="col-sm-3 col-form-label">No Telepon</label>
@@ -116,15 +114,34 @@
           <div class="row">
             <div class="col-md-6">
               <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Digunakan Untuk</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" value="{{$booking->BookingUsed}}" readonly/>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group row">
                 <label class="col-sm-3 col-form-label">Catatan</label>
                 <div class="col-sm-9">
                   <textarea class="form-control" id="perihal" name="perihal" rows="4"readonly>{{$booking->BookingRemark}}</textarea>
                 </div>
               </div>
             </div> 
+            @if($booking->BookingStatus == 'Ditolak')
+            <div class="col-md-6">
+              <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Alasan Ditolak</label>
+                <div class="col-sm-9">
+                  <textarea class="form-control" id="perihal" name="perihal" rows="4"readonly>{{$booking->BookingReasonReject}}</textarea>
+                </div>
+              </div>
+            </div> 
+            @endif
           </div>  
       </div>
   </div>
 @endif
-
 @endsection

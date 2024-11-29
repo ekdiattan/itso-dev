@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Booking;
 use Illuminate\Http\Request;
 use App\Helpers\BookingChangeHelper;
+use App\Helpers\BookingHelper;
 
 class TrackingController extends Controller
 {
@@ -13,10 +14,8 @@ class TrackingController extends Controller
         return view('home.tracking.index', ['title' => 'Public']);
     }
 
-    public function track(Request $request)
+    public function track()
     {
-        $booking = Booking::where('BookingCode')->first();
-
         return view('home.tracking.tracking', ['title' => 'Tracking', 'laporan' => null, 'booking' => null, 'keyword' => null]);
     }
 
@@ -41,6 +40,7 @@ class TrackingController extends Controller
 
             $booking->BookingStatus = BookingChangeHelper::changeStatus($booking->BookingStatus);
             $alertColor = BookingChangeHelper::alertColor($booking->BookingStatus);
+            $booking->BookingUsed = BookingHelper::used($booking->BookingUsed);
 
         }catch(\Exception $e){
             return back()->with('badRequest', $e->getMessage());
