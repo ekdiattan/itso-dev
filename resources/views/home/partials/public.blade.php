@@ -48,6 +48,7 @@
         <div class="container-fluid page-body-wrapper">
             <section>
               @yield('container')
+              @include('home.general.alert')
             </section>
         </div>
       </div>

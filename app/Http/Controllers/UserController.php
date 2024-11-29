@@ -88,17 +88,18 @@ class UserController extends Controller
                 'name' => ['required', 'max:255'],
                 'password' => ['required', 'max:100', 'min:6'],
             ]);
-            
+
             if (Auth::attempt($credentials)) {
                 $request->session()->regenerate();
-
-                return redirect()->intended('/dashboard')->with('success', 'Login has been success!');
+            }else{
+                return back()->with('badRequest', 'Username atau password salah!, silahkan coba lagi!');
             }
+
         } catch (\Exception $e) {
-            throw new \Exception($e->getMessage());
+            return back()->with('badRequest', $e->getMessage());
         }
 
-        return back()->with('error', 'Login failed!');
+        return redirect()->intended('/dashboard')->with('success', 'Login has been success!');
     }
 
     public function logout(Request $request)
@@ -163,7 +164,9 @@ class UserController extends Controller
             $role = Role::all();
 
             $request->validate([
-                'name' => ['exists:User,name'],
+                'name' => [
+                    'exists:User,name'
+                ],
             ]);
 
             if ($request->filled('password')) {

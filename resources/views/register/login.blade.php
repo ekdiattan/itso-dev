@@ -9,9 +9,7 @@
     <link rel="stylesheet" href="../../assets/vendors/css/vendor.bundle.base.css">
     <link rel="stylesheet" href="assets/css/login.css">
     <link rel="stylesheet" href="../../assets/css/style.css">
-
     <link rel="shortcut icon" href="{{ asset('assets/images/jabar.png') }}">
-
   </head>
   <body>
     <video autoplay muted loop id="myVideo" >
@@ -30,7 +28,7 @@
                       @csrf   
                     <div class="form-group">
                       <label>Username *</label>
-                      <input type="text" class="form-control p_input" id="name" name="name" autofocus required>
+                      <input type="text" class="form-control p_input" name="name" autofocus required value="{{old('name')}}">
                     </div>
                     <div class="form-group">
                       <label>Password *</label>

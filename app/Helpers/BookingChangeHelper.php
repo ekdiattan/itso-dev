@@ -28,4 +28,25 @@ class BookingChangeHelper extends GeneralHelper
                 break;
         }
     }
+
+    public static function alertColor($code)
+    {
+        switch ($code) {
+            case 'Dalam Pengajuan':
+                return 'alert alert-warning';
+                break;
+            case 'Sedang Dipinjam':
+                return 'alert alert-success';
+                break;
+            case 'Ditolak':
+                return 'alert alert-danger';
+                break;
+            case 'Selesai':
+                return 'alert alert-primary';
+                break;
+            default:
+                return 'Status doesn\'t match any case';
+                break;
+        }
+    }
 }

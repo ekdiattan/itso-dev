@@ -14,16 +14,6 @@
 </div> 
 <div class="row">
 <div class="card mx-auto my-auto">
-  @if(session('notFound'))
-  <div class="alert alert-danger m-3">
-    {{ session('notFound') }}
-  </div>
-  @endif
-  @if(session('invalid'))
-  <div class="alert alert-danger m-3">
-    {{ session('invalid') }}
-  </div>
-  @endif
   <div class="card-body p-4">
       <h5 style="text-align:center; font-family:fantasy;">Masukan Tiket Anda Disini</h3>
       <div class="row height d-flex justify-content-center align-items-center">
@@ -32,8 +22,8 @@
           <div class="col-md-15">
               <div class="input-group">
                   <input type="search" class="form-control rounded m-1" placeholder="Input Ticket" aria-label="Search" name="BookingCode" value="{{old('BookingCode')}}"/>
-                  <button type="submit" class="btn btn-outline-primary m-1">search</button>
-                  <a href="/tracking" type="button" class="btn btn-outline-danger m-1">reset</a>
+                  <button type="submit" class="btn btn-outline-primary m-1">SEARCH</button>
+                  <a href="/tracking" type="button" class="btn btn-outline-danger m-1">RESET</a>
               </div>   
           </div>
         </form>
@@ -41,33 +31,15 @@
   </div>
   </div>
   </div>
-  <br><br
-<!-- UNTUK BOOKING -->
+  <br>
+  <br>
 @if($booking != null)
 <div class="card mb-4">
     <div class="card-body">
-    @if($booking->BookingStatus == 1)
-    <div class="alert alert-success" role="alert">
-      <b>Status : Disetujui</b>
+    <div class="{{$alertColor}}" role="alert">
+      <b>Status : {{$booking->BookingStatus}}</b>
     </div>
-    @elseif($booking->BookingStatus == 0)
-    <div class="alert alert-warning" role="alert">
-      <b>Status : Dalam Pengajuan</b>
-    </div>
-    @elseif($booking->BookingStatus == 2)
-    <div class="alert alert-primary" role="alert">
-      <b>Status : Dipinjam</b>
-    </div>
-    @elseif($booking->BookingStatus == 3)
-    <div class="alert alert-danger" role="alert">
-      <b>Status : Ditolak</b>
-    </div>
-    @elseif($booking->BookingStatus == 4)
-    <div class="alert alert-success" role="alert">
-      <b>Status : Selesai</b>
-    </div>
-    @endif
-      <h5 class="card-description">Data Peminjam</h5>
+    <h5 class="card-description">Data Peminjam</h5>
       <div class="row">
             <div class="col-md-6">
               <div class="form-group row">
