@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/admin', function () {
     return view('register.login');
-});
+})->name('admin');
 
 Route::get('/', [TrackingController::class, 'index']);
 
