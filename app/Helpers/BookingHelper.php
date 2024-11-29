@@ -27,4 +27,15 @@ class BookingHelper extends GeneralHelper
                 return 'Tidak Terdefinisi';
         }
     }
+
+    public static function used($status){
+        switch ($status) {
+            case 1:
+                return 'Dinas';
+            case 2:
+                return 'Pribadi';
+            default:
+                return 'Tidak Terdefinisi';
+        }
+    }
 }
