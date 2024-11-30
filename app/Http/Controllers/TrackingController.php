@@ -31,8 +31,9 @@ class TrackingController extends Controller
     public function find(Request $request)
     {
         try{
-
-            $booking = Booking::where('BookingCode', $request->BookingCode)->first();
+            
+            $id = $request->input('id');
+            $booking = Booking::where('BookingCode', $request->BookingCode)->first() ?? Booking::where('BookingId', $id)->first();
 
             if($booking == null){
                 return back()->with('badRequest', 'Permohonan tidak ditemukan');

@@ -25,11 +25,12 @@
                 <h3 class="card-title text-left mb-3">Login</h3>
                 <main class="form-signin" id="main">
                   <form action="\login" method="post">
-                      @csrf   
+                    @csrf   
                     <div class="form-group">
                       <label>Username *</label>
                       <input type="text" class="form-control p_input" name="name" autofocus required value="{{old('name')}}">
                     </div>
+                    @include('home.general.alert')
                     <div class="form-group">
                       <label>Password *</label>
                       <input type="password" class="form-control p_input" id="password" name="password" required>
@@ -37,7 +38,7 @@
                     </div>
                     <div class="text-center">
                       <button type="submit" class="btn btn-primary btn-block enter-btn" id="submit-btn">Login</button>
-                      <p class="text-center mt-3">© Dinas Komunikasi & Informatika Provinsi Jawa Barat {{ date('Y') }}</p>
+                        <p class="text-center mt-3">© Dinas Komunikasi & Informatika Provinsi Jawa Barat {{ date('Y') }}</p>
                     </div>
                   </form>
                 </main>
@@ -47,6 +48,5 @@
         </div>
       </div>
     </div>
-  @include('home.general.alert')
   </body>
 </html>

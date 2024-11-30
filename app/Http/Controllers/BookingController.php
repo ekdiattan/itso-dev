@@ -143,19 +143,31 @@ class BookingController extends Controller
     {
         try {
 
-            $booking = Booking::where('BookingAsetId', $request->BookingAsetId)->whereBetween('BookingStart', [$request->BookingStart, $request->BookingEnd])->first();
+            $booking = Booking::where('BookingAsetId', $request->BookingAsetId)
+            ->where(function ($query) use ($request) {
+                $query->whereBetween('BookingStart', [$request->BookingStart, $request->BookingEnd])
+                      ->orWhereBetween('BookingEnd', [$request->BookingStart, $request->BookingEnd])
+                      ->orWhere(function ($query) use ($request) {
+                          $query->where('BookingStart', '<=', $request->BookingStart)
+                                ->where('BookingEnd', '>=', $request->BookingEnd);
+                      });
+            })
+            ->first();
 
-            if($request->BookingStart > $request->BookingEnd) {
+                    if($request->BookingStart > $request->BookingEnd) {
                 return back()->with('error', 'Tanggal mulai tidak boleh lebih besar dari tanggal akhir');
             }
 
             if ($booking) {
 
-                if ($booking->BookingStatus == BookingEnum::WAITING) {
-                    return back()->with('error', 'Aset'.' '.$booking->aset->MasterAsetName.' sedang menunggu di konfirmasi oleh Tim Aset');
-                }
+                if ($booking->BookingExpiredAt < Carbon::now()) {
 
-                return back()->with('error', 'Aset'.' '.$booking->aset->MasterAsetName.' sedang dalam peminjaman hingga mulai'.$booking->BookingStart.' sampai '.$booking->BookingEnd);
+                    return back()->with('badRequest', 'Aset'.' '.$booking->aset->MasterAsetName.' sedang menunggu di konfirmasi oleh Tim Aset dalam waktu 1 X 24 jam!');
+
+                }elseif ($booking->BookingStatus == BookingEnum::BOOKING) {
+
+                    return back()->with('error', 'Aset'.' '.$booking->aset->MasterAsetName.' sedang dalam peminjaman hingga mulai'.$booking->BookingStart.' sampai '.$booking->BookingEnd);
+                }
             }
 
             $bookingCode = $this->bookingHelper->createrandobooking(5);

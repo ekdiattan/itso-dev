@@ -10,11 +10,6 @@
 
 <div class="col-lg-12 grid-margin stretch-card px-3 py-3">
   @section('container')
-  @if(session('success'))
-  <div class="alert alert-success" role="alert">
-    {{ session('success') }}
-  </div>
-  @endif
   <div class="card">
     <div class="card-body">
       <h4 class="card-title"><b>Detail Permohonan</b></h4>
@@ -41,7 +36,7 @@
             <td>Mulai</td>
             <td>{{ $booking->BookingStart }}</td>
           </tr>
-          <tr>c
+          <tr>
             <td>Selesai</td>
             <td>{{ $booking->BookingEnd }}</td>
           </tr>
@@ -58,7 +53,10 @@
     </div>
   </div>
   <a class="btn btn-danger" href="/public" role="button">Kembali</a>
-  <a class="btn btn-success" href="/tracking/{{ $booking->BookingCode }}" role="button" target="_blank" value="{{$booking->BookingCode}}">Ke Tracking</a>
-
+  <form action="/tracking" method="post" style="display:inline;">
+    @csrf
+    <input type="hidden" name="id" value="{{ $booking->BookingId }}">
+    <button type="submit" class="btn btn-primary mr-2 btn-flat" id="submit-btn">Tracking</button>
+  </form>
 </div>
 @endsection
