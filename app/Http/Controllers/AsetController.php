@@ -78,9 +78,6 @@ class AsetController extends Controller
             $aset = Aset::find($id);
             $aset->update($request->all());
 
-            $request->accepts('session');
-            session()->flash('success', 'Berhasil menambahkan data!');
-
         } catch (\Exception $e) {
             throw new \Exception($e->getMessage());
         }
